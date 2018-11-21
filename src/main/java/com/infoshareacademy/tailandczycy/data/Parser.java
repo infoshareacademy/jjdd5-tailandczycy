@@ -1,31 +1,33 @@
 package com.infoshareacademy.tailandczycy.data;
 
 import com.google.gson.*;
-import com.infoshareacademy.tailandczycy.service.Expenses;
+import com.infoshareacademy.tailandczycy.service.Expense;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
+import java.util.List;
 
 public class Parser {
-    public static void main(String[] args) throws FileNotFoundException {
-        Gson gson = new GsonBuilder()
-                .registerTypeHierarchyAdapter(LocalDate.class, new GsonLocalDateTypeAdapter())
-                .create();
+    //Initializing objects necessary to read from json file
+    Gson gson = new GsonBuilder()
+            .registerTypeHierarchyAdapter(LocalDate.class, new GsonLocalDateTypeAdapter())
+            .create();
+    InputStream resourceAsStream = new FileInputStream("data/test.json");
+    InputStreamReader reader = new InputStreamReader(resourceAsStream);
 
-        //Read from a file
-        InputStream resourceAsStream = new FileInputStream("data/test.json");
-        //Read Stream
-        InputStreamReader reader = new InputStreamReader(resourceAsStream);
-        //Reading from Json to Array
-        Expenses[] expensesArray = gson.fromJson(reader, Expenses[].class);
-        //Changing Array to List
-        Expenses[] listOfExpenses = expensesArray;
-        //Printing full list
-        for (Expenses expense : listOfExpenses) {
-            System.out.println(expense);
-        }
+
+    Expense[] expenseArray = gson.fromJson(reader, Expense[].class);
+    //Changing Array to List
+    Expense[] listOfExpens = expenseArray;
+
+    public Parser() throws FileNotFoundException {
     }
+
+    public List<Expense> getDataList(List<Expense> list) {
+        return list;
+    }
+    
 }
