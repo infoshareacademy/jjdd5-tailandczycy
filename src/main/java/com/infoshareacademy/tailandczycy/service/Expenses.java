@@ -68,7 +68,7 @@ public class Expenses {
 
     @Override
     public String toString() {
-        return "com.infoshareacademy.tailandczycy.service.Expenses{" +
+        return "{" +
                 "category='" + category + '\'' +
                 ", comment='" + comment + '\'' +
                 ", amount=" + amount +
