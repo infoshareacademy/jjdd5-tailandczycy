@@ -37,15 +37,21 @@ public class Menu {
 //            case 4:
 //                addCategory();
 //                break;
-//            case 5:
-//                displayExpensePerCategory();
+//              case 5:
+//                  deleteCateogory();
+//                  break;
 //            case 6:
+//                displayExpensePerCategory();
+//                    break;
+//            case 7:
 //                displayAllExpenses();
 //                break;
-//            case 7:
-//                defineBudget();
 //            case 8:
+//                defineBudget();
+//                  break;
+//            case 9:
 //                setUpLimit();
+//                    break;
 //        }
 //    }
 
