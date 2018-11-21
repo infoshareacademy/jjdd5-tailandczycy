@@ -1,7 +1,7 @@
 package com.infoshareacademy.tailandczycy.data;
 
 import com.google.gson.*;
-import com.infoshareacademy.tailandczycy.service.Expenses;
+import com.infoshareacademy.tailandczycy.service.Expense;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -21,11 +21,11 @@ public class Parser {
         InputStreamReader reader = new InputStreamReader(resourceAsStream);
 
         //Reading from Json to Array
-        Expenses[] expensesArray = gson.fromJson(reader, Expenses[].class);
+        Expense[] expenseArray = gson.fromJson(reader, Expense[].class);
         //Changing Array to List
-        List<Expenses> listOfExpenses = Arrays.asList(expensesArray);
+        List<Expense> listOfExpens = Arrays.asList(expenseArray);
         //Printing full list
-        for (Expenses expense : listOfExpenses
+        for (Expense expense : listOfExpens
         ) {
             System.out.println(expense);
         }
