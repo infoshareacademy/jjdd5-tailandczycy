@@ -1,39 +1,11 @@
 public class Menu {
 
-<<<<<<< HEAD
-    private String menuString;
-
-
-
-    public String showMenu(){
-
-
-        menuString =
-                        "\n  MMMMMMMM               MMMMMMMMEEEEEEEEEEEEEEEEEEEEEENNNNNNNN        NNNNNNNNUUUUUUUU     UUUUUUUU\n"
-                        + "  M:::::::M             M:::::::ME::::::::::::::::::::EN:::::::N       N::::::NU::::::U     U::::::U\n"
-                        + "  M::::::::M           M::::::::ME::::::::::::::::::::EN::::::::N      N::::::NU::::::U     U::::::U\n"
-                        + "  M:::::::::M         M:::::::::MEE::::::EEEEEEEEE::::EN:::::::::N     N::::::NUU:::::U     U:::::UU\n"
-                        + "  M::::::::::M       M::::::::::M  E:::::E       EEEEEEN::::::::::N    N::::::N U:::::U     U:::::U\n"
-                        + "  M:::::::::::M     M:::::::::::M  E:::::E             N:::::::::::N   N::::::N U:::::D     D:::::U\n"
-                        + "  M:::::::M::::M   M::::M:::::::M  E::::::EEEEEEEEEE   N:::::::N::::N  N::::::N U:::::D     D:::::U\n"
-                        + "  M::::::M M::::M M::::M M::::::M  E:::::::::::::::E   N::::::N N::::N N::::::N U:::::D     D:::::U\n"
-                        + "  M::::::M  M::::M::::M  M::::::M  E:::::::::::::::E   N::::::N  N::::N:::::::N U:::::D     D:::::U\n"
-                        + "  M::::::M   M:::::::M   M::::::M  E::::::EEEEEEEEEE   N::::::N   N:::::::::::N U:::::D     D:::::U\n"
-                        + "  M::::::M    M:::::M    M::::::M  E:::::E             N::::::N    N::::::::::N U:::::D     D:::::U\n"
-                        + "  M::::::M     MMMMM     M::::::M  E:::::E       EEEEEEN::::::N     N:::::::::N U::::::U   U::::::U\n"
-                        + "  M::::::M               M::::::MEE::::::EEEEEEEE:::::EN::::::N      N::::::::N U:::::::UUU:::::::U\n"
-                        + "  M::::::M               M::::::ME::::::::::::::::::::EN::::::N       N:::::::N  UU:::::::::::::UU\n"
-                        + "  M::::::M               M::::::ME::::::::::::::::::::EN::::::N        N::::::N    UU:::::::::UU\n"
-                        + "  MMMMMMMM               MMMMMMMMEEEEEEEEEEEEEEEEEEEEEENNNNNNNN         NNNNNNN      UUUUUUUUU\n"
-                        + "==============================================================================================\n"
-=======
     public String showMenu(){
         String menuString;
 
 
         menuString =""
                         + "============================================================\n"
->>>>>>> 6c7d0b0a958c92898ee377ad0776e88e387f3746
                         + "||     Welcome to your personal financial analyzer        ||          {\n"
                         + "============================================================       {   }\n"
                         + "||   Choose an operation:                                 ||        }_ { __{\n"
@@ -50,8 +22,6 @@ public class Menu {
                         + "                                                                 `-.._______..-'\n";
         return menuString;
     }
-
-<<<<<<< HEAD
 //    public void chooseMenu(int option){
 //
 //        switch(option){
@@ -78,10 +48,6 @@ public class Menu {
 //                setUpLimit();
 //        }
 //    }
-=======
 
-
-
->>>>>>> 6c7d0b0a958c92898ee377ad0776e88e387f3746
 
 }
