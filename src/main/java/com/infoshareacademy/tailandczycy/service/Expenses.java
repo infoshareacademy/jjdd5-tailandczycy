@@ -1,3 +1,5 @@
+package com.infoshareacademy.tailandczycy.service;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -66,7 +68,7 @@ public class Expenses {
 
     @Override
     public String toString() {
-        return "Expenses{" +
+        return "com.infoshareacademy.tailandczycy.service.Expenses{" +
                 "category='" + category + '\'' +
                 ", comment='" + comment + '\'' +
                 ", amount=" + amount +

@@ -1,4 +1,4 @@
-import console.Menu;
+package com.infoshareacademy.tailandczycy.console;
 
 public class Main {
 
