@@ -1,3 +1,5 @@
+package console;
+
 public class Menu {
 
     public String showMenu(){
