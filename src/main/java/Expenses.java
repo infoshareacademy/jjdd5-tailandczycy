@@ -1,5 +1,3 @@
-import com.google.gson.annotations.JsonAdapter;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
