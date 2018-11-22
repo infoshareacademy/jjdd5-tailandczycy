@@ -6,13 +6,12 @@ public class StartApp {
 
 
     public void runApp(){
-
+        Budget budget = new Budget();
         Reader reader = new Reader();
         Menu menu = new Menu();
         menu.showMenu();
         MainSwitch mainSwitch = new MainSwitch();
         mainSwitch.chooseMenu(reader.readInt());
-        Budget budget = new Budget();
     }
 
 

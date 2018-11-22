@@ -1,18 +1,11 @@
 package com.infoshareacademy.tailandczycy.service;
 
-import java.math.BigDecimal;
+public enum Category {
+    FOOD("Jedzenie"), CAR("Auto"), GIFTS("Prezenty");
 
-public class Category {
+    private final String label;
 
-    private int id;
-    private BigDecimal totalCash;
-    private BigDecimal upperLimit;
-
-    public Category(){
-        totalCash = new BigDecimal(0.0);
+    Category(String label) {
+        this.label = label;
     }
-    public Category(BigDecimal bigDecimal){
-        totalCash = bigDecimal;
-    }
-
 }
