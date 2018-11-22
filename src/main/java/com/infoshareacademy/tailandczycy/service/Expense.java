@@ -9,14 +9,12 @@ public class Expense {
     private String comment;
     private BigDecimal amount;
     private LocalDate date;
-
     public Expense(String category, String comment, BigDecimal amount, String date) {
         this.category = category;
         this.comment = comment;
         this.amount = amount;
         this.date = LocalDate.parse(date);
     }
-
     public String getCategory() {
         return category;
     }
