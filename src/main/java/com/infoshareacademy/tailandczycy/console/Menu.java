@@ -2,7 +2,7 @@ package com.infoshareacademy.tailandczycy.console;
 
 public class Menu {
 
-    public String showMenu(){
+    public void showMenu(){
         String menuString;
 
 
@@ -22,7 +22,7 @@ public class Menu {
                         + "||        9. Set up upper limit restriction               ||    |              (  /\n"
                         + "============================================================    \\               y'\n"
                         + "                                                                 `-.._______..-'\n";
-        return menuString;
+        System.out.println(menuString);
     }
 
 

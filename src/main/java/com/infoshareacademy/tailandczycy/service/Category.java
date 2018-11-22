@@ -2,17 +2,14 @@ package com.infoshareacademy.tailandczycy.service;
 
 import java.math.BigDecimal;
 
-public class Category {
+public enum Category {
+    FOOD("Jedzenie"), CAR("Auto"), GIFTS("Prezenty");
 
-    private int id;
-    private BigDecimal totalCash;
+    private final String label;
+    private BigDecimal total;
     private BigDecimal upperLimit;
 
-    public Category(){
-        totalCash = new BigDecimal(0.0);
+    Category(String label) {
+        this.label = label;
     }
-    public Category(BigDecimal bigDecimal){
-        totalCash = bigDecimal;
-    }
-
 }
