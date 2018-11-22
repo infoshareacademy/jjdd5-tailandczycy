@@ -5,7 +5,6 @@ import com.infoshareacademy.tailandczycy.service.Budget;
 public class MainSwitch {
 
     Budget budget = new Budget();
-    Reader reader = new Reader();
 
         public void chooseMenu(int option){
 
@@ -13,30 +12,30 @@ public class MainSwitch {
             case 1:
                 budget.addExpense();
                 break;
-//            case 2:
-//                modifyExpense();
-//                break;
-//            case 3:
-//                deleteExpense();
-//                break;
-//            case 4:
-//                addCategory();
-//                break;
-//              case 5:
-//                deleteCateogory();
-//                  break;
-//            case 6:
-//                displayExpensePerCategory();
-//                    break;
-//            case 7:
-//                displayAllExpenses();
-//                break;
-//            case 8:
-//                defineBudget();
-//                  break;
-//            case 9:
-//                setUpLimit();
-//                    break;
+            case 2:
+                budget.modifyExpense();
+                break;
+            case 3:
+                budget.deleteExpense();
+                break;
+            case 4:
+                budget.addCategory();
+                break;
+              case 5:
+                budget.deleteCategory();
+                  break;
+            case 6:
+                budget.displayExpensePerCategory();
+                    break;
+            case 7:
+                budget.displayAllExpenses();
+                break;
+            case 8:
+                budget.defineBudget();
+                  break;
+            case 9:
+                budget.setUpLimit();
+                    break;
         }
     }
 
