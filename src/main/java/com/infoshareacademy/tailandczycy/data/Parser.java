@@ -22,7 +22,7 @@ public class Parser {
     private Expense[] expenseArray = gson.fromJson(reader, Expense[].class);
 
 
-    
+
     public Parser() throws FileNotFoundException {
     }
 
