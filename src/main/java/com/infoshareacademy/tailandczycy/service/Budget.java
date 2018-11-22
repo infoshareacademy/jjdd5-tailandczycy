@@ -5,45 +5,47 @@ import com.infoshareacademy.tailandczycy.console.Reader;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-<<<<<<< HEAD
-
-=======
->>>>>>> 9c7e558f49e1a43e888502abb802e250fb231a72
 
 public class Budget {
 
+    private List<Expense> expenses;
     private BigDecimal totalBudget;
-    private List<Expense> expenses = new ArrayList<>();
-<<<<<<< HEAD
-    Reader reader = new Reader();
+    private Reader reader;
 
 
-
-    public void addExpense(){
-
-
-        Category category;
-        String comment;
-        BigDecimal amount;
-        String date;
-=======
->>>>>>> 9c7e558f49e1a43e888502abb802e250fb231a72
-
-        category = Reader.readString();
-
-<<<<<<< HEAD
-=======
-
-    public void addExpense(){
-
-        Category category;
-        String comment;
-        BigDecimal amount;
-        String date;
-
->>>>>>> 9c7e558f49e1a43e888502abb802e250fb231a72
-        expenses.add(new Expense(category, comment, amount, date));
+    public Budget() {
+        expenses = new ArrayList<>();
+        reader = new Reader();
     }
-    
 
+
+    public void addExpense() {
+        //Adding expense
+    }
+    public void modifyExpense(){
+        int id = reader.readInt();
+        //modifying expense
+    }
+    public void deleteExpense(){
+        int id = reader.readInt();
+        //deleting expense
+    }
+    public void addCategory(){
+        //adding category
+    }
+    public void deleteCategory(){
+        //deletingCategory
+    }
+    public void displayExpensePerCategory(){
+        //display
+    }
+    public void displayAllExpenses(){
+
+    }
+    public void defineBudget(){
+        //set up budget
+    }
+    public void setUpLimit(){
+        //
+    }
 }

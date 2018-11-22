@@ -1,16 +1,18 @@
 package com.infoshareacademy.tailandczycy.console;
 
+import com.infoshareacademy.tailandczycy.service.Budget;
+
 public class StartApp {
 
 
     public void runApp(){
 
+        Reader reader = new Reader();
         Menu menu = new Menu();
         menu.showMenu();
-
-
-
-
+        MainSwitch mainSwitch = new MainSwitch();
+        mainSwitch.chooseMenu(reader.readInt());
+        Budget budget = new Budget();
     }
 
 
