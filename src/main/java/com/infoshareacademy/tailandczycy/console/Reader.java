@@ -5,24 +5,19 @@ import java.util.Scanner;
 
 public class Reader {
 
-<<<<<<< HEAD
     private Scanner scanner;
 
-=======
-    private Scanner scanner = new Scanner(System.in);
->>>>>>> 9c7e558f49e1a43e888502abb802e250fb231a72
+    public Reader(){
+        scanner = new Scanner(System.in);
+    }
 
     public String readString(){
-        String string = scanner.next();
-        return string;
+        return scanner.next();
     }
     public int readInt(){
-        int integer = scanner.nextInt();
-        return integer;
+        return scanner.nextInt();
     }
     public BigDecimal readBigDecimal(){
-        BigDecimal decimal = scanner.nextBigDecimal();
-        return decimal;
+        return scanner.nextBigDecimal();
     }
-
 }
