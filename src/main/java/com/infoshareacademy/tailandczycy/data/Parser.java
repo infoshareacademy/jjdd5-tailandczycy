@@ -1,4 +1,8 @@
+package com.infoshareacademy.tailandczycy.data;
+
 import com.google.gson.*;
+import com.infoshareacademy.tailandczycy.service.Expenses;
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -12,7 +16,7 @@ public class Parser {
                 .registerTypeHierarchyAdapter(LocalDate.class, new GsonLocalDateTypeAdapter())
                 .create();
         //Read from a file
-        InputStream resourceAsStream = Parser.class.getResourceAsStream("test.JSON");
+        InputStream resourceAsStream = Parser.class.getResourceAsStream("test.json");
         //Read Stream
         InputStreamReader reader = new InputStreamReader(resourceAsStream);
 
