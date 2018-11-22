@@ -23,11 +23,16 @@ public class Parser {
     //Changing Array to List
     Expense[] listOfExpens = expenseArray;
 
+
+
+
+    
+
     public Parser() throws FileNotFoundException {
     }
 
     public List<Expense> getDataList(List<Expense> list) {
         return list;
     }
-    
+
 }
