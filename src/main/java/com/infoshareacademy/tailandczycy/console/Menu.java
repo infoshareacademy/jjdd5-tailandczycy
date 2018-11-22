@@ -22,6 +22,8 @@ public class Menu {
                 + "||        9. Set up upper limit restriction               ||    |              (  /\n"
                 + "============================================================    \\               y'\n"
                 + "                                                                 `-.._______..-'\n";
+
         return menuString;
     }
 }
+
