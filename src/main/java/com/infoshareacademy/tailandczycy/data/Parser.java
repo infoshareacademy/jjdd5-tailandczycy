@@ -13,8 +13,6 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-import java.util.stream.Collectors;
-
 public class Parser {
     //Initializing objects necessary to read from json file
     private Gson gson = new GsonBuilder()
@@ -24,13 +22,11 @@ public class Parser {
     private InputStreamReader reader = new InputStreamReader(resourceAsStream);
     private Expense[] expenseArray = gson.fromJson(reader, Expense[].class);
 
-
     public Parser() throws FileNotFoundException {
     }
 
     public List<Expense> getDataList() {
         return arrayToList(expenseArray);
-
     }
 
     private List<Expense> arrayToList(Expense[] expenseArray) {
