@@ -2,11 +2,11 @@ package com.infoshareacademy.tailandczycy.console;
 
 public class Menu {
 
-    public String showMenu(){
+    public String showMenu() {
         String menuString;
 
 
-        menuString =""
+        menuString = ""
                 + "============================================================\n"
                 + "||     Welcome to your personal financial analyzer        ||          {\n"
                 + "============================================================       {   }\n"

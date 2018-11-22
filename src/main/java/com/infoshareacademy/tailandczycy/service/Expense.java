@@ -10,7 +10,6 @@ public class Expense {
     private BigDecimal amount;
     private LocalDate date;
 
-
     public Expense(String category, String comment, BigDecimal amount, String date) {
         this.category = category;
         this.comment = comment;
