@@ -1,6 +1,7 @@
 package com.infoshareacademy.tailandczycy.console;
 
 import com.infoshareacademy.tailandczycy.service.Budget;
+import com.infoshareacademy.tailandczycy.service.MainSwitch;
 
 public class StartApp {
 

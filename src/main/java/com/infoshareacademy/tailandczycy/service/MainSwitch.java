@@ -1,4 +1,4 @@
-package com.infoshareacademy.tailandczycy.console;
+package com.infoshareacademy.tailandczycy.service;
 
 import com.infoshareacademy.tailandczycy.service.Budget;
 
