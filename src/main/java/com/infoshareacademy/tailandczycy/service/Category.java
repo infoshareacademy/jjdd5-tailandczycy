@@ -1,7 +1,5 @@
 package com.infoshareacademy.tailandczycy.service;
 
-import java.math.BigDecimal;
-
 public enum Category {
     FOOD("Jedzenie"), CAR("Auto"), GIFTS("Prezenty");
 
