@@ -37,15 +37,15 @@ public class Budget {
         //deletingCategory
     }
     public void displayExpensePerCategory(){
-        //display
+        //display expense per category
     }
     public void displayAllExpenses(){
-
+        //display all expenses
     }
     public void defineBudget(){
         //set up budget
     }
     public void setUpLimit(){
-        //
+        //set up limit
     }
 }
