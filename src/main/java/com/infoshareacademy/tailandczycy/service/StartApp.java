@@ -1,5 +1,7 @@
-package com.infoshareacademy.tailandczycy.console;
+package com.infoshareacademy.tailandczycy.service;
 
+import com.infoshareacademy.tailandczycy.console.Menu;
+import com.infoshareacademy.tailandczycy.console.Reader;
 import com.infoshareacademy.tailandczycy.service.Budget;
 import com.infoshareacademy.tailandczycy.service.MainSwitch;
 

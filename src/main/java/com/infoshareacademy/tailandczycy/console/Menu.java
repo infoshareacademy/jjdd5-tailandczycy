@@ -24,7 +24,4 @@ public class Menu {
                         + "                                                                 `-.._______..-'\n";
         System.out.println(menuString);
     }
-
-
-
 }
