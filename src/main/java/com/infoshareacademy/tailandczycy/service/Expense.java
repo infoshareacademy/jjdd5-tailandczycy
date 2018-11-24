@@ -4,14 +4,14 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Expenses {
+public class Expense {
     private String category;
     private String comment;
     private BigDecimal amount;
     private LocalDate date;
 
 
-    public Expenses(String category, String comment, BigDecimal amount, String date) {
+    public Expense(String category, String comment, BigDecimal amount, String date) {
         this.category = category;
         this.comment = comment;
         this.amount = amount;
@@ -54,11 +54,11 @@ public class Expenses {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Expenses expenses = (Expenses) o;
-        return Objects.equals(category, expenses.category) &&
-                Objects.equals(comment, expenses.comment) &&
-                Objects.equals(amount, expenses.amount) &&
-                Objects.equals(date, expenses.date);
+        Expense expense = (Expense) o;
+        return Objects.equals(category, expense.category) &&
+                Objects.equals(comment, expense.comment) &&
+                Objects.equals(amount, expense.amount) &&
+                Objects.equals(date, expense.date);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class Expenses {
 
     @Override
     public String toString() {
-        return "com.infoshareacademy.tailandczycy.service.Expenses{" +
+        return "Expense{" +
                 "category='" + category + '\'' +
                 ", comment='" + comment + '\'' +
                 ", amount=" + amount +
