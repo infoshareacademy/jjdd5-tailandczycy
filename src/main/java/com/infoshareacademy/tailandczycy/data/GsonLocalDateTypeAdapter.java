@@ -17,6 +17,6 @@ public class GsonLocalDateTypeAdapter extends TypeAdapter<LocalDate> {
     //Show Gson how to read LocalDate Format
     @Override
     public LocalDate read(JsonReader in) throws IOException {
-        return LocalDate.parse(in.nextString(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        return LocalDate.parse(in.nextString(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 }
