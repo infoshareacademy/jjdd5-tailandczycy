@@ -3,11 +3,11 @@ package com.infoshareacademy.tailandczycy.console;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
-public class Reader {
+public class ConsoleReader {
 
     private Scanner scanner;
 
-    public Reader(){
+    public ConsoleReader(){
         scanner = new Scanner(System.in);
     }
 
