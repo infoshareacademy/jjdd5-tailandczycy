@@ -11,11 +11,11 @@ public class Expense {
     private LocalDate date;
 
 
-    public Expense(String category, String comment, BigDecimal amount, String date) {
+    public Expense(String category, String comment, BigDecimal amount, LocalDate date) {
         this.category = category;
         this.comment = comment;
         this.amount = amount;
-        this.date = LocalDate.parse(date);
+        this.date = date;
     }
 
     public String getCategory() {
@@ -46,8 +46,8 @@ public class Expense {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = LocalDate.parse(date);
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     @Override
