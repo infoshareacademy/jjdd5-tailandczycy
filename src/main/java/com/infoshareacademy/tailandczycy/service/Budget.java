@@ -1,7 +1,5 @@
 package com.infoshareacademy.tailandczycy.service;
 
-import com.infoshareacademy.tailandczycy.console.Reader;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +8,10 @@ public class Budget {
 
     private List<Expense> expenses;
     private BigDecimal totalBudget;
-    private Reader reader;
 
 
     public Budget() {
         expenses = new ArrayList<>();
-        reader = new Reader();
     }
 
 
@@ -23,11 +19,9 @@ public class Budget {
         //Adding expense
     }
     public void modifyExpense(){
-        int id = reader.readInt();
         //modifying expense
     }
     public void deleteExpense(){
-        int id = reader.readInt();
         //deleting expense
     }
     public void addCategory(){
