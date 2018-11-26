@@ -1,31 +1,37 @@
 package com.infoshareacademy.tailandczycy.service;
 
-import com.infoshareacademy.tailandczycy.service.Budget;
+import com.infoshareacademy.tailandczycy.data.dao.CategoryDao;
+import com.infoshareacademy.tailandczycy.data.dao.ExpenseDao;
 
 public class MainSwitch {
 
-    Budget budget = new Budget();
+    CategoryDao categoryDao = new CategoryDao();
+    ExpenseDao expenseDao = new ExpenseDao();
 
-        public void chooseMenu(int option){
 
-        switch(option){
+    BudgetManager budget = new BudgetManager(expenseDao, categoryDao);
+    //UI ui = new UI(budget)
+
+        public void chooseMenu(int option) {
+
+        switch(option) {
             case 1:
-                budget.addExpense();
+                //budget.addExpense();
                 break;
             case 2:
-                budget.modifyExpense();
+                //budget.modifyExpense();
                 break;
             case 3:
-                budget.deleteExpense();
+                //budget.deleteExpense();
                 break;
             case 4:
-                budget.addCategory();
+                //budget.addCategory();
                 break;
               case 5:
-                budget.deleteCategory();
+                //budget.deleteCategory();
                   break;
             case 6:
-                budget.displayExpensePerCategory();
+                //budget.displayExpensePerCategory();
                     break;
             case 7:
                 budget.displayAllExpenses();

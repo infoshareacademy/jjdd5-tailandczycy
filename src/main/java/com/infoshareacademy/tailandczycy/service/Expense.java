@@ -8,14 +8,13 @@ public class Expense {
     private String category;
     private String comment;
     private BigDecimal amount;
-    private LocalDate date;
-
+    private String date;
 
     public Expense(String category, String comment, BigDecimal amount, String date) {
         this.category = category;
         this.comment = comment;
         this.amount = amount;
-        this.date = LocalDate.parse(date);
+        this.date = date;
     }
 
     public String getCategory() {
@@ -42,12 +41,12 @@ public class Expense {
         this.amount = amount;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
     public void setDate(String date) {
-        this.date = LocalDate.parse(date);
+        this.date = date;
     }
 
     @Override

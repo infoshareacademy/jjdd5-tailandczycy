@@ -15,9 +15,10 @@ import java.util.List;
 
 public class Parser {
     //Initializing objects necessary to read from json file
-    private Gson gson = new GsonBuilder()
-            .registerTypeHierarchyAdapter(LocalDate.class, new GsonLocalDateTypeAdapter())
-            .create();
+    private Gson gson = new Gson();
+//            GsonBuilder()
+//            .registerTypeHierarchyAdapter(LocalDate.class, new GsonLocalDateTypeAdapter())
+//            .create();
     private InputStream resourceAsStream = new FileInputStream("data/test.json");
     private InputStreamReader reader = new InputStreamReader(resourceAsStream);
     private Expense[] expenseArray = gson.fromJson(reader, Expense[].class);
