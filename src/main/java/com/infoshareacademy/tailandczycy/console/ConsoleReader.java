@@ -14,9 +14,9 @@ public class ConsoleReader {
     public String readString(){
         return scanner.next();
     }
-    public int readInt(){
-        return scanner.nextInt();
-    }
+
+    public int readInt(){ return scanner.nextInt(); }
+
     public BigDecimal readBigDecimal(){
         return scanner.nextBigDecimal();
     }

@@ -13,27 +13,35 @@ public class UserInterface {
     public void addExpense() {
         //user interface (submenu)
     }
+
     public void modifyExpense() {
         //user interface (submenu)
     }
+
     public void deleteExpense() {
         //user interface (submenu)
     }
+
     public void addCategory() {
         //user interface (submenu)
     }
+
     public void deleteCategory() {
         //user interface (submenu)
     }
+
     public void displayExpensePerCategory() {
         //user interface (submenu)
     }
+
     public void displayAllExpenses() {
         //user interface (submenu)
     }
+
     public void defineBudget() {
         //user interface (submenu)
     }
+
     public void setUpLimit() {
         //user interface (submenu)
     }

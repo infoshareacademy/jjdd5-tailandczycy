@@ -6,24 +6,24 @@ import java.util.List;
 import java.util.Objects;
 
 public class Expense {
-    private List<Category>categoryList;
+    private List<Category>categories;
     private String comment;
     private BigDecimal amount;
     private LocalDate date;
 
     public Expense(List<Category> categoryList, String comment, BigDecimal amount, LocalDate date) {
-        this.categoryList = categoryList;
+        this.categories = categoryList;
         this.comment = comment;
         this.amount = amount;
         this.date = date;
     }
 
     public List<Category> getCategoryList() {
-        return categoryList;
+        return categories;
     }
 
     public void setCategoryList(List<Category> categoryList) {
-        this.categoryList = categoryList;
+        this.categories = categoryList;
     }
 
     public String getComment() {
@@ -53,7 +53,7 @@ public class Expense {
     @Override
     public String toString() {
         return "Expense{" +
-                "categoryList=" + categoryList +
+                "categoryList=" + categories +
                 ", comment='" + comment + '\'' +
                 ", amount=" + amount +
                 ", date=" + date +
@@ -65,7 +65,7 @@ public class Expense {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Expense expense = (Expense) o;
-        return Objects.equals(categoryList, expense.categoryList) &&
+        return Objects.equals(categories, expense.categories) &&
                 Objects.equals(comment, expense.comment) &&
                 Objects.equals(amount, expense.amount) &&
                 Objects.equals(date, expense.date);
@@ -73,6 +73,6 @@ public class Expense {
 
     @Override
     public int hashCode() {
-        return Objects.hash(categoryList, comment, amount, date);
+        return Objects.hash(categories, comment, amount, date);
     }
 }
