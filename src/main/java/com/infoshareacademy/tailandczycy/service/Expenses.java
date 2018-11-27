@@ -10,5 +10,4 @@ public class Expenses {
    private List<Category> categories;
    private Map<Category, Integer> categoriesLimits;
    private BigDecimal budget;
-
 }
