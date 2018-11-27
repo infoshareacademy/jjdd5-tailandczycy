@@ -44,7 +44,9 @@ public class BudgetManager {
     }
 
     public void defineBudget(BigDecimal budget) {
-        //sets up budget
+        //TODO: Ask user for Category
+        // TODO: Ask user for Integer and make it limit
+        //TODO: Make from both variables map where Category will have limit
     }
 
     public void setUpLimit(BigDecimal budget) {
