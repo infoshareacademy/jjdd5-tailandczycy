@@ -2,39 +2,39 @@ package com.infoshareacademy.tailandczycy.console;
 
 import com.infoshareacademy.tailandczycy.service.BudgetManager;
 
-public class UserInterface {
+public class userInterface {
 
     BudgetManager budgetManager;
 
-    public UserInterface() {
+    public userInterface() {
         BudgetManager budgetManager = new BudgetManager();
     }
 
-    public void uIaddExpense(){
-
+    public void uIaddExpense() {
+        //user interface (submenu)
     }
-    public void uImodifyExpense(){
-
+    public void uImodifyExpense() {
+        //user interface (submenu)
     }
-    public void uIdeleteExpense(){
-
+    public void uIdeleteExpense() {
+        //user interface (submenu)
     }
-    public void uIaddCategory(){
-
+    public void uIaddCategory() {
+        //user interface (submenu)
     }
-    public void uIdeleteCategory(){
-
+    public void uIdeleteCategory() {
+        //user interface (submenu)
     }
-    public void uIdisplayExpensePerCategory(){
-
+    public void uIdisplayExpensePerCategory() {
+        //user interface (submenu)
     }
-    public void uIdisplayAllExpenses(){
-
+    public void uIdisplayAllExpenses() {
+        //user interface (submenu)
     }
-    public void uIdefineBudget(){
-
+    public void uIdefineBudget() {
+        //user interface (submenu)
     }
-    public void uIsetUpLimit(){
-
+    public void uIsetUpLimit() {
+        //user interface (submenu)
     }
 }
