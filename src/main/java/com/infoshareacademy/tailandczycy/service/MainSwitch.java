@@ -1,40 +1,44 @@
 package com.infoshareacademy.tailandczycy.service;
 
-import com.infoshareacademy.tailandczycy.service.Budget;
+import com.infoshareacademy.tailandczycy.console.UserInterface;
 
 public class MainSwitch {
 
-    Budget budget = new Budget();
+    private UserInterface userInterface;
 
-        public void chooseMenu(int option){
+    public MainSwitch() {
+        userInterface = new UserInterface();
+    }
+
+    public void chooseMenu(int option){
 
         switch(option){
             case 1:
-                budget.addExpense();
+                userInterface.addExpense();
                 break;
             case 2:
-                budget.modifyExpense();
+                userInterface.modifyExpense();
                 break;
             case 3:
-                budget.deleteExpense();
+                userInterface.deleteExpense();
                 break;
             case 4:
-                budget.addCategory();
+                userInterface.addCategory();
                 break;
               case 5:
-                budget.deleteCategory();
+                userInterface.deleteCategory();
                   break;
             case 6:
-                budget.displayExpensePerCategory();
+                userInterface.displayExpensePerCategory();
                     break;
             case 7:
-                budget.displayAllExpenses();
+                userInterface.displayAllExpenses();
                 break;
             case 8:
-                budget.defineBudget();
+                userInterface.defineBudget();
                   break;
             case 9:
-                budget.setUpLimit();
+                userInterface.setUpLimit();
                     break;
         }
     }

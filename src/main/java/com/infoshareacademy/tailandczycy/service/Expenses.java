@@ -6,9 +6,9 @@ import java.util.Map;
 
 public class Expenses {
 
-   private List<Expense> expenseList;
-   private List<Category>categoryList;
-   private Map<Category, Integer>categoryToLimit;
+   private List<Expense> expenses;
+   private List<Category> categories;
+   private Map<Category, Integer> categoriesLimits;
    private BigDecimal budget;
 
 }
