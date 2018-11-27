@@ -6,24 +6,24 @@ import java.util.List;
 import java.util.Objects;
 
 public class Expense {
-    private List<Category>categories;
+    private List<Category> categories;
     private String comment;
     private BigDecimal amount;
     private LocalDate date;
 
-    public Expense(List<Category> categoryList, String comment, BigDecimal amount, LocalDate date) {
-        this.categories = categoryList;
+    public Expense(List<Category> categories, String comment, BigDecimal amount, LocalDate date) {
+        this.categories = categories;
         this.comment = comment;
         this.amount = amount;
         this.date = date;
     }
 
-    public List<Category> getCategoryList() {
+    public List<Category> getCategories() {
         return categories;
     }
 
-    public void setCategoryList(List<Category> categoryList) {
-        this.categories = categoryList;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     public String getComment() {
@@ -53,7 +53,7 @@ public class Expense {
     @Override
     public String toString() {
         return "Expense{" +
-                "categoryList=" + categories +
+                "categories=" + categories +
                 ", comment='" + comment + '\'' +
                 ", amount=" + amount +
                 ", date=" + date +
