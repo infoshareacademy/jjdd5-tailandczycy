@@ -2,25 +2,28 @@ package com.infoshareacademy.tailandczycy.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 public class Expense {
-    private String category;
+    private List<Category> categories;
     private String comment;
     private BigDecimal amount;
     private LocalDate date;
-    public Expense(String category, String comment, BigDecimal amount, String date) {
-        this.category = category;
+
+    public Expense(List<Category> categories, String comment, BigDecimal amount, LocalDate date) {
+        this.categories = categories;
         this.comment = comment;
         this.amount = amount;
-        this.date = LocalDate.parse(date);
-    }
-    public String getCategory() {
-        return category;
+        this.date = date;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     public String getComment() {
@@ -43,8 +46,18 @@ public class Expense {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = LocalDate.parse(date);
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "categories=" + categories +
+                ", comment='" + comment + '\'' +
+                ", amount=" + amount +
+                ", date=" + date +
+                '}';
     }
 
     @Override
@@ -52,7 +65,7 @@ public class Expense {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Expense expense = (Expense) o;
-        return Objects.equals(category, expense.category) &&
+        return Objects.equals(categories, expense.categories) &&
                 Objects.equals(comment, expense.comment) &&
                 Objects.equals(amount, expense.amount) &&
                 Objects.equals(date, expense.date);
@@ -60,16 +73,6 @@ public class Expense {
 
     @Override
     public int hashCode() {
-        return Objects.hash(category, comment, amount, date);
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-                "category='" + category + '\'' +
-                ", comment='" + comment + '\'' +
-                ", amount=" + amount +
-                ", date=" + date +
-                '}';
+        return Objects.hash(categories, comment, amount, date);
     }
 }

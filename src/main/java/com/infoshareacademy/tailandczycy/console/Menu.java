@@ -2,9 +2,8 @@ package com.infoshareacademy.tailandczycy.console;
 
 public class Menu {
 
-    public String showMenu() {
+    public void showMenu() {
         String menuString;
-
 
         menuString = ""
                 + "============================================================\n"
@@ -23,7 +22,7 @@ public class Menu {
                 + "============================================================    \\               y'\n"
                 + "                                                                 `-.._______..-'\n";
 
-        return menuString;
+        System.out.println(menuString);
     }
 }
 
