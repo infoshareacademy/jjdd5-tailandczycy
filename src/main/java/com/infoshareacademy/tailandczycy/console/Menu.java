@@ -5,7 +5,6 @@ public class Menu {
     public void showMenu() {
         String menuString;
 
-
         menuString = ""
                 + "============================================================\n"
                 + "||     Welcome to your personal financial analyzer        ||          {\n"
