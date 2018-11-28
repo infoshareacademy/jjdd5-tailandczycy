@@ -1,74 +1,55 @@
 package com.infoshareacademy.tailandczycy.service;
 
-import com.infoshareacademy.tailandczycy.console.ConsoleReader;
-import com.infoshareacademy.tailandczycy.data.dao.CategoryDao;
-import com.infoshareacademy.tailandczycy.data.dao.ExpenseDao;
-
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
 
 public class BudgetManager {
 
-    private List<Expense> expenses;
-    private BigDecimal totalBudget;
-    private ConsoleReader consoleReader;
+    private BigDecimal Budget;
 
-    private final ExpenseDao expenseDao;
-    private final CategoryDao categoryDao;
-
-
-    public BudgetManager(ExpenseDao expenseDao, CategoryDao categoryDao) {
-        this.expenseDao = expenseDao;
-        this.categoryDao = categoryDao;
-
-        expenses = new ArrayList<>();
-        consoleReader = new ConsoleReader();
+    public void setBudget(BigDecimal budget) {
+        this.Budget = budget;
     }
 
-
-    public void addExpense(Expense e) {
-        //Adding expense
-        expenseDao.addExpense(e);
+    public BigDecimal getBudget() {
+        return Budget;
     }
 
-    public void modifyExpense(Integer expenseId, Expense updatedValue) {
-        //  int id = consoleReader.readInt();
-        Expense current = expenseDao.getExpenseById(expenseId);
-        current.setAmount(updatedValue.getAmount());
-        expenseDao.save(current);
-        //modifying expense
+    public void addExpense(String category, String comment, BigDecimal amount, LocalDate localDate) {
+        //adds expense
     }
 
-    public void deleteExpense(Integer id) {
-
-        //int id = consoleReader.readInt();
-        expenseDao.delete(id);
-        //deleting expense
+    public void modifyExpense(int id, String category, String comment, BigDecimal amount, LocalDate localDate) {
+        //modifies expense
     }
 
-    public void addCategory(Category newCategory) {
-        categoryDao.add(newCategory);
-        //adding category
+    public void deleteExpense(int id) {
+        //deletes expense
     }
 
-    public void deleteCategory() {
-        //deletingCategory
+    public void addCategory(String name, BigDecimal limit) {
+        //adds category with limit or not
     }
 
-    public void displayExpensePerCategory() {
-        //display expense per category
+    public void deleteCategory(String name) {
+        //deletes Category
+    }
+
+    public void displayExpensePerCategory(String name) {
+        //displays expense per category
     }
 
     public void displayAllExpenses() {
-        //display all expenses
+        //displays all expenses by id
     }
 
-    public void defineBudget() {
-        //set up budget
+    public void defineBudget(BigDecimal budget) {
+        //TODO: Ask user for Category
+        // TODO: Ask user for Integer and make it limit
+        //TODO: Make from both variables map where Category will have limit
     }
 
-    public void setUpLimit() {
-        //set up limit
+    public void setUpLimit(BigDecimal budget) {
+        //sets up limit for category
     }
 }

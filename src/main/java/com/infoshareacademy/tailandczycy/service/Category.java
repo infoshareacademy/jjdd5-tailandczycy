@@ -1,13 +1,14 @@
 package com.infoshareacademy.tailandczycy.service;
 
-public enum Category {
-    FOOD("Jedzenie"),
-    CAR("Auto"),
-    GIFTS("Prezenty");
+public class Category {
 
-    private final String label;
+    private final String name;
 
-    Category(String label) {
-        this.label = label;
+    public Category(String name){
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 }
