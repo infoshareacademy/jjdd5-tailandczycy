@@ -1,42 +1,78 @@
 [
   {
-    "id": 1,
-    "category": "Rozrywka",
+    "categories": [
+      {
+        "name": "Rozrywka"
+      },
+      {
+        "name": "Praca"
+      }
+    ],
     "comment": "Sfinks700",
     "amount": 251.52,
     "date": "2018-02-12"
   },
   {
-    "id": 2,
-    "category": "Zywnosc",
+    "categories": [
+      {
+        "name": "Zywnosc"
+      },
+      {
+        "name": "dzieci"
+      }
+    ],
     "comment": "Biedronka",
     "amount": 121.0,
     "date": "2018-02-12"
   },
   {
-    "id": 3,
-    "category": "Zywnosc",
+    "categories": [
+      {
+        "name": "szkola"
+      },
+      {
+        "name": "Praca"
+      }
+    ],
     "comment": "Tesco",
     "amount": 82.13,
     "date": "2018-02-12"
   },
   {
-    "id": 4,
-    "category": "Rozrywka",
+    "categories": [
+      {
+        "name": "komputer"
+      },
+      {
+        "name": "Praca"
+      }
+    ],
     "comment": "Aioli",
     "amount": 168.0,
     "date": "2018-02-12"
   },
   {
-    "id": 5,
-    "category": "RTV&AGD",
+    "categories": [
+      {
+        "name": "Rozrywka"
+      },
+      {
+        "name": "Praca"
+      }
+    ],
     "comment": "Media markt",
     "amount": 800.00,
     "date": "2018-02-12"
   },
   {
-    "id": 6,
-    "category": "Rozrywka",
+    "categories": [
+      {
+        "name": "Rozrywka"
+      },
+      {
+        "name": "Praca"
+      }
+    ],
     "comment": "Sfinks700",
     "amount": 120.00,
     "date": "2018-02-12"

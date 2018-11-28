@@ -2,7 +2,7 @@ package com.infoshareacademy.tailandczycy.service;
 
 public class Category {
 
-    private final String name;
+    private String name;
 
     public Category(String name){
         this.name = name;
