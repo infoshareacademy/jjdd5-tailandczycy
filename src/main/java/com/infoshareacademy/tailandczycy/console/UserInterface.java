@@ -4,12 +4,17 @@ import com.infoshareacademy.tailandczycy.service.BudgetManager;
 import com.infoshareacademy.tailandczycy.service.Category;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 
 public class UserInterface {
     ConsoleReader consoleReader = new ConsoleReader();
     CategoryChecker categoryChecker = new CategoryChecker();
     BudgetManager budgetManager;
-    //TODO: Make list of categories to check if method is working in line 53
+    List<Category> listOfCategory = Stream.of(new Category("Party"), new Category("Food"), new Category("Sex") ).collect(Collectors.toList());
 
     public UserInterface() {
         BudgetManager budgetManager = new BudgetManager();
@@ -49,7 +54,8 @@ public class UserInterface {
 
     public void setUpLimit() {
         System.out.println("Give category: ");
-         Category category = categoryChecker.()
+        //TODO: Manage to work with Optional object!!
+        Category category = categoryChecker.isCategory(listOfCategory);
 
         System.out.println("Give limit: ");
         BigDecimal limit = consoleReader.readBigDecimal();
