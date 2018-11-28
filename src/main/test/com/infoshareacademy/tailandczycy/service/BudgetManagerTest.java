@@ -34,4 +34,5 @@ public class BudgetManagerTest {
         Mockito.verify(expenseDaoMock).save(expenseModified);
 
     }
+
 }

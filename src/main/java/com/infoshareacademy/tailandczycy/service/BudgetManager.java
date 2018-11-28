@@ -2,6 +2,8 @@ package com.infoshareacademy.tailandczycy.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BudgetManager {
 
@@ -44,12 +46,11 @@ public class BudgetManager {
     }
 
     public void defineBudget(BigDecimal budget) {
-        //TODO: Ask user for Category
-        // TODO: Ask user for Integer and make it limit
-        //TODO: Make from both variables map where Category will have limit
     }
 
-    public void setUpLimit(BigDecimal budget) {
-        //sets up limit for category
+    public Map<Category, BigDecimal> setUpLimit(Category category, BigDecimal limit) {
+        HashMap<Category, BigDecimal> categoryToLimit = new HashMap<>();
+        categoryToLimit.put(category, limit);
+        return categoryToLimit;
     }
 }
