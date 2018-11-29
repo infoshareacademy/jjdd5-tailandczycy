@@ -6,23 +6,23 @@ import java.util.List;
 import java.util.Objects;
 
 public class Expense {
-    private List<Category> categories;
+    private List<String> categories;
     private String comment;
     private BigDecimal amount;
     private LocalDate date;
 
-    public Expense(List<Category> categories, String comment, BigDecimal amount, LocalDate date) {
+    public Expense(List<String> categories, String comment, BigDecimal amount, LocalDate date) {
         this.categories = categories;
         this.comment = comment;
         this.amount = amount;
         this.date = date;
     }
 
-    public List<Category> getCategories() {
+    public List<String> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<Category> categories) {
+    public void setCategories(List<String> categories) {
         this.categories = categories;
     }
 

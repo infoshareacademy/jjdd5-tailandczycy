@@ -2,15 +2,15 @@ package com.infoshareacademy.tailandczycy.service;
 
 import com.infoshareacademy.tailandczycy.console.Menu;
 import com.infoshareacademy.tailandczycy.console.ConsoleReader;
-import com.infoshareacademy.tailandczycy.console.UserInterface;
 
 public class StartApp {
 
+    private MainSwitch mainSwitch = new MainSwitch();
+    private ConsoleReader consoleReader = new ConsoleReader();
+    private Menu menu = new Menu();
+
     public void runApp(){
-        UserInterface userInterface = new UserInterface();
-        MainSwitch mainSwitch = new MainSwitch();
-        ConsoleReader consoleReader = new ConsoleReader();
-        Menu menu = new Menu();
+
         menu.showMenu();
         mainSwitch.chooseMenu(consoleReader.readInt());
     }
