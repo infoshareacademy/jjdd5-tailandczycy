@@ -1,12 +1,9 @@
 [
   {
     "categories": [
-      {
-        "name": "Rozrywka"
-      },
-      {
-        "name": "Praca"
-      }
+      "Rozrywka",
+      "Praca",
+      "Imprezy"
     ],
     "comment": "Sfinks700",
     "amount": 251.52,
@@ -14,12 +11,9 @@
   },
   {
     "categories": [
-      {
-        "name": "Zywnosc"
-      },
-      {
-        "name": "dzieci"
-      }
+      "Zywnosc",
+      "Praca",
+      "Dziewczyna"
     ],
     "comment": "Biedronka",
     "amount": 121.0,
@@ -27,12 +21,7 @@
   },
   {
     "categories": [
-      {
-        "name": "szkola"
-      },
-      {
-        "name": "Praca"
-      }
+      "Dziewczyna"
     ],
     "comment": "Tesco",
     "amount": 82.13,
@@ -40,12 +29,7 @@
   },
   {
     "categories": [
-      {
-        "name": "komputer"
-      },
-      {
-        "name": "Praca"
-      }
+      "Dziewczyna"
     ],
     "comment": "Aioli",
     "amount": 168.0,
@@ -53,12 +37,7 @@
   },
   {
     "categories": [
-      {
-        "name": "Rozrywka"
-      },
-      {
-        "name": "Praca"
-      }
+      "Dziewczyna"
     ],
     "comment": "Media markt",
     "amount": 800.00,
@@ -66,12 +45,7 @@
   },
   {
     "categories": [
-      {
-        "name": "Rozrywka"
-      },
-      {
-        "name": "Praca"
-      }
+      "Dziewczyna"
     ],
     "comment": "Sfinks700",
     "amount": 120.00,
