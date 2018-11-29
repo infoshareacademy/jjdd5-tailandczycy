@@ -48,9 +48,8 @@ public class BudgetManager {
         return new Budget(actualBudget);
     }
 
-    public Map<Category, BigDecimal> setUpLimit(Category category, BigDecimal limit) {
-        HashMap<Category, BigDecimal> categoryToLimit = new HashMap<>();
-        categoryToLimit.put(category, limit);
-        return categoryToLimit;
+    public Category setUpLimit(Category category, BigDecimal limit) {
+        category.setLimit(limit);
+        return category;
     }
 }

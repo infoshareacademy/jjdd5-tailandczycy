@@ -20,19 +20,6 @@ public class BudgetManagerTest {
 
     @Test
     public void modifyExpense() {
-        // given
-        Expense sampleExpense = new Expense("food", "dsadsasa0", BigDecimal.TEN, "");
-        Expense expenseToBeModified = new Expense("food", "dsadsasa0", BigDecimal.TEN, "");
-        Expense expenseModified = new Expense("food", "dsadsasa0", BigDecimal.TEN, "");
-        Mockito.when(expenseDaoMock.getExpenseById(anyInt())).thenReturn(sampleExpense);
-        BudgetManager subject = new BudgetManager(expenseDaoMock, categoryDaoMock);
-
-        // when
-        subject.modifyExpense(1, expenseToBeModified);
-
-        //then
-        Mockito.verify(expenseDaoMock).save(expenseModified);
-
     }
 
 }

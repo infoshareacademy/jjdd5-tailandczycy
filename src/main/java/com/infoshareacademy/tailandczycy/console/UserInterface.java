@@ -1,8 +1,10 @@
 package com.infoshareacademy.tailandczycy.console;
 
+import com.infoshareacademy.tailandczycy.data.FileOperations;
 import com.infoshareacademy.tailandczycy.service.BudgetManager;
 import com.infoshareacademy.tailandczycy.service.Category;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,8 +14,8 @@ import java.util.stream.Stream;
 public class UserInterface {
     private ConsoleReader consoleReader = new ConsoleReader();
     private CategoryChecker categoryChecker = new CategoryChecker();
-    private BudgetManager budgetManager;
-    List<Category> listOfCategory = Stream.of(new Category("Party"), new Category("Food"), new Category("Sex") ).collect(Collectors.toList());
+    private BudgetManager budgetManager = new BudgetManager();
+    private FileOperations fileOperations = new FileOperations();
 
     public UserInterface() {
         BudgetManager budgetManager = new BudgetManager();
@@ -54,13 +56,11 @@ public class UserInterface {
 
     }
 
-    public void setUpLimit() {
+    public void setUpLimit() throws IOException {
         System.out.println("Give category: ");
-        Category category = categoryChecker.checkForCategory(listOfCategory).orElse(null);
-
+        Category category = categoryChecker.checkForCategory(fileOperations.getListOfCategories()).orElse(null);
         System.out.println("Give limit: ");
         BigDecimal limit = consoleReader.readBigDecimal();
-
-        System.out.println(budgetManager.setUpLimit(category, limit));
+       budgetManager.setUpLimit(category, limit);
     }
 }
