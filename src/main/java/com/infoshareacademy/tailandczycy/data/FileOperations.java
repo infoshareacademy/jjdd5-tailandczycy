@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.infoshareacademy.tailandczycy.service.Category;
 import com.infoshareacademy.tailandczycy.service.Expense;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,6 +16,7 @@ import java.util.List;
 
 public class FileOperations {
 
+    private final Path budgetFile=Paths.get("data", "budget.txt");
     private final Path expenseFile=Paths.get("data","expenses.json");
     private final Path categoryFile=Paths.get("data", "categories.json");
 
@@ -47,5 +49,9 @@ public class FileOperations {
 
     public List<Category> getListOfCategories() throws IOException{
         return deserializeListOfCategories();
+    }
+
+    public BigDecimal getBudget() throws IOException{
+        return new BigDecimal(getStringFromFile(budgetFile));
     }
 }
