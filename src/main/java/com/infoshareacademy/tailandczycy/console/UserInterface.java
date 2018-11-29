@@ -10,9 +10,9 @@ import java.util.stream.Stream;
 
 
 public class UserInterface {
-    ConsoleReader consoleReader = new ConsoleReader();
-    CategoryChecker categoryChecker = new CategoryChecker();
-    BudgetManager budgetManager;
+    private ConsoleReader consoleReader = new ConsoleReader();
+    private CategoryChecker categoryChecker = new CategoryChecker();
+    private BudgetManager budgetManager;
     List<Category> listOfCategory = Stream.of(new Category("Party"), new Category("Food"), new Category("Sex") ).collect(Collectors.toList());
 
     public UserInterface() {
@@ -48,7 +48,10 @@ public class UserInterface {
     }
 
     public void defineBudget() {
-        //user interface (submenu)
+        System.out.println("Define your budget: ");
+        BigDecimal budgetLimit = consoleReader.readBigDecimal();
+        budgetManager.defineBudget(budgetLimit);
+
     }
 
     public void setUpLimit() {

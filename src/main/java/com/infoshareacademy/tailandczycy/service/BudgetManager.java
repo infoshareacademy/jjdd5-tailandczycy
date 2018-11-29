@@ -7,15 +7,14 @@ import java.util.Map;
 
 public class BudgetManager {
 
-    private BigDecimal Budget;
 
-    public void setBudget(BigDecimal budget) {
-        this.Budget = budget;
-    }
-
-    public BigDecimal getBudget() {
-        return Budget;
-    }
+//    public void setBudget(BigDecimal budget) {
+//        this.budget = budget;
+//    }
+//
+//    public BigDecimal getBudget() {
+//        return budget;
+//    }
 
     public void addExpense(String category, String comment, BigDecimal amount, LocalDate localDate) {
         //adds expense
@@ -45,7 +44,8 @@ public class BudgetManager {
         //displays all expenses by id
     }
 
-    public void defineBudget(BigDecimal budget) {
+    public Budget defineBudget(BigDecimal actualBudget) {
+        return new Budget(actualBudget);
     }
 
     public Map<Category, BigDecimal> setUpLimit(Category category, BigDecimal limit) {
