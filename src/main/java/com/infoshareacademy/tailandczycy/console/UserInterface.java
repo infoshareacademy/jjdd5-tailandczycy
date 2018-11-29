@@ -4,7 +4,6 @@ import com.infoshareacademy.tailandczycy.service.BudgetManager;
 import com.infoshareacademy.tailandczycy.service.Category;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -54,12 +53,11 @@ public class UserInterface {
 
     public void setUpLimit() {
         System.out.println("Give category: ");
-        //TODO: Manage to work with Optional object!!
-        Category category = categoryChecker.isCategory(listOfCategory);
+        Category category = categoryChecker.checkForCategory(listOfCategory).orElse(null);
 
         System.out.println("Give limit: ");
         BigDecimal limit = consoleReader.readBigDecimal();
 
-
+        System.out.println(budgetManager.setUpLimit(category, limit));
     }
 }

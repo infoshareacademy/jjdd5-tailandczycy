@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class CategoryChecker extends ConsoleReader {
-    public Optional<Category> isCategory(List<Category> categories) {
+    public Optional<Category> checkForCategory(List<Category> categories) {
         String categoryString = readString();
         return categories.stream()
                 .filter(o -> o.getName().equals(categoryString))
