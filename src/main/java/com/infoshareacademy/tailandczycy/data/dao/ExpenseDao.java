@@ -1,22 +1,34 @@
 package com.infoshareacademy.tailandczycy.data.dao;
 
 import com.infoshareacademy.tailandczycy.service.Expense;
+import java.util.List;
+import java.util.Optional;
 
-public class ExpenseDao {
+public class ExpenseDao implements Dao<Expense>{
 
-    public void addExpense(Expense e) {
+
+    @Override
+    public Optional<Expense> get(long id) {
+        return Optional.empty();
     }
 
-    public Expense getExpenseById(Integer expenseId) {
-        throw new UnsupportedOperationException("D=To be done");
+    @Override
+    public List<Expense> getAll() {
+        return null;
+    }
+
+    @Override
+    public void save(Expense expense) {
 
     }
 
-    public void save(Expense current) {
-        throw new UnsupportedOperationException("D=To be done");
+    @Override
+    public void update(Expense expense, String[] params) {
+
     }
 
-    public void delete(Integer id) {
-        throw new UnsupportedOperationException("D=To be done");
+    @Override
+    public void delete(Expense expense) {
+
     }
 }
