@@ -57,9 +57,9 @@ public class UserInterface {
 
     public void setUpLimit() throws IOException {
         System.out.println("Give category: ");
-        Category category = categoryChecker.checkForCategory().orElse(null);
+        Category category = categoryChecker.checkForCategory().orElse(new Category("Default"));
         System.out.println("Give limit: ");
         BigDecimal limit = consoleReader.readBigDecimal();
-       budgetManager.setUpLimit(category, limit);
+        budgetManager.setUpLimit(category, limit);
     }
 }

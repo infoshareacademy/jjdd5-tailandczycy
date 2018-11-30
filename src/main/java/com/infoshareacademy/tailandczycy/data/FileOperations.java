@@ -15,12 +15,12 @@ import java.util.List;
 
 public class FileOperations {
 
-    private final Path expenseFile=Paths.get("data","expenses.json");
-    private final Path categoryFile=Paths.get("data", "categories.json");
+    private final Path EXPENSE_FILE =Paths.get("data","expenses.json");
+    private final Path CATEGORY_FILE =Paths.get("data", "categories.json");
 
     public List<Category> deserializeListOfCategories() throws IOException{
 
-        String json = getStringFromFile(categoryFile);
+        String json = getStringFromFile(CATEGORY_FILE);
         Gson gson = new Gson();
         Category[] array = gson.fromJson(json, Category[].class);
         return Arrays.asList(array);
@@ -28,7 +28,7 @@ public class FileOperations {
 
     public List<Expense> deserializeListOfExpense() throws IOException {
 
-        String json = getStringFromFile(expenseFile);
+        String json = getStringFromFile(EXPENSE_FILE);
         Gson gson = new GsonBuilder()
                 .registerTypeHierarchyAdapter(LocalDate.class, new GsonLocalDateTypeAdapter())
                 .create();

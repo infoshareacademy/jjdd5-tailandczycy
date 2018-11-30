@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class CategoryChecker extends ConsoleReader {
-    FileOperations fileOperations = new FileOperations();
+    private FileOperations fileOperations = new FileOperations();
+
     public Optional<Category> checkForCategory() throws IOException {
         String categoryString = readString();
         return fileOperations.getListOfCategories().stream()

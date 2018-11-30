@@ -7,15 +7,6 @@ import java.util.Map;
 
 public class BudgetManager {
 
-
-//    public void setBudget(BigDecimal budget) {
-//        this.budget = budget;
-//    }
-//
-//    public BigDecimal getBudget() {
-//        return budget;
-//    }
-
     public void addExpense(String category, String comment, BigDecimal amount, LocalDate localDate) {
         //adds expense
     }
