@@ -2,6 +2,8 @@ package com.infoshareacademy.tailandczycy.service;
 
 import com.infoshareacademy.tailandczycy.console.UserInterface;
 
+import java.io.IOException;
+
 public class MainSwitch {
 
     private UserInterface userInterface;
@@ -10,7 +12,7 @@ public class MainSwitch {
         userInterface = new UserInterface();
     }
 
-    public void chooseMenu(int option){
+    public void chooseMenu(int option) throws IOException {
 
         switch(option){
             case 1:

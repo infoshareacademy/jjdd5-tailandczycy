@@ -7,17 +7,19 @@ public class ConsoleReader {
 
     private Scanner scanner;
 
-    public ConsoleReader(){
+    public ConsoleReader() {
         scanner = new Scanner(System.in);
     }
 
-    public String readString(){
+    public String readString() {
         return scanner.next();
     }
 
-    public int readInt(){ return scanner.nextInt(); }
+    public int readInt() {
+        return scanner.nextInt();
+    }
 
-    public BigDecimal readBigDecimal(){
+    public BigDecimal readBigDecimal() {
         return scanner.nextBigDecimal();
     }
 }

@@ -2,18 +2,10 @@ package com.infoshareacademy.tailandczycy.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BudgetManager {
-
-    private BigDecimal Budget;
-
-    public void setBudget(BigDecimal budget) {
-        this.Budget = budget;
-    }
-
-    public BigDecimal getBudget() {
-        return Budget;
-    }
 
     public void addExpense(String category, String comment, BigDecimal amount, LocalDate localDate) {
         //adds expense
@@ -43,11 +35,12 @@ public class BudgetManager {
         //displays all expenses by id
     }
 
-    public void defineBudget(BigDecimal budget) {
-        //sets up budget
+    public Budget defineBudget(BigDecimal actualBudget) {
+        return new Budget(actualBudget);
     }
 
-    public void setUpLimit(BigDecimal budget) {
-        //sets up limit for category
+    public Category setUpLimit(Category category, BigDecimal limit) {
+        category.setLimit(limit);
+        return category;
     }
 }
