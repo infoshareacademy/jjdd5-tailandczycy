@@ -4,7 +4,6 @@ import com.infoshareacademy.tailandczycy.data.FileOperations;
 import com.infoshareacademy.tailandczycy.service.Category;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 
 public class CategoryChecker extends ConsoleReader {
