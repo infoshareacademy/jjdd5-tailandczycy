@@ -53,12 +53,11 @@ public class UserInterface {
         System.out.println("Define your budget: ");
         BigDecimal budgetLimit = consoleReader.readBigDecimal();
         budgetManager.defineBudget(budgetLimit);
-
     }
 
     public void setUpLimit() throws IOException {
         System.out.println("Give category: ");
-        Category category = categoryChecker.checkForCategory(fileOperations.getListOfCategories()).orElse(null);
+        Category category = categoryChecker.checkForCategory().orElse(null);
         System.out.println("Give limit: ");
         BigDecimal limit = consoleReader.readBigDecimal();
        budgetManager.setUpLimit(category, limit);
