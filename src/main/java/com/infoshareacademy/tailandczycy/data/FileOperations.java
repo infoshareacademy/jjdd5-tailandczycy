@@ -21,7 +21,7 @@ public class FileOperations {
     private final Path categoryFile = Paths.get("data", "categories.json");
     private List<String> lines = new ArrayList<>();
 
-    public List<Expense> deserializeListOfExpense() {
+    public List<Expense> getExpenses() {
 
         String json = getStringFromFile(expenseFile);
         Gson gson = new GsonBuilder()
@@ -38,10 +38,6 @@ public class FileOperations {
             e.printStackTrace();
         }
         return String.join("", lines);
-    }
-
-    public List<Expense> getExpenses() {
-        return deserializeListOfExpense();
     }
 
     public List<Category> getCategories() {
