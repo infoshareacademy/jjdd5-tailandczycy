@@ -13,7 +13,7 @@ public class UserInterface {
     private ConsoleReader consoleReader = new ConsoleReader();
     private CategoryChecker categoryChecker = new CategoryChecker();
     private BudgetManager budgetManager = new BudgetManager();
-    private List<Category> listOfCategory = Stream.of(new Category("Party"), new Category("Food"), new Category("Sex") ).collect(Collectors.toList());
+    private List<Category> listOfCategory = Stream.of(new Category("Party"), new Category("Food"), new Category("Sex")).collect(Collectors.toList());
 
     public void addExpense() {
         //user interface (submenu)

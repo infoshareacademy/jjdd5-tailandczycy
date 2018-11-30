@@ -2,14 +2,15 @@ package com.infoshareacademy.tailandczycy.data.dao;
 
 import com.infoshareacademy.tailandczycy.data.FileOperations;
 import com.infoshareacademy.tailandczycy.service.Expense;
+
 import java.util.List;
 import java.util.Optional;
 
-public class ExpenseDao implements Dao<Expense>{
+public class ExpenseDao implements Dao<Expense> {
 
     private List<Expense> expenses;
 
-    public ExpenseDao(){
+    public ExpenseDao() {
         FileOperations fileOperations = new FileOperations();
         expenses = fileOperations.getExpenses();
     }

@@ -14,7 +14,7 @@ public class StartApp {
     private CategoryDao categoryDao = new CategoryDao();
     private ExpenseDao expenseDao = new ExpenseDao();
 
-    public void runApp(){
+    public void runApp() {
 
         menu.showMenu();
         mainSwitch.chooseMenu(consoleReader.readInt());
