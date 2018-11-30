@@ -3,6 +3,7 @@ package com.infoshareacademy.tailandczycy.service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BudgetManager {
@@ -16,11 +17,11 @@ public class BudgetManager {
 //        return budget;
 //    }
 
-    public void addExpense(String category, String comment, BigDecimal amount, LocalDate localDate) {
+    public void addExpense(List<String> categories, String comment, BigDecimal amount, LocalDate localDate) {
         //adds expense
     }
 
-    public void modifyExpense(int id, String category, String comment, BigDecimal amount, LocalDate localDate) {
+    public void modifyExpense(int id, List<String> categories, String comment, BigDecimal amount, LocalDate localDate) {
         //modifies expense
     }
 

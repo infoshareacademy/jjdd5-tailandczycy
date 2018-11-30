@@ -12,12 +12,8 @@ import java.util.stream.Stream;
 public class UserInterface {
     private ConsoleReader consoleReader = new ConsoleReader();
     private CategoryChecker categoryChecker = new CategoryChecker();
-    private BudgetManager budgetManager;
+    private BudgetManager budgetManager = new BudgetManager();
     List<Category> listOfCategory = Stream.of(new Category("Party"), new Category("Food"), new Category("Sex") ).collect(Collectors.toList());
-
-    public UserInterface() {
-        BudgetManager budgetManager = new BudgetManager();
-    }
 
     public void addExpense() {
         //user interface (submenu)
