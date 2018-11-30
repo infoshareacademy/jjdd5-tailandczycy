@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,7 +46,12 @@ public class FileOperations {
         return deserializeListOfExpense();
     }
 
-    public List<Category> getListOfCategories() throws IOException{
-        return deserializeListOfCategories();
+    public List<Category> getListOfCategories() {
+        try {
+            return deserializeListOfCategories();
+        } catch (Exception e) {
+            // LOGGER
+            return new ArrayList<>();
+        }
     }
 }
