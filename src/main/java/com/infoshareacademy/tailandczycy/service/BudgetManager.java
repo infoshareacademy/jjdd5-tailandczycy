@@ -1,5 +1,8 @@
 package com.infoshareacademy.tailandczycy.service;
 
+import com.infoshareacademy.tailandczycy.data.dao.CategoryDao;
+import com.infoshareacademy.tailandczycy.data.dao.ExpenseDao;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -8,14 +11,8 @@ import java.util.Map;
 
 public class BudgetManager {
 
-
-//    public void setBudget(BigDecimal budget) {
-//        this.budget = budget;
-//    }
-//
-//    public BigDecimal getBudget() {
-//        return budget;
-//    }
+    ExpenseDao expenseDao = new ExpenseDao();
+    CategoryDao categoryDao = new CategoryDao();
 
     public void addExpense(List<String> categories, String comment, BigDecimal amount, LocalDate localDate) {
         //adds expense
@@ -38,11 +35,14 @@ public class BudgetManager {
     }
 
     public void displayExpensePerCategory(String name) {
-        //displays expense per category
+        expenseDao.getAll().stream()
+                .filter(expense -> expense.getCategories().contains(name))
+                .forEach(System.out::println);
     }
 
     public void displayAllExpenses() {
-        //displays all expenses by id
+        expenseDao.getAll()
+                .forEach(System.out::println);
     }
 
     public Budget defineBudget(BigDecimal actualBudget) {
