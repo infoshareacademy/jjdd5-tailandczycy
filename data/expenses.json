@@ -18,7 +18,7 @@
       "Dziewczyna"
     ],
     "comment": "Biedronka",
-    "amount": 1.0,
+    "amount": 1.00,
     "date": "2018-02-12"
   },
   {
@@ -27,7 +27,7 @@
       "Dziewczyna"
     ],
     "comment": "Aioli",
-    "amount": 16.0,
+    "amount": 16.00,
     "date": "2018-02-12"
   },
   {
@@ -47,5 +47,14 @@
     "comment": "Sfinks700",
     "amount": 120.00,
     "date": "2018-02-12"
+  },
+  {
+    "id": 0,
+    "categories": [
+      "Praca"
+    ],
+    "comment": "narkotyki",
+    "amount": 120.00,
+    "date": "2018-12-20"
   }
 ]

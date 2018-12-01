@@ -28,6 +28,7 @@ public class ExpenseDao implements Dao<Expense> {
 
     @Override
     public void save() {
+
         fileOperations.saveExpenses(expenses);
     }
 
