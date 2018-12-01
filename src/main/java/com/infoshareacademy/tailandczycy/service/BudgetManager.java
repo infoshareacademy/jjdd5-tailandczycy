@@ -15,7 +15,10 @@ public class BudgetManager {
     private Budget budgetDao = new Budget();
 
     public void addExpense(List<String> categories, String comment, BigDecimal amount, LocalDate localDate) {
+
+        int id = expenseDao.get(expenseDao.getAll().size()-1).get().getId()+1;
         Expense expense = new Expense(categories, comment, amount, localDate);
+        expense.setId(id);
         expenseDao.getAll().add(expense);
         expenseDao.save();
     }
@@ -25,11 +28,10 @@ public class BudgetManager {
     }
 
     public void deleteExpense(int id) {
-        if(expenseDao.get(id).isPresent()){
-            expenseDao.delete(expenseDao.get(id).get());
-        }else{
-            System.out.println("no such Expense");
-        }
+        Expense tmpExpense = expenseDao.getAll().stream()
+                .filter(expense -> expense.getId()==id)
+                .findAny().get();
+        expenseDao.delete(tmpExpense);
     }
 
     public void addCategory(String name, BigDecimal limit) {
