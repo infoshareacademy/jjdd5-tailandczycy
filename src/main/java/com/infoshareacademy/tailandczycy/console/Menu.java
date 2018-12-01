@@ -1,13 +1,17 @@
 package com.infoshareacademy.tailandczycy.console;
 
+import com.infoshareacademy.tailandczycy.service.BudgetManager;
+
 public class Menu {
 
     public void showMenu() {
+        BudgetManager budgetManager = new BudgetManager();
         String menuString;
 
         menuString = ""
                 + "============================================================\n"
                 + "||     Welcome to your personal financial analyzer        ||          {\n"
+                + "||     Your actual budget is: "+budgetManager.getActualBudget()+"                     || \n"
                 + "============================================================       {   }\n"
                 + "||   Choose an operation:                                 ||        }_ { __{\n"
                 + "||        1. Add an expense                               ||     .'{    }   }'-.\n"
