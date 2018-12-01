@@ -2,8 +2,6 @@ package com.infoshareacademy.tailandczycy.service;
 
 import com.infoshareacademy.tailandczycy.console.UserInterface;
 
-import java.io.IOException;
-
 public class MainSwitch {
 
     private UserInterface userInterface;
@@ -12,9 +10,9 @@ public class MainSwitch {
         userInterface = new UserInterface();
     }
 
-    public void chooseMenu(int option) throws IOException {
+    public void chooseMenu(int option) {
 
-        switch(option){
+        switch (option) {
             case 1:
                 userInterface.addExpense();
                 break;
@@ -27,21 +25,21 @@ public class MainSwitch {
             case 4:
                 userInterface.addCategory();
                 break;
-              case 5:
+            case 5:
                 userInterface.deleteCategory();
-                  break;
+                break;
             case 6:
                 userInterface.displayExpensePerCategory();
-                    break;
+                break;
             case 7:
                 userInterface.displayAllExpenses();
                 break;
             case 8:
                 userInterface.defineBudget();
-                  break;
+                break;
             case 9:
                 userInterface.setUpLimit();
-                    break;
+                break;
         }
     }
 

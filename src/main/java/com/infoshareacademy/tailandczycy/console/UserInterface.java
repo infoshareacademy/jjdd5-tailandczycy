@@ -1,10 +1,8 @@
 package com.infoshareacademy.tailandczycy.console;
 
-import com.infoshareacademy.tailandczycy.data.FileOperations;
 import com.infoshareacademy.tailandczycy.service.BudgetManager;
 import com.infoshareacademy.tailandczycy.service.Category;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,11 +13,7 @@ public class UserInterface {
     private ConsoleReader consoleReader = new ConsoleReader();
     private CategoryChecker categoryChecker = new CategoryChecker();
     private BudgetManager budgetManager = new BudgetManager();
-    private FileOperations fileOperations = new FileOperations();
-
-    public UserInterface() {
-        BudgetManager budgetManager = new BudgetManager();
-    }
+    private List<Category> listOfCategory = Stream.of(new Category("Party"), new Category("Food"), new Category("Sex")).collect(Collectors.toList());
 
     public void addExpense() {
         //user interface (submenu)
@@ -42,24 +36,27 @@ public class UserInterface {
     }
 
     public void displayExpensePerCategory() {
-        //user interface (submenu)
+        budgetManager.displayExpensePerCategory(consoleReader.readString());
     }
 
     public void displayAllExpenses() {
-        //user interface (submenu)
+        budgetManager.displayAllExpenses();
     }
 
     public void defineBudget() {
         System.out.println("Define your budget: ");
         BigDecimal budgetLimit = consoleReader.readBigDecimal();
         budgetManager.defineBudget(budgetLimit);
+
     }
 
-    public void setUpLimit() throws IOException {
+    public void setUpLimit() {
         System.out.println("Give category: ");
-        Category category = categoryChecker.checkForCategory().orElse(new Category("Default"));
+        Category category = categoryChecker.checkForCategory(listOfCategory).orElse(null);
+
         System.out.println("Give limit: ");
         BigDecimal limit = consoleReader.readBigDecimal();
-        budgetManager.setUpLimit(category, limit);
+
+        System.out.println(budgetManager.setUpLimit(category, limit));
     }
 }
