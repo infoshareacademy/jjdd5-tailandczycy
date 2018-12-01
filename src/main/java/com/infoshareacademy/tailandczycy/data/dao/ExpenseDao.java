@@ -3,21 +3,22 @@ package com.infoshareacademy.tailandczycy.data.dao;
 import com.infoshareacademy.tailandczycy.data.FileOperations;
 import com.infoshareacademy.tailandczycy.service.Expense;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class ExpenseDao implements Dao<Expense> {
 
-    private List<Expense> expenses;
+    private FileOperations fileOperations = new FileOperations();
+    private List<Expense> expenses = new ArrayList<>();
 
     public ExpenseDao() {
-        FileOperations fileOperations = new FileOperations();
         expenses = fileOperations.getExpenses();
     }
 
     @Override
-    public Optional<Expense> get(long id) {
-        return Optional.empty();
+    public Optional<Expense> get(int id) {
+        return Optional.ofNullable(expenses.get(id));
     }
 
     @Override
@@ -26,8 +27,8 @@ public class ExpenseDao implements Dao<Expense> {
     }
 
     @Override
-    public void save(Expense expense) {
-
+    public void save() {
+        fileOperations.saveExpenses(expenses);
     }
 
     @Override
@@ -37,6 +38,7 @@ public class ExpenseDao implements Dao<Expense> {
 
     @Override
     public void delete(Expense expense) {
-
+        expenses.remove(expense);
+        save();
     }
 }

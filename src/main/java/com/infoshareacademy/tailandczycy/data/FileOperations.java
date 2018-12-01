@@ -31,7 +31,8 @@ public class FileOperations {
         String json = getStringFromFile(expenseFile);
 
         Expense[] array = gsonBuilder.fromJson(json, Expense[].class);
-        return Arrays.asList(array);
+        List<Expense> tmpList = Arrays.asList(array);
+        return new ArrayList<>(tmpList);
     }
 
     private String getStringFromFile(Path file) {

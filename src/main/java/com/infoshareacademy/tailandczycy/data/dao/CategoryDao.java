@@ -16,7 +16,7 @@ public class CategoryDao implements Dao<Category> {
     }
 
     @Override
-    public Optional<Category> get(long id) {
+    public Optional<Category> get(int id) {
         return Optional.empty();
     }
 
@@ -26,7 +26,7 @@ public class CategoryDao implements Dao<Category> {
     }
 
     @Override
-    public void save(Category category) {
+    public void save() {
 
     }
 

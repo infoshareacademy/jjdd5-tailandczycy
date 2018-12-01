@@ -25,7 +25,14 @@ public class UserInterface {
     }
 
     public void deleteExpense() {
-        //user interface (submenu)
+        System.out.println("type in id of an expense to be deleted: ");
+        int id = consoleReader.readInt();
+        budgetManager.deleteExpense(id);
+        System.out.println("1. repeat operation\n" +
+                           "2. quit");
+        if(consoleReader.readInt()==1){
+            deleteExpense();
+        }
     }
 
     public void addCategory() {

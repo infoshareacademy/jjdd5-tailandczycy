@@ -24,7 +24,11 @@ public class BudgetManager {
     }
 
     public void deleteExpense(int id) {
-        //deletes expense
+        if(expenseDao.get(id).isPresent()){
+            expenseDao.delete(expenseDao.get(id).get());
+        }else{
+            System.out.println("no such Expense");
+        }
     }
 
     public void addCategory(String name, BigDecimal limit) {
