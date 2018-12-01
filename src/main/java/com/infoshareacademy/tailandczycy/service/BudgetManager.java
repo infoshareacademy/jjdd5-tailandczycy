@@ -52,6 +52,7 @@ public class BudgetManager {
 
     public Category setUpLimit(Category category, BigDecimal limit) {
         category.setLimit(limit);
+        categoryDao.save(category);
         return category;
     }
 
@@ -77,6 +78,7 @@ public class BudgetManager {
         }
         return categories;
     }
+
     public Optional<Category> checkForCategory(String category) {
         return findCategory(category);
     }
