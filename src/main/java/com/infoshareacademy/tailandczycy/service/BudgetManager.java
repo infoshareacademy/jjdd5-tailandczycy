@@ -13,6 +13,7 @@ public class BudgetManager {
 
     private ExpenseDao expenseDao = new ExpenseDao();
     private CategoryDao categoryDao = new CategoryDao();
+    private Budget budgetDao = new Budget();
 
     public void addExpense(List<String> categories, String comment, BigDecimal amount, LocalDate localDate) {
         //adds expense
@@ -53,5 +54,11 @@ public class BudgetManager {
         HashMap<Category, BigDecimal> categoryToLimit = new HashMap<>();
         categoryToLimit.put(category, limit);
         return categoryToLimit;
+    }
+
+    public BigDecimal getActualBudget(){
+        return budgetDao.getBudget().subtract(expenseDao.getAll().stream()
+                .map(Expense::getAmount)
+                .reduce(new BigDecimal(0) , BigDecimal::add));
     }
 }
