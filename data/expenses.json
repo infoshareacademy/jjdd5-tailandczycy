@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "categories": [
       "Rozrywka",
       "Praca",
@@ -10,32 +11,36 @@
     "date": "2018-02-12"
   },
   {
+    "id": 2,
     "categories": [
       "Zywnosc",
       "Praca",
       "Dziewczyna"
     ],
     "comment": "Biedronka",
-    "amount": 121.0,
+    "amount": 1.0,
     "date": "2018-02-12"
   },
   {
+    "id": 3,
     "categories": [
       "Dziewczyna"
     ],
     "comment": "Tesco",
-    "amount": 82.13,
+    "amount": 8.13,
     "date": "2018-02-12"
   },
   {
+    "id": 4,
     "categories": [
       "Dziewczyna"
     ],
     "comment": "Aioli",
-    "amount": 168.0,
+    "amount": 16.0,
     "date": "2018-02-12"
   },
   {
+    "id": 5,
     "categories": [
       "Dziewczyna"
     ],
@@ -44,6 +49,7 @@
     "date": "2018-02-12"
   },
   {
+    "id": 6,
     "categories": [
       "Dziewczyna"
     ],

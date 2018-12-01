@@ -9,13 +9,13 @@ import java.util.Optional;
 public class CategoryChecker extends ConsoleReader {
     private FileOperations fileOperations = new FileOperations();
 
-    public Optional<Category> checkForCategory() throws IOException {
+    public Optional<Category> checkForCategory() {
         String categoryString = readString();
         return findCategory(categoryString);
     }
 
     private Optional<Category> findCategory(String categoryString) {
-        return fileOperations.getListOfCategories().stream()
+        return fileOperations.getCategories().stream()
                 .filter(o -> o.getName().equals(categoryString))
                 .findAny();
     }

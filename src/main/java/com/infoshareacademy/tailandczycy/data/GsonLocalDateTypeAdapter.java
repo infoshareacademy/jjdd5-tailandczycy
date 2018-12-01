@@ -11,8 +11,8 @@ import java.time.format.DateTimeFormatter;
 public class GsonLocalDateTypeAdapter extends TypeAdapter<LocalDate> {
 
     @Override
-    public void write(JsonWriter out, LocalDate value) throws IOException {
-
+    public void write(JsonWriter out, LocalDate localDate) throws IOException {
+        out.value(localDate.toString());
     }
 
     //Show Gson how to read LocalDate Format
