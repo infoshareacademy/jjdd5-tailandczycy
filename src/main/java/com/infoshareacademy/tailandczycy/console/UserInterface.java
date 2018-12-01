@@ -10,7 +10,6 @@ import java.util.List;
 public class UserInterface {
 
     private ConsoleReader consoleReader = new ConsoleReader();
-    private CategoryChecker categoryChecker = new CategoryChecker();
     private BudgetManager budgetManager = new BudgetManager();
 
     public void addExpense() {
@@ -21,7 +20,8 @@ public class UserInterface {
         String comment = consoleReader.readString();
         System.out.println("Give date: ");
         LocalDate dateOfExpense =  LocalDate.parse(consoleReader.readString());
-        
+        budgetManager.addExpense(categories, comment, amount, dateOfExpense);
+
     }
 
     public void modifyExpense() {
@@ -58,7 +58,8 @@ public class UserInterface {
 
     public void setUpLimit() {
         System.out.println("Give category: ");
-        Category category = categoryChecker.checkForCategory().orElse(null);
+        String stringCategory = consoleReader.readString();
+        Category category = budgetManager.checkForCategory(stringCategory).orElse(null);
 
         System.out.println("Give limit: ");
         BigDecimal limit = consoleReader.readBigDecimal();
