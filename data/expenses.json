@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "categories": [
       "Rozrywka",
       "Praca",
@@ -10,6 +11,7 @@
     "date": "2018-02-12"
   },
   {
+    "id": 2,
     "categories": [
       "Zywnosc",
       "Praca",
@@ -20,6 +22,7 @@
     "date": "2018-02-12"
   },
   {
+    "id": 3,
     "categories": [
       "Dziewczyna"
     ],
@@ -28,6 +31,7 @@
     "date": "2018-02-12"
   },
   {
+    "id": 4,
     "categories": [
       "Dziewczyna"
     ],
@@ -36,6 +40,7 @@
     "date": "2018-02-12"
   },
   {
+    "id": 5,
     "categories": [
       "Dziewczyna"
     ],
@@ -44,6 +49,7 @@
     "date": "2018-02-12"
   },
   {
+    "id": 6,
     "categories": [
       "Dziewczyna"
     ],

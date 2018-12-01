@@ -4,19 +4,24 @@ import com.infoshareacademy.tailandczycy.service.BudgetManager;
 import com.infoshareacademy.tailandczycy.service.Category;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 
 public class UserInterface {
 
     private ConsoleReader consoleReader = new ConsoleReader();
-    private CategoryChecker categoryChecker = new CategoryChecker();
     private BudgetManager budgetManager = new BudgetManager();
 
     public void addExpense() {
-        //user interface (submenu)
+        List<String> categories = budgetManager.gettingCategoriesFromUser();
+        System.out.println("Give amount: ");
+        BigDecimal amount = consoleReader.readBigDecimal();
+        System.out.println("Give comment: ");
+        String comment = consoleReader.readString();
+        System.out.println("Give date: ");
+        LocalDate dateOfExpense =  LocalDate.parse(consoleReader.readString());
+        budgetManager.addExpense(categories, comment, amount, dateOfExpense);
+
     }
 
     public void modifyExpense() {
@@ -37,6 +42,7 @@ public class UserInterface {
 
     public void displayExpensePerCategory() {
         budgetManager.displayExpensePerCategory(consoleReader.readString());
+
     }
 
     public void displayAllExpenses() {
@@ -52,7 +58,8 @@ public class UserInterface {
 
     public void setUpLimit() {
         System.out.println("Give category: ");
-        Category category = categoryChecker.checkForCategory().orElse(null);
+        String stringCategory = consoleReader.readString();
+        Category category = budgetManager.checkForCategory(stringCategory).orElse(null);
 
         System.out.println("Give limit: ");
         BigDecimal limit = consoleReader.readBigDecimal();

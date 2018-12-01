@@ -40,6 +40,8 @@ public class MainSwitch {
             case 9:
                 userInterface.setUpLimit();
                 break;
+            case 10:
+                break;
         }
     }
 

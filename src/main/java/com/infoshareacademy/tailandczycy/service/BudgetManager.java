@@ -1,22 +1,22 @@
 package com.infoshareacademy.tailandczycy.service;
 
+import com.infoshareacademy.tailandczycy.console.ConsoleReader;
 import com.infoshareacademy.tailandczycy.data.dao.CategoryDao;
 import com.infoshareacademy.tailandczycy.data.dao.ExpenseDao;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BudgetManager {
-
+    private ConsoleReader consoleReader = new ConsoleReader();
     private ExpenseDao expenseDao = new ExpenseDao();
     private CategoryDao categoryDao = new CategoryDao();
     private Budget budgetDao = new Budget();
 
     public void addExpense(List<String> categories, String comment, BigDecimal amount, LocalDate localDate) {
-        //adds expense
+        Expense expense = new Expense(categories, comment, amount, localDate);
+        expenseDao.save(expense);
     }
 
     public void modifyExpense(int id, List<String> categories, String comment, BigDecimal amount, LocalDate localDate) {
@@ -50,15 +50,40 @@ public class BudgetManager {
         return new Budget(actualBudget);
     }
 
-    public Map<Category, BigDecimal> setUpLimit(Category category, BigDecimal limit) {
-        HashMap<Category, BigDecimal> categoryToLimit = new HashMap<>();
-        categoryToLimit.put(category, limit);
-        return categoryToLimit;
+    public Category setUpLimit(Category category, BigDecimal limit) {
+        category.setLimit(limit);
+        return category;
     }
 
-    public BigDecimal getActualBudget(){
+    public BigDecimal getActualBudget() {
         return budgetDao.getBudget().subtract(expenseDao.getAll().stream()
                 .map(Expense::getAmount)
-                .reduce(new BigDecimal(0) , BigDecimal::add));
+                .reduce(new BigDecimal(0), BigDecimal::add));
+    }
+
+    public List<String> gettingCategoriesFromUser() {
+        boolean allCategories = true;
+        List<String> categories = new ArrayList<>();
+        while (allCategories) {
+            System.out.println("Define category: ");
+            categories.add(consoleReader.readString());
+            System.out.println("Are those all categories?");
+            System.out.println("If not click n otherwise y");
+            String flag = consoleReader.readString();
+            if (flag.equalsIgnoreCase("y")) {
+                allCategories = false;
+            }
+
+        }
+        return categories;
+    }
+    public Optional<Category> checkForCategory(String category) {
+        return findCategory(category);
+    }
+
+    private Optional<Category> findCategory(String categoryString) {
+        return categoryDao.getAll().stream()
+                .filter(o -> o.getName().equals(categoryString))
+                .findAny();
     }
 }
