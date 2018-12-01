@@ -38,6 +38,7 @@ public class UserInterface {
 
     public void displayExpensePerCategory() {
         budgetManager.displayExpensePerCategory(consoleReader.readString());
+
     }
 
     public void displayAllExpenses() {
