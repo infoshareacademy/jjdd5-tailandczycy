@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Expense {
+    private int id;
     private List<String> categories;
     private String comment;
     private BigDecimal amount;
@@ -16,6 +17,14 @@ public class Expense {
         this.comment = comment;
         this.amount = amount;
         this.date = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public List<String> getCategories() {
@@ -53,7 +62,8 @@ public class Expense {
     @Override
     public String toString() {
         return "Expense{" +
-                "categories=" + categories +
+                "id=" + id +
+                ", categories=" + categories +
                 ", comment='" + comment + '\'' +
                 ", amount=" + amount +
                 ", date=" + date +
@@ -65,7 +75,8 @@ public class Expense {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Expense expense = (Expense) o;
-        return Objects.equals(categories, expense.categories) &&
+        return id == expense.id &&
+                Objects.equals(categories, expense.categories) &&
                 Objects.equals(comment, expense.comment) &&
                 Objects.equals(amount, expense.amount) &&
                 Objects.equals(date, expense.date);
@@ -73,6 +84,6 @@ public class Expense {
 
     @Override
     public int hashCode() {
-        return Objects.hash(categories, comment, amount, date);
+        return Objects.hash(id, categories, comment, amount, date);
     }
 }
