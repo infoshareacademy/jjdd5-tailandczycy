@@ -24,8 +24,4 @@ public class Budget {
     public void setBudget(BigDecimal budget) {
         this.budget = budget;
     }
-
-    public void saveBudget(BigDecimal budget) {
-        //save to file
-    }
 }
