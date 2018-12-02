@@ -112,26 +112,28 @@ public class BudgetManager {
             case 2:
                 changeComment(id);
                 break;
-//            case 3:
-//                changeAmount();
-//                break;
-//            case 4:
-//                changeDate();
-//                break;
+            case 3:
+                changeAmount(id);
+                break;
+            case 4:
+                changeDate(id);
+                break;
             case 10:
                 break;
+            default:
+                System.out.println("Wrong input \n");
         }
     }
 
     private void changeCategories(int id) {
         System.out.println("Type in new set of categories each accepted by enter button: \n" +
-                            "Type in 10 to go back.");
+                "Type in 10 to go back.");
         String category;
         List<String> categories = new ArrayList<>();
         do {
             category = consoleReader.readString();
             if (!category.equals("10")) {
-                 categories.add(category);
+                categories.add(category);
             }
         } while (!category.equals("10"));
 
@@ -144,18 +146,47 @@ public class BudgetManager {
         }
     }
 
-    private void changeComment(int id){
+    private void changeComment(int id) {
         System.out.println("Type in comment: \n" +
                 "Type in 10 to go back.");
         String comment;
         comment = consoleReader.readString();
-        if (!comment.equals("10")){
+        if (!comment.equals("10")) {
             System.out.println("Do you want to save?");
             System.out.println("y/n");
-            if (consoleReader.readString().equals("y")){
+            if (consoleReader.readString().equals("y")) {
                 expenseDao.get(id).get().setComment(comment);
             }
         }
     }
 
+    private void changeAmount(int id) {
+        System.out.println("Type in amount: ");
+        BigDecimal amount;
+        amount = consoleReader.readBigDecimal();
+        System.out.println("Do you want to save?");
+        System.out.println("y/n");
+        if (consoleReader.readString().equals("y")) {
+            expenseDao.get(id).get().setAmount(amount);
+        }
+    }
+
+    private void changeDate(int id) {
+        System.out.println("Type int Date in format yyyy-mm-dd");
+        String date = consoleReader.readString();
+        if (dateChecker(date)) {
+            System.out.println("Do you want to save?");
+            System.out.println("y/n");
+            if (consoleReader.readString().equals("y")) {
+                expenseDao.get(id).get().setDate(LocalDate.parse(date));
+            }
+        } else {
+            System.out.println("Wrong format ;d");
+        }
+    }
+
+    private boolean dateChecker(String date) {
+
+        return date.matches("^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$");
+    }
 }
