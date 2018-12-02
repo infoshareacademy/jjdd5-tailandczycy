@@ -42,6 +42,8 @@ public class MainSwitch {
                 break;
             case 10:
                 break;
+            default:
+                System.out.println("Wrong input \n");
         }
     }
 

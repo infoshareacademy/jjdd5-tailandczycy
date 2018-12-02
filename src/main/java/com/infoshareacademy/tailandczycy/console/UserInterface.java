@@ -61,6 +61,7 @@ public class UserInterface {
     }
 
     public void displayExpensePerCategory() {
+        System.out.println("Type in category for expenses to be displayed: ");
         budgetManager.displayExpensePerCategory(consoleReader.readString());
 
     }
