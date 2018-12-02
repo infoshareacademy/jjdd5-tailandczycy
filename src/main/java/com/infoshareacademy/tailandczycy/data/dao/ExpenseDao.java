@@ -3,6 +3,7 @@ package com.infoshareacademy.tailandczycy.data.dao;
 import com.infoshareacademy.tailandczycy.data.FileOperations;
 import com.infoshareacademy.tailandczycy.service.Expense;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +19,9 @@ public class ExpenseDao implements Dao<Expense> {
 
     @Override
     public Optional<Expense> get(int id) {
-        return Optional.ofNullable(expenses.get(id));
+        return expenses.stream()
+                .filter(expense -> expense.getId()==id)
+                .findAny();
     }
 
     @Override

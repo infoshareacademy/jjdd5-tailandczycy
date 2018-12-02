@@ -25,7 +25,20 @@ public class UserInterface {
     }
 
     public void modifyExpense() {
-        //user interface (submenu)
+        System.out.println("type in id of an expense to be modified: ");
+        int id = consoleReader.readInt();
+        int option;
+        do {
+            budgetManager.displayExactExpense(id);
+            System.out.println("1. Change categories \n" +
+                                "2. Change comment \n" +
+                                "3. Change amount \n" +
+                                "4. Change date \n" +
+                                "10. Go back");
+            System.out.println("Choose an option: ");
+            option = consoleReader.readInt();
+            budgetManager.modifyExpenseSwitch(id, option);
+        }while(option!=10);
     }
 
     public void deleteExpense() {

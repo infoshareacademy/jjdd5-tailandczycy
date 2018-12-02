@@ -16,7 +16,7 @@ public class BudgetManager {
 
     public void addExpense(List<String> categories, String comment, BigDecimal amount, LocalDate localDate) {
 
-        int id = expenseDao.get(expenseDao.getAll().size()-1).get().getId()+1;
+        int id = expenseDao.get(expenseDao.getAll().size() - 1).get().getId() + 1;
         Expense expense = new Expense(categories, comment, amount, localDate);
         expense.setId(id);
         expenseDao.getAll().add(expense);
@@ -29,7 +29,7 @@ public class BudgetManager {
 
     public void deleteExpense(int id) {
         Expense tmpExpense = expenseDao.getAll().stream()
-                .filter(expense -> expense.getId()==id)
+                .filter(expense -> expense.getId() == id)
                 .findAny().get();
         expenseDao.delete(tmpExpense);
     }
@@ -51,6 +51,14 @@ public class BudgetManager {
     public void displayAllExpenses() {
         expenseDao.getAll()
                 .forEach(System.out::println);
+    }
+
+    public void displayExactExpense(int id) {
+        if (expenseDao.get(id).isPresent()) {
+            System.out.println(expenseDao.get(id).get());
+        } else {
+            System.out.println("no such expense");
+        }
     }
 
     public Budget defineBudget(BigDecimal actualBudget) {
@@ -95,4 +103,59 @@ public class BudgetManager {
                 .filter(o -> o.getName().equals(categoryString))
                 .findAny();
     }
+
+    public void modifyExpenseSwitch(int id, int option) {
+        switch (option) {
+            case 1:
+                changeCategories(id);
+                break;
+            case 2:
+                changeComment(id);
+                break;
+//            case 3:
+//                changeAmount();
+//                break;
+//            case 4:
+//                changeDate();
+//                break;
+            case 10:
+                break;
+        }
+    }
+
+    private void changeCategories(int id) {
+        System.out.println("Type in new set of categories each accepted by enter button: \n" +
+                            "Type in 10 to go back.");
+        String category;
+        List<String> categories = new ArrayList<>();
+        do {
+            category = consoleReader.readString();
+            if (!category.equals("10")) {
+                 categories.add(category);
+            }
+        } while (!category.equals("10"));
+
+        System.out.println(categories);
+        System.out.println("Do you want to save?");
+        System.out.println("y/n");
+        if (consoleReader.readString().equals("y")) {
+            expenseDao.get(id).get().setCategories(categories);
+            expenseDao.save();
+        }
+    }
+
+    private void changeComment(int id){
+        System.out.println("Type in comment: \n" +
+                "Type in 10 to go back.");
+        String comment;
+        comment = consoleReader.readString();
+        if (!comment.equals("10")){
+            System.out.println("Do you want to save?");
+            System.out.println("y/n");
+            if (consoleReader.readString().equals("y")){
+                expenseDao.get(id).get().setComment(comment);
+            }
+        }
+    }
+
 }
