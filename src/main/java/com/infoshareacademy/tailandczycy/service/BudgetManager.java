@@ -91,16 +91,6 @@ public class BudgetManager {
                 .reduce(new BigDecimal(0), BigDecimal::add));
     }
 
-    public Optional<Category> checkForCategory(String category) {
-        return findCategory(category);
-    }
-
-    private Optional<Category> findCategory(String categoryString) {
-        return categoryDao.getAll().stream()
-                .filter(o -> o.getName().equals(categoryString))
-                .findAny();
-    }
-
     public void changeCategories(int id, List<String> categories) {
 
         Expense expense = expenseDao.get(id).get();
@@ -128,11 +118,6 @@ public class BudgetManager {
         expenseDao.update(expense);
     }
 
-    public boolean dateChecker(String date) {
-
-        return date.matches("^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$");
-    }
-
     public boolean checkIfDateParsable(String date) {
         try {
             LocalDate.parse(date);
@@ -146,7 +131,5 @@ public class BudgetManager {
         return expenseDao.get(id).isPresent();
     }
 
-    public boolean checkIfCategoryPresent(String name) {
-        return categoryDao.get(name).isPresent();
-    }
+    public boolean checkIfCategoryPresent(String name) { return categoryDao.get(name).isPresent(); }
 }

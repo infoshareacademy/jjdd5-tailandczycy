@@ -27,11 +27,13 @@ public class CategoryDao {
     }
 
     public void update(Category category){
+        List<Category> newList = getAll();
         Category categoryToBeUpdated = getAll().stream()
                 .filter(c -> c.getName().equals(category.getName()))
                 .findAny().get();
         int index = getAll().indexOf(categoryToBeUpdated);
-        getAll().set(index, category);
+        newList.set(index, category);
+        save(newList);
     }
 
     public void save(List<Category> list) {
