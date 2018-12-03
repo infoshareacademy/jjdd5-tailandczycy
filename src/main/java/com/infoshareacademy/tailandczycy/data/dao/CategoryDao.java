@@ -10,6 +10,12 @@ public class CategoryDao {
 
     private FileOperations fileOperations = new FileOperations();
 
+    public void add(Category category){
+        List<Category> newList = getAll();
+        newList.add(category);
+        save(newList);
+    }
+
     public Optional<Category> get(String name) {
         return fileOperations.getCategories().stream()
                 .filter(category -> category.getName().equals(name))
@@ -24,9 +30,9 @@ public class CategoryDao {
         fileOperations.saveCategories(list);
     }
 
-    public void delete(Category category) {
+    public void delete(String category) {
         List<Category> newList = getAll();
-        newList.remove(category);
+        newList.remove(get(category).get());
         save(newList);
     }
 }

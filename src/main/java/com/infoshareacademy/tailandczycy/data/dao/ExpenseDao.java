@@ -39,7 +39,7 @@ public class ExpenseDao {
 
     public void delete(int id) {
         List<Expense> newList = getAll();
-        newList.remove(get(id).get().getId());
+        newList.remove(get(id).get());
         save(newList);
     }
 }

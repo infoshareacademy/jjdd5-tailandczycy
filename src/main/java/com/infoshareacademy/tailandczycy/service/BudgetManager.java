@@ -6,7 +6,6 @@ import com.infoshareacademy.tailandczycy.data.dao.CategoryDao;
 import com.infoshareacademy.tailandczycy.data.dao.ExpenseDao;
 
 import java.math.BigDecimal;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.*;
@@ -34,16 +33,24 @@ public class BudgetManager {
         expenseDao.add(expense);
     }
 
-    public void modifyExpense(int id, List<String> categories, String comment, BigDecimal amount, LocalDate localDate) {
-        //modifies expense
-    }
-
     public void deleteExpense(int id) {
         expenseDao.delete(id);
     }
 
     public void addCategory(String name, BigDecimal limit) {
-        //adds category with limit or not
+        Category category = new Category();
+
+        category.setName(name);
+        category.setLimit(limit);
+        categoryDao.add(category);
+    }
+
+    public void addCategory(String name){
+        Category category = new Category();
+
+        category.setName(name);
+        category.setLimit(budgetDao.getBudget());
+        categoryDao.add(category);
     }
 
     public void deleteCategory(String name) {
@@ -163,21 +170,21 @@ public class BudgetManager {
         return date.matches("^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$");
     }
 
-    public boolean checkIfDateParsable(String date){
+    public boolean checkIfDateParsable(String date) {
         LocalDate parsedDate;
-        try{
+        try {
             parsedDate = LocalDate.parse(date);
             return true;
-        }catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             return false;
         }
     }
 
-    public boolean checkIfExpensePresent(int id){
+    public boolean checkIfExpensePresent(int id) {
         return expenseDao.get(id).isPresent();
     }
 
-    public boolean checkIfCategoryPresent(String name){
+    public boolean checkIfCategoryPresent(String name) {
         return categoryDao.get(name).isPresent();
     }
 }

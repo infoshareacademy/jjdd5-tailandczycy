@@ -132,7 +132,25 @@ public class UserInterface {
     }
 
     public void addCategory() {
-        //user interface (submenu)
+        String name;
+        BigDecimal limit;
+
+        System.out.println("Type in name of category to be added: ");
+        name = consoleReader.readString();
+        System.out.println("Do you want to add limit for your category?");
+        System.out.println("y/n");
+        if(consoleReader.readString().equals("y")){
+            System.out.println("Type in limit for you category: ");
+            limit = consoleReader.readBigDecimal();
+            while(limit.compareTo(BigDecimal.ZERO)<0){
+                System.out.println("cant be negative value");
+                System.out.println("Type in new one");
+                limit = consoleReader.readBigDecimal();
+            }
+            budgetManager.addCategory(name, limit);
+        }else {
+            budgetManager.addCategory(name);
+        }
     }
 
     public void deleteCategory() {
