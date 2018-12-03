@@ -80,8 +80,12 @@ public class BudgetManager {
         budgetDao.setBudget(actualBudget);
     }
 
-    public Category setUpLimit(String category, BigDecimal limit) {
+    public Category setUpLimit(String name, BigDecimal limit) {
 
+        Category category = new Category();
+        category.setName(name);
+        category.setLimit(limit);
+        categoryDao.update(category);
     }
 
     public BigDecimal getActualBudget() {

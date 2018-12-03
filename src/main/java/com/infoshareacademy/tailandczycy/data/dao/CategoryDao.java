@@ -26,6 +26,14 @@ public class CategoryDao {
         return fileOperations.getCategories();
     }
 
+    public void update(Category category){
+        Category categoryToBeUpdated = getAll().stream()
+                .filter(c -> c.getName().equals(category.getName()))
+                .findAny().get();
+        int index = getAll().indexOf(categoryToBeUpdated);
+        getAll().set(index, category);
+    }
+
     public void save(List<Category> list) {
         fileOperations.saveCategories(list);
     }
