@@ -15,8 +15,12 @@ public class BudgetManager {
     private Budget budgetDao = new Budget();
 
     public void addExpense(List<String> categories, String comment, BigDecimal amount, LocalDate localDate) {
-
-        int id = expenseDao.get(expenseDao.getAll().size() - 1).get().getId() + 1;
+        int id;
+        if (expenseDao.getAll().size() == 0) {
+            id = 0;
+        } else {
+            id = expenseDao.get(expenseDao.getAll().size() - 1).get().getId() + 1;
+        }
         Expense expense = new Expense(categories, comment, amount, localDate);
         expense.setId(id);
         expenseDao.getAll().add(expense);
