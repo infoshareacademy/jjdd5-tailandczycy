@@ -41,7 +41,7 @@ public class BudgetManager {
         categoryDao.add(category);
     }
 
-    public void addCategory(String name){
+    public void addCategory(String name) {
         Category category = new Category();
 
         category.setName(name);
@@ -74,6 +74,7 @@ public class BudgetManager {
 
     public void defineBudget(BigDecimal actualBudget) {
         budgetDao.setBudget(actualBudget);
+        budgetDao.save();
     }
 
     public void setUpLimit(String name, BigDecimal limit) {
@@ -133,9 +134,8 @@ public class BudgetManager {
     }
 
     public boolean checkIfDateParsable(String date) {
-        LocalDate parsedDate;
         try {
-            parsedDate = LocalDate.parse(date);
+            LocalDate.parse(date);
             return true;
         } catch (DateTimeParseException e) {
             return false;
