@@ -15,10 +15,13 @@ public class UserInterface {
     private BudgetManager budgetManager = new BudgetManager();
 
     public void addExpense() {
-        List<String> categories = new ArrayList<>();
         int option;
+        List<String> categories = new ArrayList<>();
+        String comment;
+        BigDecimal amount;
+        String date;
 
-        System.out.println("Type in Categories for the expense");
+        System.out.println("Type in Categories for the expense: ");
         do {
             String category = consoleReader.readString();
             categories.add(category);
@@ -27,9 +30,17 @@ public class UserInterface {
             option = consoleReader.readInt();
         }while(option!=2);
         System.out.println("Type in comment: ");
-        String comment = consoleReader.readString();
-        BigDecimal amount = consoleReader.readBigDecimal();
-        
+        comment = consoleReader.readString();
+        System.out.println("Type in amount: ");
+        amount = consoleReader.readBigDecimal();
+        System.out.println("Type in date in format yyyy-mm-dd: ");
+        date = consoleReader.readString();
+        while(!budgetManager.checkIfDateParsable(date)){
+            System.out.println("Wrong format ;d");
+            System.out.println("Enter date again: ");
+            date = consoleReader.readString();
+        }
+        budgetManager.addExpense(categories, comment, amount, LocalDate.parse(date));
     }
 
     public void modifyExpense() {
@@ -50,13 +61,12 @@ public class UserInterface {
     }
 
     public void deleteExpense() {
-        System.out.println("type in id of an expense to be deleted: ");
+        System.out.println("Type in id of an expense to be deleted: ");
         int id = consoleReader.readInt();
-        budgetManager.deleteExpense(id);
-        System.out.println("1. repeat operation\n" +
-                           "2. quit");
-        if(consoleReader.readInt()==1){
-            deleteExpense();
+        if(budgetManager.checkIfPresent(id)){
+            budgetManager.deleteExpense(id);
+        }else{
+            System.out.println("no such expense");
         }
     }
 
