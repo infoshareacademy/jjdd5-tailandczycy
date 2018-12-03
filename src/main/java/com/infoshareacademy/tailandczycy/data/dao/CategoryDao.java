@@ -6,37 +6,27 @@ import com.infoshareacademy.tailandczycy.service.Category;
 import java.util.List;
 import java.util.Optional;
 
-public class CategoryDao implements Dao<Category> {
+public class CategoryDao {
 
-    private List<Category> categories;
+    private FileOperations fileOperations = new FileOperations();
 
-    public CategoryDao() {
-        FileOperations fileOperations = new FileOperations();
-        categories = fileOperations.getCategories();
+    public Optional<Category> get(String name) {
+        return fileOperations.getCategories().stream()
+                .filter(category -> category.getName().equals(name))
+                .findAny();
     }
 
-    @Override
-    public Optional<Category> get(int id) {
-        return Optional.empty();
-    }
-
-    @Override
     public List<Category> getAll() {
-        return categories;
+        return fileOperations.getCategories();
     }
 
-    @Override
-    public void save() {
-
+    public void save(List<Category> list) {
+        fileOperations.saveCategories(list);
     }
 
-    @Override
-    public void update(Category category) {
-
-    }
-
-    @Override
     public void delete(Category category) {
-
+        List<Category> newList = getAll();
+        newList.remove(category);
+        save(newList);
     }
 }

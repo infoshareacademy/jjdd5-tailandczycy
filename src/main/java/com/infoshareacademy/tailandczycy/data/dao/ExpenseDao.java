@@ -3,45 +3,31 @@ package com.infoshareacademy.tailandczycy.data.dao;
 import com.infoshareacademy.tailandczycy.data.FileOperations;
 import com.infoshareacademy.tailandczycy.service.Expense;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ExpenseDao implements Dao<Expense> {
+public class ExpenseDao {
 
     private FileOperations fileOperations = new FileOperations();
-    private List<Expense> expenses = new ArrayList<>();
 
-    public ExpenseDao() {
-        expenses = fileOperations.getExpenses();
-    }
-
-    @Override
     public Optional<Expense> get(int id) {
-        return expenses.stream()
+        return fileOperations.getExpenses().stream()
                 .filter(expense -> expense.getId()==id)
                 .findAny();
     }
 
-    @Override
     public List<Expense> getAll() {
-        return expenses;
+        return fileOperations.getExpenses();
     }
 
-    @Override
-    public void save() {
-        fileOperations.saveExpenses(expenses);
+    public void save(List<Expense> list) {
+        fileOperations.saveExpenses(list);
     }
 
-    @Override
-    public void update(Expense expense) {
-        expenses.add(expense);
-    }
-
-    @Override
     public void delete(Expense expense) {
-        expenses.remove(expense);
-        save();
+        List<Expense> newList = getAll();
+        newList.remove(expense);
+        save(newList);
     }
 }
