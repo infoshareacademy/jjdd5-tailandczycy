@@ -1,6 +1,7 @@
 package com.infoshareacademy.tailandczycy.service;
 
 import com.infoshareacademy.tailandczycy.console.ConsoleReader;
+import com.infoshareacademy.tailandczycy.console.UserInterface;
 import com.infoshareacademy.tailandczycy.data.dao.CategoryDao;
 import com.infoshareacademy.tailandczycy.data.dao.ExpenseDao;
 
@@ -15,6 +16,7 @@ public class BudgetManager {
     private ExpenseDao expenseDao = new ExpenseDao();
     private CategoryDao categoryDao = new CategoryDao();
     private Budget budgetDao = new Budget();
+    private UserInterface userInterface = new UserInterface();
 
     public void addExpense(List<String> categories, String comment, BigDecimal amount, LocalDate localDate) {
         int id;
@@ -60,7 +62,7 @@ public class BudgetManager {
     }
 
     public void displayExactExpense(int id) {
-        if (expenseDao.get(id).isPresent()) {
+        if (checkIfExpensePresent(id)) {
             System.out.println(expenseDao.get(id).get());
         } else {
             System.out.println("no such expense");
@@ -71,10 +73,8 @@ public class BudgetManager {
         budgetDao.setBudget(actualBudget);
     }
 
-    public Category setUpLimit(Category category, BigDecimal limit) {
-        category.setLimit(limit);
-        categoryDao.save();
-        return category;
+    public Category setUpLimit(String category, BigDecimal limit) {
+
     }
 
     public BigDecimal getActualBudget() {
@@ -113,10 +113,10 @@ public class BudgetManager {
     public void modifyExpenseSwitch(int id, int option) {
         switch (option) {
             case 1:
-                changeCategories(id);
+                userInterface.changeCategories(id);
                 break;
             case 2:
-                changeComment(id);
+                userInterface.changeComment(id);
                 break;
             case 3:
                 changeAmount(id);
@@ -131,26 +131,11 @@ public class BudgetManager {
         }
     }
 
-    private void changeCategories(int id) {
-        String category;
+    public void changeCategories(int id, List<String> categories) {
 
-        System.out.println("Type in new set of categories each accepted by enter button: \n" +
-                "Type in 10 to go back.");
-        List<String> categories = new ArrayList<>();
-        do {
-            category = consoleReader.readString();
-            if (!category.equals("10")) {
-                categories.add(category);
-            }
-        } while (!category.equals("10"));
-
-        System.out.println(categories);
-        System.out.println("Do you want to save?");
-        System.out.println("y/n");
-        if (consoleReader.readString().equals("y")) {
-            expenseDao.get(id).get().setCategories(categories);
-            expenseDao.save();
-        }
+        Expense expense = expenseDao.get(id).get();
+        expense.setCategories(categories);
+        expenseDao.update(expense);
     }
 
     private void changeComment(int id) {
@@ -191,18 +176,16 @@ public class BudgetManager {
     private void changeDate(int id) {
         String date;
 
-        System.out.println("Type in date in format yyyy-mm-dd");
+        System.out.println("Type in date: ");
         date = consoleReader.readString();
-        while (!checkIfDateParsable(date)) {
-            System.out.println("Wrong format ;d");
-            System.out.println("Enter date again: ");
-            date = consoleReader.readString();
-        }
         System.out.println("Do you want to save?");
         System.out.println("y/n");
         if (consoleReader.readString().equals("y")) {
-            expenseDao.get(id).get().setAmount(amount);
-            expenseDao.save();
+            if(expenseDao.get(id).isPresent()) {
+                Expense expense = expenseDao.get(id).get();
+                expense.setDate();
+                expenseDao.getAll().set(id, expense);
+            }
         }
     }
 
@@ -221,7 +204,11 @@ public class BudgetManager {
         }
     }
 
-    public boolean checkIfPresent(int id){
+    public boolean checkIfExpensePresent(int id){
         return expenseDao.get(id).isPresent();
+    }
+
+    public boolean checkIfCategoryPresent(String name){
+        return categoryDao.get(name).isPresent();
     }
 }

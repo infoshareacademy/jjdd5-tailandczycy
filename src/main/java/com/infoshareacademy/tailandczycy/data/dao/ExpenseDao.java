@@ -22,6 +22,13 @@ public class ExpenseDao {
                 .findAny();
     }
 
+    public void update(Expense expense){
+        List<Expense> newList = getAll();
+        int id = expense.getId();
+        newList.set(id, expense);
+        save(newList);
+    }
+
     public List<Expense> getAll() {
         return fileOperations.getExpenses();
     }
