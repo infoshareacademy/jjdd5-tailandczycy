@@ -12,13 +12,6 @@ public class Expense {
     private BigDecimal amount;
     private LocalDate date;
 
-    public Expense(List<String> categories, String comment, BigDecimal amount, LocalDate date) {
-        this.categories = categories;
-        this.comment = comment;
-        this.amount = amount;
-        this.date = date;
-    }
-
     public int getId() {
         return id;
     }

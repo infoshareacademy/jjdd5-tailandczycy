@@ -2,9 +2,11 @@ package com.infoshareacademy.tailandczycy.console;
 
 import com.infoshareacademy.tailandczycy.service.BudgetManager;
 import com.infoshareacademy.tailandczycy.service.Category;
+import com.infoshareacademy.tailandczycy.service.Expense;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserInterface {
@@ -13,15 +15,21 @@ public class UserInterface {
     private BudgetManager budgetManager = new BudgetManager();
 
     public void addExpense() {
-        List<String> categories = budgetManager.gettingCategoriesFromUser();
-        System.out.println("Give amount: ");
-        BigDecimal amount = consoleReader.readBigDecimal();
-        System.out.println("Give comment: ");
-        String comment = consoleReader.readString();
-        System.out.println("Give date: ");
-        LocalDate dateOfExpense =  LocalDate.parse(consoleReader.readString());
-        budgetManager.addExpense(categories, comment, amount, dateOfExpense);
+        List<String> categories = new ArrayList<>();
+        int option;
 
+        System.out.println("Type in Categories for the expense");
+        do {
+            String category = consoleReader.readString();
+            categories.add(category);
+            System.out.println("1. repeat operation");
+            System.out.println("2. finish adding categories for the expense");
+            option = consoleReader.readInt();
+        }while(option!=2);
+        System.out.println("Type in comment: ");
+        String comment = consoleReader.readString();
+        BigDecimal amount = consoleReader.readBigDecimal();
+        
     }
 
     public void modifyExpense() {

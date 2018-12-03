@@ -23,7 +23,7 @@ public class BudgetManager {
         }
         Expense expense = new Expense(categories, comment, amount, localDate);
         expense.setId(id);
-        expenseDao.update(expense);
+        expenseDao.save(expense);
         expenseDao.save();
     }
 
