@@ -31,7 +31,7 @@ public class CategoryDao implements Dao<Category> {
     }
 
     @Override
-    public void update(Category category, String[] params) {
+    public void update(Category category) {
 
     }
 

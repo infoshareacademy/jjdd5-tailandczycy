@@ -23,7 +23,7 @@ public class BudgetManager {
         }
         Expense expense = new Expense(categories, comment, amount, localDate);
         expense.setId(id);
-        expenseDao.getAll().add(expense);
+        expenseDao.update(expense);
         expenseDao.save();
     }
 
@@ -160,6 +160,7 @@ public class BudgetManager {
             System.out.println("y/n");
             if (consoleReader.readString().equals("y")) {
                 expenseDao.get(id).get().setComment(comment);
+                expenseDao.save();
             }
         }
     }
@@ -172,6 +173,7 @@ public class BudgetManager {
         System.out.println("y/n");
         if (consoleReader.readString().equals("y")) {
             expenseDao.get(id).get().setAmount(amount);
+            expenseDao.save();
         }
     }
 
@@ -183,6 +185,7 @@ public class BudgetManager {
             System.out.println("y/n");
             if (consoleReader.readString().equals("y")) {
                 expenseDao.get(id).get().setDate(LocalDate.parse(date));
+                expenseDao.save();
             }
         } else {
             System.out.println("Wrong format ;d");

@@ -31,13 +31,12 @@ public class ExpenseDao implements Dao<Expense> {
 
     @Override
     public void save() {
-
         fileOperations.saveExpenses(expenses);
     }
 
     @Override
-    public void update(Expense expense, String[] params) {
-
+    public void update(Expense expense) {
+        expenses.add(expense);
     }
 
     @Override
