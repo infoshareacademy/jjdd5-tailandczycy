@@ -45,7 +45,7 @@ public class UserInterface {
         int option;
 
         int id = consoleReader.readInt();
-        if(budgetManager.checkIfExpensePresent(id)) {
+        if (budgetManager.checkIfExpensePresent(id)) {
             System.out.println("type in id of an expense to be modified: ");
             do {
                 budgetManager.displayExactExpense(id);
@@ -58,8 +58,66 @@ public class UserInterface {
                 option = consoleReader.readInt();
                 budgetManager.modifyExpenseSwitch(id, option);
             } while (option != 10);
-        }else{
+        } else {
             System.out.println("no such expense");
+        }
+    }
+
+    public void changeCategories(int id) {
+        String category;
+        List<String> categories = new ArrayList<>();
+        int option;
+
+        System.out.println("Type in new set of categories each accepted by enter button: ");
+        do {
+            category = consoleReader.readString();
+            categories.add(category);
+            System.out.println("1 repeat operation");
+            System.out.println("2. finish adding categories");
+            option = consoleReader.readInt();
+        } while (!category.equals("2"));
+        System.out.println(categories);
+        System.out.println("Do you want to save?");
+        System.out.println("y/n");
+        if (consoleReader.readString().equals("y")) {
+            budgetManager.changeCategories(id, categories);
+        }
+    }
+
+    public void changeComment(int id) {
+        String comment;
+
+        System.out.println("Type in comment: ");
+        comment = consoleReader.readString();
+        System.out.println("Do you want to save?");
+        System.out.println("y/n");
+        if (consoleReader.readString().equals("y")) {
+            budgetManager.changeComment(id, comment);
+        }
+    }
+
+    public void changeAmount(int id) {
+        BigDecimal amount;
+
+        System.out.println("Type in amount: ");
+        amount = consoleReader.readBigDecimal();
+        System.out.println("Do you want to save?");
+        System.out.println("y/n");
+        if (consoleReader.readString().equals("y")) {
+            budgetManager.changeAmount(id, amount);
+        }
+    }
+
+    public void changeDate(int id) {
+        String date;
+
+        System.out.println("Type in date in format yyyy-mm-dd: ");
+        date = consoleReader.readString();
+        while (!budgetManager.checkIfDateParsable(date)) {
+            System.out.println("Wrong format ;d");
+            System.out.println("Enter date again: ");
+            date = consoleReader.readString();
+            budgetManager.changeDate(id, date);
         }
     }
 
@@ -109,32 +167,5 @@ public class UserInterface {
         if (budgetManager.checkIfCategoryPresent(category)) {
             budgetManager.setUpLimit(category, limit);
         }
-    }
-
-    public void changeCategories(int id) {
-        String category;
-        List<String> categories = new ArrayList<>();
-        int option;
-
-        System.out.println("Type in new set of categories each accepted by enter button: \n" +
-                "Type in 10 to go back.");
-        do {
-            category = consoleReader.readString();
-            categories.add(category);
-            System.out.println("1 repeat operation");
-            System.out.println("2. finish adding categories");
-            option = consoleReader.readInt();
-        } while (!category.equals("2"));
-        System.out.println(categories);
-        System.out.println("Do you want to save?");
-        System.out.println("y/n");
-        if (consoleReader.readString().equals("y")) {
-            budgetManager.changeCategories(id, categories);
-        }
-    }
-
-    public void changeComment(int id) {
-
-
     }
 }

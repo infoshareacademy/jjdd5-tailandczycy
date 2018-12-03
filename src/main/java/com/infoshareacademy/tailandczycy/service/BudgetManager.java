@@ -119,10 +119,10 @@ public class BudgetManager {
                 userInterface.changeComment(id);
                 break;
             case 3:
-                changeAmount(id);
+                userInterface.changeAmount(id);
                 break;
             case 4:
-                changeDate(id);
+                userInterface.changeDate(id);
                 break;
             case 10:
                 break;
@@ -138,55 +138,24 @@ public class BudgetManager {
         expenseDao.update(expense);
     }
 
-    private void changeComment(int id) {
-        String comment;
-
-        System.out.println("Type in comment: \n" +
-                "Type in 10 to go back.");
-        comment = consoleReader.readString();
-        if (!comment.equals("10")) {
-            System.out.println("Do you want to save?");
-            System.out.println("y/n");
-            if (consoleReader.readString().equals("y")) {
-                if(expenseDao.get(id).isPresent()){
-                    Expense expense = expenseDao.get(id).get();
-                    expense.setComment(comment);
-                    expenseDao.getAll().set(id, expense).setComment(comment);
-                }
-            }
-        }
+    public void changeComment(int id, String comment) {
+        Expense expense = expenseDao.get(id).get();
+        expense.setComment(comment);
+        expenseDao.update(expense);
     }
 
-    private void changeAmount(int id) {
-        BigDecimal amount;
 
-        System.out.println("Type in amount: ");
-        amount = consoleReader.readBigDecimal();
-        System.out.println("Do you want to save?");
-        System.out.println("y/n");
-        if (consoleReader.readString().equals("y")) {
-            if(expenseDao.get(id).isPresent()) {
-                Expense expense = expenseDao.get(id).get();
-                expense.setAmount(amount);
-                expenseDao.getAll().set(id, expense);
-            }
-        }
+    public void changeAmount(int id, BigDecimal amount) {
+        Expense expense = expenseDao.get(id).get();
+        expense.setAmount(amount);
+        expenseDao.update(expense);
     }
 
-    private void changeDate(int id) {
-        String date;
 
-        System.out.println("Type in date: ");
-        date = consoleReader.readString();
-        System.out.println("Do you want to save?");
-        System.out.println("y/n");
-        if (consoleReader.readString().equals("y")) {
-            if(expenseDao.get(id).isPresent()) {
-                Expense expense = expenseDao.get(id).get();
-                expense.setDate();
-                expenseDao.getAll().set(id, expense);
-            }
-        }
+    public void changeDate(int id, String date) {
+        Expense expense = expenseDao.get(id).get();
+        expense.setDate(LocalDate.parse(date));
+        expenseDao.update(expense);
     }
 
     public boolean dateChecker(String date) {
