@@ -1,7 +1,5 @@
 package com.infoshareacademy.tailandczycy.service;
 
-import com.infoshareacademy.tailandczycy.console.ConsoleReader;
-import com.infoshareacademy.tailandczycy.console.UserInterface;
 import com.infoshareacademy.tailandczycy.data.dao.CategoryDao;
 import com.infoshareacademy.tailandczycy.data.dao.ExpenseDao;
 
@@ -11,11 +9,9 @@ import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class BudgetManager {
-    private ConsoleReader consoleReader = new ConsoleReader();
     private ExpenseDao expenseDao = new ExpenseDao();
     private CategoryDao categoryDao = new CategoryDao();
     private Budget budgetDao = new Budget();
-    private UserInterface userInterface = new UserInterface();
 
     public void addExpense(List<String> categories, String comment, BigDecimal amount, LocalDate localDate) {
         int id;
@@ -80,7 +76,7 @@ public class BudgetManager {
         budgetDao.setBudget(actualBudget);
     }
 
-    public Category setUpLimit(String name, BigDecimal limit) {
+    public void setUpLimit(String name, BigDecimal limit) {
 
         Category category = new Category();
         category.setName(name);
@@ -94,23 +90,6 @@ public class BudgetManager {
                 .reduce(new BigDecimal(0), BigDecimal::add));
     }
 
-    public List<String> gettingCategoriesFromUser() {
-        boolean allCategories = true;
-        List<String> categories = new ArrayList<>();
-        while (allCategories) {
-            System.out.println("Define category: ");
-            categories.add(consoleReader.readString());
-            System.out.println("Are those all categories?");
-            System.out.println("If not click n otherwise y");
-            String flag = consoleReader.readString();
-            if (flag.equalsIgnoreCase("y")) {
-                allCategories = false;
-            }
-
-        }
-        return categories;
-    }
-
     public Optional<Category> checkForCategory(String category) {
         return findCategory(category);
     }
@@ -119,27 +98,6 @@ public class BudgetManager {
         return categoryDao.getAll().stream()
                 .filter(o -> o.getName().equals(categoryString))
                 .findAny();
-    }
-
-    public void modifyExpenseSwitch(int id, int option) {
-        switch (option) {
-            case 1:
-                userInterface.changeCategories(id);
-                break;
-            case 2:
-                userInterface.changeComment(id);
-                break;
-            case 3:
-                userInterface.changeAmount(id);
-                break;
-            case 4:
-                userInterface.changeDate(id);
-                break;
-            case 10:
-                break;
-            default:
-                System.out.println("\nWrong input \n");
-        }
     }
 
     public void changeCategories(int id, List<String> categories) {

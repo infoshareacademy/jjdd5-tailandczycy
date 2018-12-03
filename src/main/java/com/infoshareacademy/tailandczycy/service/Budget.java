@@ -7,9 +7,9 @@ import java.math.BigDecimal;
 public class Budget {
 
     private BigDecimal budget;
+    private FileOperations fileOperations = new FileOperations();
 
     public Budget() {
-        FileOperations fileOperations = new FileOperations();
         budget = fileOperations.getBudget();
     }
 

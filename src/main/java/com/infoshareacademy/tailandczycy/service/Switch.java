@@ -2,13 +2,9 @@ package com.infoshareacademy.tailandczycy.service;
 
 import com.infoshareacademy.tailandczycy.console.UserInterface;
 
-public class MainSwitch {
+public class Switch {
 
-    private UserInterface userInterface;
-
-    public MainSwitch() {
-        userInterface = new UserInterface();
-    }
+    private UserInterface userInterface = new UserInterface();
 
     public void chooseMenu(int option) {
 
@@ -46,5 +42,4 @@ public class MainSwitch {
                 System.out.println("Wrong input \n");
         }
     }
-
 }

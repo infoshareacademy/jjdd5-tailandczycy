@@ -5,17 +5,17 @@ import com.infoshareacademy.tailandczycy.console.ConsoleReader;
 
 public class StartApp {
 
-    private MainSwitch mainSwitch = new MainSwitch();
+    private Switch aSwitch = new Switch();
     private ConsoleReader consoleReader = new ConsoleReader();
-    private Menu menu = new Menu();
     private int option = 0;
 
     public void runApp() {
 
         while(option!=10) {
+            Menu menu = new Menu();
             menu.showMenu();
             option = consoleReader.readInt();
-            mainSwitch.chooseMenu(option);
+            aSwitch.chooseMenu(option);
         }
     }
 }

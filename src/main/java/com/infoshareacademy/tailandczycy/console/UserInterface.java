@@ -44,9 +44,9 @@ public class UserInterface {
     public void modifyExpense() {
         int option;
 
+        System.out.println("type in id of an expense to be modified: ");
         int id = consoleReader.readInt();
         if (budgetManager.checkIfExpensePresent(id)) {
-            System.out.println("type in id of an expense to be modified: ");
             do {
                 budgetManager.displayExactExpense(id);
                 System.out.println("1. Change categories \n" +
@@ -56,7 +56,7 @@ public class UserInterface {
                         "10. Go back");
                 System.out.println("Choose an option: ");
                 option = consoleReader.readInt();
-                budgetManager.modifyExpenseSwitch(id, option);
+                modifyExpenseSwitch(id, option);
             } while (option != 10);
         } else {
             System.out.println("no such expense");
@@ -117,8 +117,8 @@ public class UserInterface {
             System.out.println("Wrong format ;d");
             System.out.println("Enter date again: ");
             date = consoleReader.readString();
-            budgetManager.changeDate(id, date);
         }
+        budgetManager.changeDate(id, date);
     }
 
     public void deleteExpense() {
@@ -211,6 +211,26 @@ public class UserInterface {
             budgetManager.setUpLimit(category, limit);
         } else {
             System.out.println("no such category");
+        }
+    }
+    public void modifyExpenseSwitch(int id, int option) {
+        switch (option) {
+            case 1:
+                changeCategories(id);
+                break;
+            case 2:
+                changeComment(id);
+                break;
+            case 3:
+                changeAmount(id);
+                break;
+            case 4:
+                changeDate(id);
+                break;
+            case 10:
+                break;
+            default:
+                System.out.println("\nWrong input \n");
         }
     }
 }
