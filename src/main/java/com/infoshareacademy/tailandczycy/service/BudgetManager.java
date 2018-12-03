@@ -54,7 +54,7 @@ public class BudgetManager {
     }
 
     public void deleteCategory(String name) {
-        //deletes Category
+        categoryDao.delete(name);
     }
 
     public void displayExpensePerCategory(String name) {
@@ -76,7 +76,7 @@ public class BudgetManager {
         }
     }
 
-    public Budget defineBudget(BigDecimal actualBudget) {
+    public void defineBudget(BigDecimal actualBudget) {
         budgetDao.setBudget(actualBudget);
     }
 

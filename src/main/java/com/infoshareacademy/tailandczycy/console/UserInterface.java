@@ -139,28 +139,42 @@ public class UserInterface {
         name = consoleReader.readString();
         System.out.println("Do you want to add limit for your category?");
         System.out.println("y/n");
-        if(consoleReader.readString().equals("y")){
+        if (consoleReader.readString().equals("y")) {
             System.out.println("Type in limit for you category: ");
             limit = consoleReader.readBigDecimal();
-            while(limit.compareTo(BigDecimal.ZERO)<0){
+            while (limit.compareTo(BigDecimal.ZERO) < 0) {
                 System.out.println("cant be negative value");
                 System.out.println("Type in new one");
                 limit = consoleReader.readBigDecimal();
             }
             budgetManager.addCategory(name, limit);
-        }else {
+        } else {
             budgetManager.addCategory(name);
         }
     }
 
     public void deleteCategory() {
-        //user interface (submenu)
+        String name;
+
+        System.out.println("Type in category to be deleted: ");
+        name = consoleReader.readString();
+        if (budgetManager.checkIfCategoryPresent(name)) {
+            budgetManager.deleteCategory(name);
+        } else {
+            System.out.println("no such category");
+        }
     }
 
     public void displayExpensePerCategory() {
-        System.out.println("Type in category for expenses to be displayed: ");
-        budgetManager.displayExpensePerCategory(consoleReader.readString());
+        String category;
 
+        System.out.println("Type in category for expenses to be displayed: ");
+        category = consoleReader.readString();
+        if (budgetManager.checkIfCategoryPresent(category)) {
+            budgetManager.displayExpensePerCategory(category);
+        } else {
+            System.out.println("no such category");
+        }
     }
 
     public void displayAllExpenses() {
@@ -168,10 +182,16 @@ public class UserInterface {
     }
 
     public void defineBudget() {
-        System.out.println("Define your budget: ");
-        BigDecimal budgetLimit = consoleReader.readBigDecimal();
-        budgetManager.defineBudget(budgetLimit);
+        BigDecimal budgetLimit;
 
+        System.out.println("Define your budget: ");
+        budgetLimit = consoleReader.readBigDecimal();
+        while (budgetLimit.compareTo(BigDecimal.ZERO) < 0) {
+            System.out.println("budget is below zero ;d");
+            System.out.println("Type in value above or equal zero");
+            budgetLimit = consoleReader.readBigDecimal();
+        }
+        budgetManager.defineBudget(budgetLimit);
     }
 
     public void setUpLimit() {
