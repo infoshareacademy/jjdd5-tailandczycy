@@ -14,7 +14,7 @@ public class UserInterface {
 
     public void addExpense() {
         boolean abort = false;
-        int option;
+        String option;
         List<String> categories = new ArrayList<>();
         String comment;
         BigDecimal amount;
@@ -26,8 +26,8 @@ public class UserInterface {
             categories.add(category.toLowerCase());
             System.out.println("1. repeat operation");
             System.out.println("2. finish adding categories for the expense");
-            option = consoleReader.readInt();
-        }while (option!=2);
+            option = consoleReader.readString();
+        }while (!option.equals("2"));
         System.out.println("Type in comment: ");
         comment = consoleReader.readString();
         System.out.println("Type in amount: ");
