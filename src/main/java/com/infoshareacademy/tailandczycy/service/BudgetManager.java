@@ -18,7 +18,7 @@ public class BudgetManager {
         if (expenseDao.getAll().size() == 0) {
             id = 0;
         } else {
-            id = expenseDao.getAll().get(expenseDao.getAll().size()-1).getId()+1;
+            id = expenseDao.getAll().size();
         }
         categories.stream()
                 .filter(c -> !checkIfCategoryPresent(c))

@@ -84,12 +84,13 @@ public class UserInterface {
 
         System.out.println("Type in new set of categories each accepted by enter button: ");
         do {
+            System.out.println("Type in category: ");
             category = consoleReader.readString();
             categories.add(category);
             System.out.println("1 repeat operation");
             System.out.println("2. finish adding categories");
             option = consoleReader.readInt();
-        } while (!category.equals("2"));
+        } while (option!=2);
         System.out.println(categories);
         System.out.println("Do you want to save?");
         System.out.println("y/n");

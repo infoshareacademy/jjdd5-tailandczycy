@@ -40,6 +40,7 @@ public class ExpenseDao {
     public void delete(int id) {
         List<Expense> newList = getAll();
         newList.remove(get(id).get());
+        newList.forEach(expense -> expense.setId(newList.indexOf(expense)));
         save(newList);
     }
 }
