@@ -13,7 +13,7 @@ public class UserInterface {
     private BudgetManager budgetManager = new BudgetManager();
 
     public void addExpense() {
-        int abort = 0;
+        boolean abort = false;
         int option;
         List<String> categories = new ArrayList<>();
         String comment;
@@ -23,11 +23,11 @@ public class UserInterface {
         System.out.println("Type in Categories for the expense: ");
         do {
             String category = consoleReader.readString();
-            categories.add(category);
+            categories.add(category.toLowerCase());
             System.out.println("1. repeat operation");
             System.out.println("2. finish adding categories for the expense");
             option = consoleReader.readInt();
-        } while (option != 2);
+        }while (option!=2);
         System.out.println("Type in comment: ");
         comment = consoleReader.readString();
         System.out.println("Type in amount: ");
@@ -39,10 +39,11 @@ public class UserInterface {
             if (consoleReader.readString().equals("y")) {
                 amount = consoleReader.readBigDecimal();
             } else {
-                abort = 1;
+                abort = true;
+                break;
             }
         }
-        if (abort != 1) {
+        if (!abort) {
             System.out.println("Type in date in format yyyy-mm-dd: ");
             date = consoleReader.readString();
             while (!budgetManager.checkIfDateParsable(date)) {
@@ -111,14 +112,28 @@ public class UserInterface {
 
     public void changeAmount(int id) {
         BigDecimal amount;
+        boolean abort = false;
 
         System.out.println("Type in amount: ");
         amount = consoleReader.readBigDecimal();
-        budgetManager.isExceedingLimit(budgetManager.)
-        System.out.println("Do you want to save?");
-        System.out.println("y/n");
-        if (consoleReader.readString().equals("y")) {
-            budgetManager.changeAmount(id, amount);
+        while (budgetManager.isExceedingLimit(budgetManager.getExpense(id).get().getCategories(), amount)) {
+            System.out.println("Thats too much for a category limit!");
+            System.out.println("Do you want to continue?");
+            System.out.println("y/n");
+            if (consoleReader.readString().equals("y")) {
+                System.out.println("Type in amount: ");
+                amount = consoleReader.readBigDecimal();
+            } else {
+                abort = true;
+                break;
+            }
+        }
+        if (!abort) {
+            System.out.println("Do you want to save?");
+            System.out.println("y/n");
+            if (consoleReader.readString().equals("y")) {
+                budgetManager.changeAmount(id, amount);
+            }
         }
     }
 
@@ -148,22 +163,36 @@ public class UserInterface {
     public void addCategory() {
         String name;
         BigDecimal limit;
+        boolean abort = false;
 
         System.out.println("Type in name of category to be added: ");
         name = consoleReader.readString();
-        System.out.println("Do you want to add limit for your category?");
-        System.out.println("y/n");
-        if (consoleReader.readString().equals("y")) {
-            System.out.println("Type in limit for you category: ");
-            limit = consoleReader.readBigDecimal();
-            while (limit.compareTo(BigDecimal.ZERO) < 0) {
-                System.out.println("cant be negative value");
-                System.out.println("Type in new one");
-                limit = consoleReader.readBigDecimal();
+        while (budgetManager.checkIfCategoryPresent(name)) {
+            System.out.println("This category already exists");
+            System.out.println("Do you want to continue?");
+            System.out.println("y/n");
+            if (consoleReader.readString().equals("y")) {
+                name = consoleReader.readString();
+            } else {
+                abort = true;
+                break;
             }
-            budgetManager.addCategory(name, limit);
-        } else {
-            budgetManager.addCategory(name);
+        }
+        if (!abort) {
+            System.out.println("Do you want to add limit for your category?");
+            System.out.println("y/n");
+            if (consoleReader.readString().equals("y")) {
+                System.out.println("Type in limit for you category: ");
+                limit = consoleReader.readBigDecimal();
+                while (limit.compareTo(BigDecimal.ZERO) < 0) {
+                    System.out.println("cant be negative value");
+                    System.out.println("Type in new one");
+                    limit = consoleReader.readBigDecimal();
+                }
+                budgetManager.addCategory(name, limit);
+            } else {
+                budgetManager.addCategory(name);
+            }
         }
     }
 
@@ -184,8 +213,8 @@ public class UserInterface {
 
         System.out.println("Type in category for expenses to be displayed: ");
         category = consoleReader.readString();
-        if (budgetManager.checkIfCategoryPresent(category)) {
-            budgetManager.displayExpensePerCategory(category);
+        if (budgetManager.checkIfCategoryPresent(category.toLowerCase())) {
+            budgetManager.displayExpensePerCategory(category.toLowerCase());
         } else {
             System.out.println("no such category");
         }
