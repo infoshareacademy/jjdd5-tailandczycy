@@ -56,10 +56,12 @@ public class BudgetManager {
         categoryDao.delete(name);
         expenseDao.getAll().stream()
                 .filter(expense -> expense.getCategories().contains(name))
-                .forEach(expense -> expense.getCategories().remove(name));
+                .peek(expense -> expense.getCategories().remove(name))
+                .forEach(expense -> expenseDao.update(expense));
         expenseDao.getAll().stream()
                 .filter(expense -> expense.getCategories().size()==0)
-                .forEach(expense -> changeCategories(expense.getId(), Collections.singletonList("Other")));
+                .peek(expense -> expense.setCategories(Collections.singletonList("other")))
+                .forEach(expense -> expenseDao.update(expense));
     }
 
     public void displayExpensePerCategory(String name) {

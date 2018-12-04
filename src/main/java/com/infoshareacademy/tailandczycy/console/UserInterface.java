@@ -245,7 +245,7 @@ public class UserInterface {
 
         System.out.println("Type in category to set up its limit: ");
         category = consoleReader.readString();
-        if (budgetManager.checkIfCategoryPresent(category)) {
+        if (budgetManager.checkIfCategoryPresent(category.toLowerCase())) {
             System.out.println("Type in limit to be set up");
             limit = consoleReader.readBigDecimal();
             while (limit.compareTo(BigDecimal.ZERO) < 0) {
@@ -253,7 +253,7 @@ public class UserInterface {
                 System.out.println("Type in limit above zero");
                 limit = consoleReader.readBigDecimal();
             }
-            budgetManager.setUpLimit(category, limit);
+            budgetManager.setUpLimit(category.toLowerCase(), limit);
         } else {
             System.out.println("no such category");
         }
