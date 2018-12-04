@@ -3,6 +3,8 @@ package com.infoshareacademy.tailandczycy.data.dao;
 import com.infoshareacademy.tailandczycy.data.FileOperations;
 import com.infoshareacademy.tailandczycy.service.Category;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,14 +13,14 @@ public class CategoryDao {
     private FileOperations fileOperations = new FileOperations();
 
     public void add(Category category){
-        List<Category> newList = getAll();
+        List<Category> newList = new ArrayList<>(getAll());
         newList.add(category);
         save(newList);
     }
 
     public Optional<Category> get(String name) {
         return fileOperations.getCategories().stream()
-                .filter(category -> category.getName().equals(name))
+                .filter(category -> category.getName().equalsIgnoreCase(name))
                 .findAny();
     }
 

@@ -13,6 +13,7 @@ public class UserInterface {
     private BudgetManager budgetManager = new BudgetManager();
 
     public void addExpense() {
+        int abort = 0;
         int option;
         List<String> categories = new ArrayList<>();
         String comment;
@@ -31,14 +32,26 @@ public class UserInterface {
         comment = consoleReader.readString();
         System.out.println("Type in amount: ");
         amount = consoleReader.readBigDecimal();
-        System.out.println("Type in date in format yyyy-mm-dd: ");
-        date = consoleReader.readString();
-        while (!budgetManager.checkIfDateParsable(date)) {
-            System.out.println("Wrong format ;d");
-            System.out.println("Enter date again: ");
-            date = consoleReader.readString();
+        while (budgetManager.isExceedingLimit(categories, amount)) {
+            System.out.println("Expense has exceeded category limit");
+            System.out.println("do you want to continue?");
+            System.out.println("y/n");
+            if (consoleReader.readString().equals("y")) {
+                amount = consoleReader.readBigDecimal();
+            } else {
+                abort = 1;
+            }
         }
-        budgetManager.addExpense(categories, comment, amount, LocalDate.parse(date));
+        if (abort != 1) {
+            System.out.println("Type in date in format yyyy-mm-dd: ");
+            date = consoleReader.readString();
+            while (!budgetManager.checkIfDateParsable(date)) {
+                System.out.println("Wrong format ;d");
+                System.out.println("Enter date again: ");
+                date = consoleReader.readString();
+            }
+            budgetManager.addExpense(categories, comment, amount, LocalDate.parse(date));
+        }
     }
 
     public void modifyExpense() {
@@ -101,6 +114,7 @@ public class UserInterface {
 
         System.out.println("Type in amount: ");
         amount = consoleReader.readBigDecimal();
+        budgetManager.isExceedingLimit(budgetManager.)
         System.out.println("Do you want to save?");
         System.out.println("y/n");
         if (consoleReader.readString().equals("y")) {
@@ -203,7 +217,7 @@ public class UserInterface {
         if (budgetManager.checkIfCategoryPresent(category)) {
             System.out.println("Type in limit to be set up");
             limit = consoleReader.readBigDecimal();
-            while(limit.compareTo(BigDecimal.ZERO)<0){
+            while (limit.compareTo(BigDecimal.ZERO) < 0) {
                 System.out.println("limit below zero ;d");
                 System.out.println("Type in limit above zero");
                 limit = consoleReader.readBigDecimal();
@@ -213,6 +227,7 @@ public class UserInterface {
             System.out.println("no such category");
         }
     }
+
     public void modifyExpenseSwitch(int id, int option) {
         switch (option) {
             case 1:

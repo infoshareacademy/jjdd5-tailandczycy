@@ -20,13 +20,16 @@ public class BudgetManager {
         } else {
             id = expenseDao.get(expenseDao.getAll().size() - 1).get().getId() + 1;
         }
+        categories.stream()
+                .filter(c -> !checkIfCategoryPresent(c))
+                .forEach(c -> addCategory(c));
         Expense expense = new Expense();
         expense.setId(id);
         expense.setCategories(categories);
         expense.setComment(comment);
         expense.setAmount(amount);
         expense.setDate(localDate);
-        expenseDao.add(expense);
+            expenseDao.add(expense);
     }
 
     public void deleteExpense(int id) {
@@ -85,10 +88,23 @@ public class BudgetManager {
         categoryDao.update(category);
     }
 
+    public boolean isExceedingLimit(List<String> categories, BigDecimal amount){
+        return categories.stream()
+                .anyMatch(c -> categoryDao.get(c).get().getLimit().compareTo(getSumOfExpensesPerCategory(c).add(amount)) < 0);
+    }
+
     public BigDecimal getActualBudget() {
         return budgetDao.getBudget().subtract(expenseDao.getAll().stream()
                 .map(Expense::getAmount)
                 .reduce(new BigDecimal(0), BigDecimal::add));
+    }
+
+    public BigDecimal getSumOfExpensesPerCategory(String name) {
+        String nameToLower = name.toLowerCase();
+        return expenseDao.getAll().stream()
+                .filter(expense -> expense.getCategories().contains(nameToLower.toLowerCase()))
+                .map(Expense::getAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public void changeCategories(int id, List<String> categories) {
@@ -131,5 +147,7 @@ public class BudgetManager {
         return expenseDao.get(id).isPresent();
     }
 
-    public boolean checkIfCategoryPresent(String name) { return categoryDao.get(name).isPresent(); }
+    public boolean checkIfCategoryPresent(String name) {
+        return categoryDao.get(name).isPresent();
+    }
 }
