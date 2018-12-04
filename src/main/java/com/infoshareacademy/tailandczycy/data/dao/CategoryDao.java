@@ -4,11 +4,11 @@ import com.infoshareacademy.tailandczycy.data.FileOperations;
 import com.infoshareacademy.tailandczycy.service.Category;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 public class CategoryDao {
+
 
     private FileOperations fileOperations = new FileOperations();
 
@@ -43,7 +43,7 @@ public class CategoryDao {
     }
 
     public void delete(String category) {
-        List<Category> newList = getAll();
+        List<Category> newList = new ArrayList<>(getAll());
         newList.remove(get(category).get());
         save(newList);
     }
