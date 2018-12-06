@@ -8,7 +8,7 @@ public class Category {
     private String name;
     private BigDecimal limit;
 
-    public Category(String name){
+    public void setName(String name) {
         this.name = name;
     }
 

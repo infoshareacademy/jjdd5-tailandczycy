@@ -3,17 +3,19 @@ package com.infoshareacademy.tailandczycy.service;
 import com.infoshareacademy.tailandczycy.console.Menu;
 import com.infoshareacademy.tailandczycy.console.ConsoleReader;
 
-import java.io.IOException;
-
 public class StartApp {
 
-    private MainSwitch mainSwitch = new MainSwitch();
+    private Switch aSwitch = new Switch();
     private ConsoleReader consoleReader = new ConsoleReader();
-    private Menu menu = new Menu();
+    private int option = 0;
 
-    public void runApp() throws IOException {
+    public void runApp() {
 
-        menu.showMenu();
-        mainSwitch.chooseMenu(consoleReader.readInt());
+        while(option!=10) {
+            Menu menu = new Menu();
+            menu.showMenu();
+            option = consoleReader.readInt();
+            aSwitch.chooseMenu(option);
+        }
     }
 }
