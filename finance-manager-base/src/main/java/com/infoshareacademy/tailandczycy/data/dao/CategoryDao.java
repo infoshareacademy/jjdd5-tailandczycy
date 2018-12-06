@@ -12,7 +12,7 @@ public class CategoryDao {
 
     private FileOperations fileOperations = new FileOperations();
 
-    public void add(Category category){
+    public void add(Category category) {
         List<Category> newList = new ArrayList<>(getAll());
         newList.add(category);
         save(newList);
@@ -28,7 +28,7 @@ public class CategoryDao {
         return fileOperations.getCategories();
     }
 
-    public void update(Category category){
+    public void update(Category category) {
         List<Category> newList = getAll();
         Category categoryToBeUpdated = getAll().stream()
                 .filter(c -> c.getName().equals(category.getName()))

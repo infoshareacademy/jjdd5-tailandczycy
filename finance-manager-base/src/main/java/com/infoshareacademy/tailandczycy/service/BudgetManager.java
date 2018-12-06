@@ -29,7 +29,7 @@ public class BudgetManager {
         expense.setComment(comment);
         expense.setAmount(amount);
         expense.setDate(localDate);
-            expenseDao.add(expense);
+        expenseDao.add(expense);
     }
 
     public void deleteExpense(int id) {
@@ -59,7 +59,7 @@ public class BudgetManager {
                 .peek(expense -> expense.getCategories().remove(name))
                 .forEach(expense -> expenseDao.update(expense));
         expenseDao.getAll().stream()
-                .filter(expense -> expense.getCategories().size()==0)
+                .filter(expense -> expense.getCategories().size() == 0)
                 .peek(expense -> expense.setCategories(Collections.singletonList("other")))
                 .forEach(expense -> expenseDao.update(expense));
     }
@@ -96,9 +96,9 @@ public class BudgetManager {
         categoryDao.update(category);
     }
 
-    public boolean isExceedingLimit(List<String> categories, BigDecimal amount){
+    public boolean isExceedingLimit(List<String> categories, BigDecimal amount) {
         return categories.stream()
-                .filter(c->categoryDao.get(c).isPresent())
+                .filter(c -> categoryDao.get(c).isPresent())
                 .anyMatch(c -> categoryDao.get(c).get().getLimit().compareTo(getSumOfExpensesPerCategory(c).add(amount)) < 0);
     }
 
@@ -108,8 +108,8 @@ public class BudgetManager {
                 .reduce(new BigDecimal(0), BigDecimal::add));
     }
 
-    public Optional<Expense> getExpense(int id){
-            return expenseDao.get(id);
+    public Optional<Expense> getExpense(int id) {
+        return expenseDao.get(id);
     }
 
     public BigDecimal getSumOfExpensesPerCategory(String name) {

@@ -10,7 +10,7 @@ public class ExpenseDao {
 
     private FileOperations fileOperations = new FileOperations();
 
-    public void add(Expense expense){
+    public void add(Expense expense) {
         List<Expense> newList = getAll();
         newList.add(expense);
         save(newList);
@@ -18,11 +18,11 @@ public class ExpenseDao {
 
     public Optional<Expense> get(int id) {
         return fileOperations.getExpenses().stream()
-                .filter(expense -> expense.getId()==id)
+                .filter(expense -> expense.getId() == id)
                 .findAny();
     }
 
-    public void update(Expense expense){
+    public void update(Expense expense) {
         List<Expense> newList = getAll();
         int id = expense.getId();
         newList.set(id, expense);
