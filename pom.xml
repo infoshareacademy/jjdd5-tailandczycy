@@ -7,6 +7,13 @@
     <groupId>com.infoshareacademy.tailandczycy</groupId>
     <artifactId>finance-manager</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>finance-manager-base</module>
+        <module>finance-manager-web</module>
+    </modules>
+
     <build>
         <plugins>
             <plugin>
@@ -19,6 +26,7 @@
             </plugin>
         </plugins>
     </build>
+
     <dependencies>
         <dependency>
             <groupId>com.google.code.gson</groupId>
