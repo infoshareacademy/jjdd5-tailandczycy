@@ -10,8 +10,26 @@ import java.util.*;
 
 public class BudgetManager {
     private ExpenseDao expenseDao;
-    private CategoryDao categoryDao ;
+    private CategoryDao categoryDao;
     private Budget budgetDao;
+
+    public BudgetManager() {
+        expenseDao = new ExpenseDao();
+        categoryDao = new CategoryDao();
+        budgetDao = new Budget();
+    }
+
+    public void setExpenseDao(ExpenseDao expenseDao) {
+        this.expenseDao = expenseDao;
+    }
+
+    public void setCategoryDao(CategoryDao categoryDao) {
+        this.categoryDao = categoryDao;
+    }
+
+    public void setBudgetDao(Budget budgetDao) {
+        this.budgetDao = budgetDao;
+    }
 
     public void addExpense(List<String> categories, String comment, BigDecimal amount, LocalDate localDate) {
         int id;
@@ -30,18 +48,6 @@ public class BudgetManager {
         expense.setAmount(amount);
         expense.setDate(localDate);
         expenseDao.add(expense);
-    }
-
-    public void setExpenseDao(ExpenseDao expenseDao) {
-        this.expenseDao = expenseDao;
-    }
-
-    public void setCategoryDao(CategoryDao categoryDao) {
-        this.categoryDao = categoryDao;
-    }
-
-    public void setBudgetDao(Budget budgetDao) {
-        this.budgetDao = budgetDao;
     }
 
     public void deleteExpense(int id) {
