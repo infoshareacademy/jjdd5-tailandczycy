@@ -13,10 +13,6 @@ public class Budget {
         budget = fileOperations.getBudget();
     }
 
-    public Budget(BigDecimal budget) {
-        this.budget = budget;
-    }
-
     public BigDecimal getBudget() {
         return budget;
     }
@@ -25,7 +21,7 @@ public class Budget {
         this.budget = budget;
     }
 
-    public void save(){
+    public void save() {
         fileOperations.saveBudget(budget);
     }
 }

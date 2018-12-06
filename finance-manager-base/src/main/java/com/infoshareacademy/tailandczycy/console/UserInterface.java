@@ -27,7 +27,7 @@ public class UserInterface {
             System.out.println("1. repeat operation");
             System.out.println("2. finish adding categories for the expense");
             option = consoleReader.readString();
-        }while (!option.equals("2"));
+        } while (!option.equals("2"));
         System.out.println("Type in comment: ");
         comment = consoleReader.readString();
         System.out.println("Type in amount: ");
@@ -90,7 +90,7 @@ public class UserInterface {
             System.out.println("1 repeat operation");
             System.out.println("2. finish adding categories");
             option = consoleReader.readInt();
-        } while (option!=2);
+        } while (option != 2);
         System.out.println(categories);
         System.out.println("Do you want to save?");
         System.out.println("y/n");

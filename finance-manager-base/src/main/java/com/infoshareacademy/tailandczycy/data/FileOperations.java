@@ -69,7 +69,7 @@ public class FileOperations {
         }
     }
 
-    public void saveBudget(BigDecimal budget){
+    public void saveBudget(BigDecimal budget) {
         try {
             Files.write(budgetFile, Collections.singletonList(budget.toString()));
         } catch (IOException e) {
