@@ -1,8 +1,8 @@
 <web-app>
 <data-source>
-<name>java:ds/demods</name>
+<name>java:ds/tailandczycy</name>
 <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
-<url>jdbc:mysql://0.0.0.0:6603/test</url>
+<url>jdbc:mysql://0.0.0.0:6603/tailandczycy</url>
 <user>root</user>
 <password>pass123</password>
 </data-source>

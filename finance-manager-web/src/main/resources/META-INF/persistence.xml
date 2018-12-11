@@ -1,6 +1,6 @@
 <persistence>
-<persistence-unit name="demoPU" transaction-type="JTA">
-<jta-data-source>java:ds/demods</jta-data-source>
+<persistence-unit name="tailandczycy" transaction-type="JTA">
+<jta-data-source>java:ds/tailandczycy</jta-data-source>
 <properties>
     <!-- Hibernate settings -->
     <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
