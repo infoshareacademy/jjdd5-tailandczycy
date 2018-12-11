@@ -23,7 +23,7 @@ import static jdk.nashorn.internal.objects.NativeError.getFileName;
 @MultipartConfig(fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 5,
         maxRequestSize = 1024 * 1024 * 5 * 5)
-@WebServlet(urlPatterns = "/")
+@WebServlet(urlPatterns = "/uploading")
 public class DataUploading extends HttpServlet {
 
 
@@ -50,6 +50,6 @@ public class DataUploading extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        }
-
     }
+
+}
