@@ -18,7 +18,7 @@ public class Category {
     @NotNull
     private String name;
 
-    @Column(name = "limit")
+    @Column(name = "spending_limit")
     @NotNull
     private BigDecimal limit;
 
