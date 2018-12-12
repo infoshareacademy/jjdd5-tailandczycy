@@ -1,6 +1,6 @@
 package com.infoshareacademy.tailandczycy.web;
 
-import com.infoshareacademy.tailandczycy.data.dao.ExpenseDao;
+import com.infoshareacademy.tailandczycy.dao.ExpenseDao;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
 import com.infoshareacademy.tailandczycy.service.Expense;
 import freemarker.template.Template;
@@ -33,16 +33,12 @@ public class DeleteExpenseServlet extends HttpServlet {
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
         HashMap<String, Object> dataModel = new HashMap<>();
         Integer id = Integer.parseInt(req.getParameter("id"));
-        Expense expense = expenseDao.get(id).get();
+        Expense expense = expenseDao.getExpenseById(id);
         dataModel.put("expenses", expense);
+        expenseDao.deleteExpense(id);
         handleTemplate(dataModel, TEMPLATE_NAME, resp);
 
 
-
-    }
-
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
 
