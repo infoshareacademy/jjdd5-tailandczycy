@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,13 +28,17 @@ public class AddExpense extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HashMap<String, Object> dataModel = new HashMap<>();
+        handleTemplate(dataModel, TEMPLATE_NAME, resp);
 
 
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+
+        //TODO: Make view and mapper and add here to Post full Expense
+        //TODO: Make methods for Category and validation
     }
 
     private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
