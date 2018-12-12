@@ -14,27 +14,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@WebServlet(urlPatterns = "/expenses")
-public class ExpensesServlet extends HttpServlet {
-    private static final String TEMPLATE_NAME = "expenses";
+@WebServlet("/delete-expense")
+public class DeleteExpenseServlet extends HttpServlet {
+    private static final String TEMPLATE_NAME = "delete-expense";
     private final Logger logger = Logger.getLogger(getClass().getName());
     @Inject
-   private TemplateProvider templateProvider;
-    private ExpenseDao expenseDao = new ExpenseDao();
+    ExpenseDao expenseDao;
+
+    @Inject
+    private TemplateProvider templateProvider;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
-        Template template = templateProvider.getTemplate(getServletContext(), TEMPLATE_NAME);
         HashMap<String, Object> dataModel = new HashMap<>();
-        List<Expense> listOfExpenses = expenseDao.getAll();
-        dataModel.put("expenses", listOfExpenses);
+        Integer id = Integer.parseInt(req.getParameter("id"));
+        Expense expense = expenseDao.get(id).get();
+        dataModel.put("expenses", expense);
         handleTemplate(dataModel, TEMPLATE_NAME, resp);
+
+
+
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
 
