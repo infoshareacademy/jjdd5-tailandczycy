@@ -32,7 +32,7 @@ public class DeleteExpenseServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
         HashMap<String, Object> dataModel = new HashMap<>();
-        Integer id = Integer.parseInt(req.getParameter("id"));
+        Long id = Long.parseLong(req.getParameter("id"));
         //Validate if there is any object with this id
         Expense expense = expenseDao.getExpenseById(id);
         dataModel.put("expenses", expense);

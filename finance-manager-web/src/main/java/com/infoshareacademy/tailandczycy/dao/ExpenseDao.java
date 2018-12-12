@@ -6,9 +6,10 @@ import javax.ejb.Local;
 
 @Local
 public interface ExpenseDao {
-    void deleteExpense(Integer id);
+    void deleteExpense(Long id);
 
-    Expense getExpenseById(Integer id);
+    Expense getExpenseById(Long id);
 
     void addExpense(Expense expense);
+
 }
