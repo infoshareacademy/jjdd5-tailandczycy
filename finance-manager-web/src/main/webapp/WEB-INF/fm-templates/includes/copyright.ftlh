@@ -1,1 +1,0 @@
-<small>Marcin Frackiewicz</small>

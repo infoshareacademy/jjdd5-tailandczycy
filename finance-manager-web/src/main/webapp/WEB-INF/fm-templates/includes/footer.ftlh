@@ -1,0 +1,17 @@
+<style>
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #7386D5;
+        color: #ffffff;
+        font-size: large;
+        text-align: center;
+        text-shadow: white;
+    }
+</style>
+
+<div class="footer">
+    <p>© 2018 Copyright: <a href="https://pornhub.com">Tailandczycy</a></p>
+</div>
