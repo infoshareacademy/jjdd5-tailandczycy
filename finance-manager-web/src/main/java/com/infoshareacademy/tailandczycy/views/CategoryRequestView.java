@@ -3,15 +3,15 @@ package com.infoshareacademy.tailandczycy.views;
 import java.math.BigDecimal;
 
 public class CategoryRequestView {
-    Integer id;
+    Long id;
     String name;
     BigDecimal limit;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
