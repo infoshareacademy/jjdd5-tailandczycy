@@ -1,6 +1,8 @@
 package com.infoshareacademy.tailandczycy.console;
 
 import com.infoshareacademy.tailandczycy.service.BudgetManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -8,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserInterface {
+
+    private static final Logger LOG = LoggerFactory.getLogger(UserInterface.class);
 
     private ConsoleReader consoleReader = new ConsoleReader();
     private BudgetManager budgetManager = new BudgetManager();
@@ -20,7 +24,7 @@ public class UserInterface {
         BigDecimal amount;
         String date;
 
-        System.out.println("Type in Categories for the expense: ");
+        LOG.info("Type in Categories for the expense: ");
         do {
             String category = consoleReader.readString();
             categories.add(category.toLowerCase());

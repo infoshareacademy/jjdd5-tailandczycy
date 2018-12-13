@@ -2,6 +2,8 @@ package com.infoshareacademy.tailandczycy.service;
 
 import com.infoshareacademy.tailandczycy.data.dao.CategoryDao;
 import com.infoshareacademy.tailandczycy.data.dao.ExpenseDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -9,6 +11,9 @@ import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class BudgetManager {
+
+    public static final Logger LOG = LoggerFactory.getLogger(BudgetManager.class);
+
     private ExpenseDao expenseDao = new ExpenseDao();
     private CategoryDao categoryDao = new CategoryDao();
     private Budget budgetDao = new Budget();
