@@ -17,13 +17,16 @@ import java.util.List;
 
 @WebServlet(urlPatterns = "/expenses")
 public class ExpensesServlet extends HttpServlet {
-    private static final String TEMPLATE_NAME = "expenses";
+    private static final String TEMPLATE_NAME = "transactions/newTransaction";
     @Inject
     TemplateProvider templateProvider;
      private ExpenseDao expenseDao = new ExpenseDao();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        resp.addHeader("Content-Type", "text/html; charset=utf-8");
+
         Template template = templateProvider.getTemplate(getServletContext(), TEMPLATE_NAME);
         HashMap<String, Object> dataModel = new HashMap<>();
         List<Expense> listOfExpenses = expenseDao.getAll();

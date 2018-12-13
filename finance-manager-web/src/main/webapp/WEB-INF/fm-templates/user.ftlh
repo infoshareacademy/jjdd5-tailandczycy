@@ -9,7 +9,7 @@
     <title>Finance Manager</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <#include "styles.css">
+    <#include "static/styles.css">
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
             integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
@@ -195,8 +195,9 @@
             </tbody>
         </table>
 
+        <h2><#include "static/buttons.ftlh"></h2>
         <div class="line"></div>
-        <#include "includes/footer.ftlh">
+        <#include "static/footer.ftlh">
     </div>
 
 </div>

@@ -4,6 +4,7 @@
         left: 0;
         bottom: 0;
         width: 100%;
+        border: 3px;
         background-color: #7386D5;
         color: #ffffff;
         font-size: large;
