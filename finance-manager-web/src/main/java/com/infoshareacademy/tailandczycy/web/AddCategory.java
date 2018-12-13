@@ -1,8 +1,8 @@
 package com.infoshareacademy.tailandczycy.web;
 
-import com.infoshareacademy.tailandczycy.dao.ExpenseDao;
-import com.infoshareacademy.tailandczycy.dto.ExpenseRequestViewDto;
+import com.infoshareacademy.tailandczycy.dto.CategoryRequestViewDto;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
+import com.infoshareacademy.tailandczycy.views.CategoryRequestView;
 import com.infoshareacademy.tailandczycy.views.ExpenseRequestView;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -19,32 +19,22 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@WebServlet(urlPatterns = "/add-expense")
-public class AddExpense extends HttpServlet {
-    private static final String TEMPLATE_NAME = "add-expense";
-    private static final String TEMPLATE_EXPENSES_LIST = "/expenses";
-
+@WebServlet(urlPatterns = "add-category")
+public class AddCategory extends HttpServlet {
+    private static final String TEMPLATE_CATEGORY_LIST = "expenses";
     private Logger logger = Logger.getLogger(getClass().getName());
     @Inject
-    TemplateProvider templateProvider;
-    @Inject
-    ExpenseDao expenseDao;
-    @Inject
-    ExpenseRequestViewDto expenseRequestViewDto;
+    CategoryRequestViewDto categoryRequestViewDto;
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HashMap<String, Object> dataModel = new HashMap<>();
-        handleTemplate(dataModel, TEMPLATE_NAME, resp);
-    }
+    @Inject
+    TemplateProvider templateProvider;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ExpenseRequestView expenseRequestView = expenseRequestViewDto.getRequestView(req);
-        //TODO: Make methods for Category and validation
+        CategoryRequestView categoryRequestView = categoryRequestViewDto.getcategoryRequestView(req);
         Map<String, Object> dataModel = new HashMap<>();
-        dataModel.put("expense", expenseRequestView);
-        handleResponse(resp, dataModel, expenseRequestView);
+        dataModel.put("category", categoryRequestView);
+        handleResponse(resp, dataModel, categoryRequestView);
     }
 
     private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
@@ -55,10 +45,8 @@ public class AddExpense extends HttpServlet {
             logger.log(Level.SEVERE, e.getMessage());
         }
     }
-
-    private void handleResponse(HttpServletResponse resp, Map<String, Object> model, ExpenseRequestView expenseView) throws IOException {
-        expenseRequestViewDto.saveExpense(expenseView);
-        resp.sendRedirect(TEMPLATE_EXPENSES_LIST);
+    private void handleResponse(HttpServletResponse resp, Map<String, Object> model, CategoryRequestView categoryView) throws IOException {
+        categoryRequestViewDto.saveCategory(categoryView);
+        resp.sendRedirect(TEMPLATE_CATEGORY_LIST);
     }
 }
-
