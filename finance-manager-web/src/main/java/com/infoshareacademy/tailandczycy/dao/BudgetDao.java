@@ -1,6 +1,6 @@
 package com.infoshareacademy.tailandczycy.dao;
 
-import com.infoshareacademy.tailandczycy.model.Expense;
+import com.infoshareacademy.tailandczycy.model.Budget;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -9,33 +9,33 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Stateless
-public class ExpenseDao {
+public class BudgetDao {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Long save(Expense s) {
+    public Long save(Budget s) {
         entityManager.persist(s);
         return s.getId();
     }
 
-    public Expense update(Expense s) {
+    public Budget update(Budget s) {
         return entityManager.merge(s);
     }
 
     public void delete(Long id) {
-        final Expense s = entityManager.find(Expense.class, id);
+        final Budget s = entityManager.find(Budget.class, id);
         if (s != null) {
             entityManager.remove(s);
         }
     }
 
-    public Expense findById(Long id) {
-        return entityManager.find(Expense.class, id);
+    public Budget findById(Long id) {
+        return entityManager.find(Budget.class, id);
     }
 
-    public List<Expense> findAll() {
-        final Query query = entityManager.createQuery("SELECT s FROM Expense s");
+    public List<Budget> findAll() {
+        final Query query = entityManager.createQuery("SELECT s FROM Budget s");
 
         return query.getResultList();
     }
