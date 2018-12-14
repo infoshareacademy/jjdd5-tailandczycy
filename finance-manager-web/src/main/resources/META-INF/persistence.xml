@@ -1,0 +1,11 @@
+<persistence>
+<persistence-unit name="tailandczycy" transaction-type="JTA">
+<jta-data-source>java:ds/tailandczycy</jta-data-source>
+<properties>
+    <!-- Hibernate settings -->
+    <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+    <property name="hibernate.show_sql" value="true"/>
+    <property name="hibernate.format_sql" value="true"/>
+</properties>
+</persistence-unit>
+</persistence>
