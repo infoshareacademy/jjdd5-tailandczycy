@@ -1,9 +1,8 @@
 package com.infoshareacademy.tailandczycy.web;
 
-
-import com.infoshareacademy.tailandczycy.dao.ExpenseDao;
+import com.infoshareacademy.tailandczycy.dao.CategoryDao;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
-import com.infoshareacademy.tailandczycy.model.Expense;
+import com.infoshareacademy.tailandczycy.model.Category;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -15,27 +14,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@WebServlet(urlPatterns = "/expenses")
-public class ExpensesServlet extends HttpServlet {
-    private static final String TEMPLATE_NAME = "expenses";
+@WebServlet(urlPatterns = "/delete-category")
+public class DeleteCategory extends HttpServlet {
     private final Logger logger = Logger.getLogger(getClass().getName());
+    private final static String TEMPLATE_NAME = "delete-category";
     @Inject
-   private TemplateProvider templateProvider;
-    private ExpenseDao expenseDao = new ExpenseDao();
+    private TemplateProvider templateProvider;
+    @Inject
+    private CategoryDao categoryDao;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
         HashMap<String, Object> dataModel = new HashMap<>();
-        List<Expense> listOfExpenses = expenseDao.findAll();
-        dataModel.put("expenses", listOfExpenses);
+        Long id = Long.parseLong(req.getParameter("id"));
+        Category category = categoryDao.findById(id);
+        dataModel.put("category", category);
+        categoryDao.delete(category.getId());
         handleTemplate(dataModel, TEMPLATE_NAME, resp);
-
     }
 
     private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {

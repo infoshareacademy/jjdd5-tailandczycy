@@ -1,8 +1,9 @@
 package com.infoshareacademy.tailandczycy.web;
 
+
 import com.infoshareacademy.tailandczycy.dao.ExpenseDao;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
-import com.infoshareacademy.tailandczycy.service.Expense;
+import com.infoshareacademy.tailandczycy.model.Expense;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -34,9 +35,9 @@ public class DeleteExpenseServlet extends HttpServlet {
         HashMap<String, Object> dataModel = new HashMap<>();
         Long id = Long.parseLong(req.getParameter("id"));
         //Validate if there is any object with this id
-        Expense expense = expenseDao.getExpenseById(id);
+        Expense expense = expenseDao.findById(id);
         dataModel.put("expenses", expense);
-        expenseDao.deleteExpense(id);
+        expenseDao.delete(id);
         handleTemplate(dataModel, TEMPLATE_NAME, resp);
 
 
