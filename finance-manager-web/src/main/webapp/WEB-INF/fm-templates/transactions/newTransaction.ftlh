@@ -41,8 +41,9 @@
                     </li>
                 </ul>
             </li>
+
             <li>
-                <a href="transactions/newTransaction.ftlh">
+                <a href="">
                     <i class="fas fa-briefcase"></i>
                     Wydatki
                 </a>
@@ -103,7 +104,7 @@
                 </div>
             </div>
         </nav>
-        <#include "footer.ftlh">
+        <#include "../static/footer.ftlh">
     </div>
 </div>
 

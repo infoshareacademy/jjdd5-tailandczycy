@@ -47,7 +47,7 @@
             </li>
 
             <li>
-                <a href="transactions/newTransaction.ftlh">
+                <a href="add-expense">
                     <i class="fas fa-briefcase"></i>
                     Wydatki
                 </a>
