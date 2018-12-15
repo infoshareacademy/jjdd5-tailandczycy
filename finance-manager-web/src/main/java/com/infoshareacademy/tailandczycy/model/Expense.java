@@ -39,7 +39,7 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(@NotNull String name, @NotNull String comment, @NotNull BigDecimal amount, @NotNull LocalDate date, List<Category> categories) {
+    public Expense(String name, String comment, BigDecimal amount, LocalDate date, List<Category> categories) {
         this.name = name;
         this.comment = comment;
         this.amount = amount;
@@ -51,39 +51,39 @@ public class Expense {
         return id;
     }
 
-    @NotNull
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
-    public void setName(@NotNull String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    @NotNull
     public String getComment() {
         return comment;
     }
 
-    public void setComment(@NotNull String comment) {
+    public void setComment(String comment) {
         this.comment = comment;
     }
 
-    @NotNull
     public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(@NotNull BigDecimal amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
-    @NotNull
     public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(@NotNull LocalDate date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -103,9 +103,7 @@ public class Expense {
                 ", comment='" + comment + '\'' +
                 ", amount=" + amount +
                 ", date=" + date +
-                ", categories=" + categories.stream()
-                                .map(Category::getId)
-                                .collect(toList())+
+                ", categories=" + categories +
                 '}';
     }
 }

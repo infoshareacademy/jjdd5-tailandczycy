@@ -1,9 +1,11 @@
 package com.infoshareacademy.tailandczycy.model;
 
 import javax.persistence.*;
+import javax.validation.Constraint;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "CATEGORIES")
@@ -29,34 +31,35 @@ public class Category {
             uniqueConstraints = @UniqueConstraint(columnNames = {"category_id", "expense_id"}))
     private List<Expense> expenses;
 
-    public Category(){
+    public Category() {
     }
 
-    public Category(@NotNull String name, @NotNull BigDecimal limit, List<Expense> expenses) {
+    public Category(String name, BigDecimal limit) {
         this.name = name;
         this.limit = limit;
-        this.expenses = expenses;
     }
 
     public Long getId() {
         return id;
     }
 
-    @NotNull
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
-    public void setName(@NotNull String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    @NotNull
     public BigDecimal getLimit() {
         return limit;
     }
 
-    public void setLimit(@NotNull BigDecimal limit) {
+    public void setLimit(BigDecimal limit) {
         this.limit = limit;
     }
 
@@ -74,7 +77,9 @@ public class Category {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", limit=" + limit +
-                ", expenses=" + expenses +
+                ", expenses=" + expenses.stream()
+                                .map(Expense::getId)
+                                .collect(Collectors.toList())+
                 '}';
     }
 }
