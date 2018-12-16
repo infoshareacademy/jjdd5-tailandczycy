@@ -18,6 +18,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+@Transactional
 @WebServlet(urlPatterns = "/about")
 public class AboutUsServlet extends HttpServlet {
 
@@ -27,13 +28,10 @@ public class AboutUsServlet extends HttpServlet {
     private TemplateProvider templateProvider;
 
     @Inject
-    ExpenseDao expenseDao;
-
-    @Inject
     CategoryDao categoryDao;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
 

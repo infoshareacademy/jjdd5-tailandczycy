@@ -7,7 +7,6 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,13 +28,13 @@ public class EditCategory extends HttpServlet {
     CategoryRequestViewDto categoryRequestViewDto;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
         CategoryRequestView categoryRequestView = categoryRequestViewDto.getCategoryById(Long.parseLong(req.getParameter("id")));
         Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("category", categoryRequestView);
         handleTemplate(dataModel, TEMPLATE_NAME, resp);
-        handleResponse(resp, dataModel, categoryRequestView);
+        handleResponse(resp, categoryRequestView);
     }
 
 
@@ -49,7 +48,7 @@ public class EditCategory extends HttpServlet {
         }
     }
 
-    private void handleResponse(HttpServletResponse resp, Map<String, Object> model, CategoryRequestView categoryView) throws IOException {
+    private void handleResponse(HttpServletResponse resp, CategoryRequestView categoryView) throws IOException {
         categoryRequestViewDto.saveCategory(categoryView);
         resp.sendRedirect(TEMPLATE_EXPENSES_LIST);
     }
