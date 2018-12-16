@@ -1,1 +1,3 @@
-<h1>Time: ${date}</h1>
+<#list expenses as e>
+    ${e}
+</#list>
