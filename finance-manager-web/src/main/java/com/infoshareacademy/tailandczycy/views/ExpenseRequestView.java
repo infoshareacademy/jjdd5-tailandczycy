@@ -1,6 +1,8 @@
 package com.infoshareacademy.tailandczycy.views;
 
-import com.infoshareacademy.tailandczycy.service.Category;
+
+
+import com.infoshareacademy.tailandczycy.model.Category;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

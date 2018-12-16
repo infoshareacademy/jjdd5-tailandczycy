@@ -1,7 +1,9 @@
 package com.infoshareacademy.tailandczycy.dto;
 
+import com.infoshareacademy.tailandczycy.dao.CategoryDao;
 import com.infoshareacademy.tailandczycy.dao.ExpenseDao;
 
+import com.infoshareacademy.tailandczycy.model.Category;
 import com.infoshareacademy.tailandczycy.model.Expense;
 import com.infoshareacademy.tailandczycy.views.ExpenseRequestView;
 import org.apache.commons.lang3.StringUtils;
@@ -11,26 +13,25 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 @RequestScoped
 public class ExpenseRequestViewDto {
+    @Inject
+    private CategoryDao categoryDao;
     @Inject
     private ExpenseDao expenseDao;
 
     public ExpenseRequestView getRequestView(HttpServletRequest req) {
         ExpenseRequestView expenseRequestView = new ExpenseRequestView();
 
-        expenseRequestView.setId(parseStringToLong(req.getParameter("id")));
         expenseRequestView.setComment(req.getParameter("comment"));
         expenseRequestView.setName(req.getParameter("name"));
         expenseRequestView.setAmount(parseStringToBigDecimal(req.getParameter("amount")));
         expenseRequestView.setDate(parseStringToLocalDate(req.getParameter("date")));
-        
-        /*
-TODO:Make list of Categories a thing
-TODO:expenseRequestView.setCategories();
-*/
-
+        List<String> categories = Arrays.asList(req.getParameterValues("categories"));
+        expenseRequestView.setCategories(parseListOfStringsToListOfCategories(categories));
         return expenseRequestView;
     }
 
@@ -41,12 +42,10 @@ TODO:expenseRequestView.setCategories();
         }
         ExpenseRequestView expenseRequestView = new ExpenseRequestView();
 
-        expenseRequestView.setId(expenseById.getId());
         expenseRequestView.setAmount(expenseById.getAmount());
         expenseRequestView.setComment(expenseById.getComment());
         expenseRequestView.setDate(expenseById.getDate());
-        //TODO:Use DB and this will be list of categories not list of Strings
-        //TODO:expenseRequestView.setCategories(expenseById.getCategories());
+        expenseRequestView.setCategories(expenseById.getCategories());
         return expenseRequestView;
     }
 
@@ -57,18 +56,26 @@ TODO:expenseRequestView.setCategories();
             expense = new Expense();
             newExpense = true;
         }
-
-
         expense.setAmount(expenseRequestView.getAmount());
         expense.setComment(expense.getComment());
         expense.setDate(expenseRequestView.getDate());
-       //TODO: expense.setCategories(expenseRequestView.getCategories());
-
+        expense.setCategories(expenseRequestView.getCategories());
         if (newExpense) {
             expenseDao.save(expense);
         }
-
     }
+
+    private List<Category> parseListOfStringsToListOfCategories(List<String> param) {
+        List<Category> categories = Arrays.asList();
+        for (String category : param) {
+            List<Category> category1 = categoryDao.findCategoriesByName(category);
+            if (!category1.isEmpty()) {
+                categories.add(category1.get(0));
+            }
+        }
+        return categories;
+    }
+
 
     private LocalDate parseStringToLocalDate(String param) {
         if (validateParameter(param)) return null;
@@ -80,13 +87,7 @@ TODO:expenseRequestView.setCategories();
         if (param == null || param.isEmpty() || StringUtils.isNumeric(param)) {
             return null;
         }
-        BigDecimal amount = new BigDecimal(param);
-        return amount;
-    }
-
-    private Integer parseStringToInt(String param) {
-        if (validateParameter(param)) return null;
-        return Integer.parseInt(param);
+        return new BigDecimal(param);
     }
 
     private Long parseStringToLong(String param) {

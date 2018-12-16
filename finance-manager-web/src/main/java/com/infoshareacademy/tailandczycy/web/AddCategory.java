@@ -37,14 +37,6 @@ public class AddCategory extends HttpServlet {
         handleResponse(resp, dataModel, categoryRequestView);
     }
 
-    private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
-        Template template = templateProvider.getTemplate(getServletContext(), templateName);
-        try {
-            template.process(model, resp.getWriter());
-        } catch (TemplateException e) {
-            logger.log(Level.SEVERE, e.getMessage());
-        }
-    }
     private void handleResponse(HttpServletResponse resp, Map<String, Object> model, CategoryRequestView categoryView) throws IOException {
         categoryRequestViewDto.saveCategory(categoryView);
         resp.sendRedirect(TEMPLATE_CATEGORY_LIST);
