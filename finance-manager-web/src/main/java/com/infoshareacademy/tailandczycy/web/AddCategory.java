@@ -3,9 +3,6 @@ package com.infoshareacademy.tailandczycy.web;
 import com.infoshareacademy.tailandczycy.dto.CategoryRequestViewDto;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
 import com.infoshareacademy.tailandczycy.views.CategoryRequestView;
-import com.infoshareacademy.tailandczycy.views.ExpenseRequestView;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -16,13 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @WebServlet(urlPatterns = "add-category")
 public class AddCategory extends HttpServlet {
     private static final String TEMPLATE_CATEGORY_LIST = "expenses";
-    private Logger logger = Logger.getLogger(getClass().getName());
+
     @Inject
     CategoryRequestViewDto categoryRequestViewDto;
 
@@ -37,14 +32,6 @@ public class AddCategory extends HttpServlet {
         handleResponse(resp, dataModel, categoryRequestView);
     }
 
-    private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
-        Template template = templateProvider.getTemplate(getServletContext(), templateName);
-        try {
-            template.process(model, resp.getWriter());
-        } catch (TemplateException e) {
-            logger.log(Level.SEVERE, e.getMessage());
-        }
-    }
     private void handleResponse(HttpServletResponse resp, Map<String, Object> model, CategoryRequestView categoryView) throws IOException {
         categoryRequestViewDto.saveCategory(categoryView);
         resp.sendRedirect(TEMPLATE_CATEGORY_LIST);

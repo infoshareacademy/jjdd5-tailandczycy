@@ -25,11 +25,6 @@ public class ExpenseRequestViewDto {
         expenseRequestView.setName(req.getParameter("name"));
         expenseRequestView.setAmount(parseStringToBigDecimal(req.getParameter("amount")));
         expenseRequestView.setDate(parseStringToLocalDate(req.getParameter("date")));
-        
-        /*
-TODO:Make list of Categories a thing
-TODO:expenseRequestView.setCategories();
-*/
 
         return expenseRequestView;
     }
@@ -45,8 +40,7 @@ TODO:expenseRequestView.setCategories();
         expenseRequestView.setAmount(expenseById.getAmount());
         expenseRequestView.setComment(expenseById.getComment());
         expenseRequestView.setDate(expenseById.getDate());
-        //TODO:Use DB and this will be list of categories not list of Strings
-        //TODO:expenseRequestView.setCategories(expenseById.getCategories());
+
         return expenseRequestView;
     }
 
@@ -62,13 +56,9 @@ TODO:expenseRequestView.setCategories();
         expense.setAmount(expenseRequestView.getAmount());
         expense.setComment(expense.getComment());
         expense.setDate(expenseRequestView.getDate());
-        //TODO:Use DB and this will be list of categories not list of Strings
-        //TODO:expense.setCategories(expenseRequestView.getCategories());
-
         if (newExpense) {
             expenseDao.save(expense);
         }
-
     }
 
     private LocalDate parseStringToLocalDate(String param) {
@@ -83,11 +73,6 @@ TODO:expenseRequestView.setCategories();
         }
         BigDecimal amount = new BigDecimal(param);
         return amount;
-    }
-
-    private Integer parseStringToInt(String param) {
-        if (validateParameter(param)) return null;
-        return Integer.parseInt(param);
     }
 
     private Long parseStringToLong(String param) {

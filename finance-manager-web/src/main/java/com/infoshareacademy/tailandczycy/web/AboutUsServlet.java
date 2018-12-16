@@ -3,7 +3,6 @@ package com.infoshareacademy.tailandczycy.web;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import org.slf4j.Logger;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;

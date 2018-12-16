@@ -42,7 +42,6 @@ public class AddExpense extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ExpenseRequestView expenseRequestView = expenseRequestViewDto.getRequestView(req);
-        //TODO: Make methods for Category and validation
         Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("expense", expenseRequestView);
         handleResponse(resp, dataModel, expenseRequestView);
