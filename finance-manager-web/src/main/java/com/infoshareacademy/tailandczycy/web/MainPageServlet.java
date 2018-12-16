@@ -1,5 +1,6 @@
 package com.infoshareacademy.tailandczycy.web;
 
+import com.infoshareacademy.tailandczycy.dao.ExpenseDao;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
 
 import freemarker.template.Template;
@@ -19,7 +20,8 @@ import java.util.logging.Logger;
 public class MainPageServlet extends HttpServlet {
     private static final String TEMPLATE_NAME = "welcome";
     private  final Logger logger = Logger.getLogger(getClass().getName());
-
+    @Inject
+    private ExpenseDao expenseDao;
     @Inject
     private TemplateProvider templateProvider;
 
@@ -28,8 +30,7 @@ public class MainPageServlet extends HttpServlet {
 
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
         Map<String, Object> dataModel = new HashMap<>();
-        List<Integer> expenses = new ArrayList<>();
-        dataModel.put("expenses", expenses);
+        dataModel.put("expenses",expenseDao.orderByAmountDescLimit5());
         handleTemplate(dataModel, TEMPLATE_NAME, resp);
     }
 
