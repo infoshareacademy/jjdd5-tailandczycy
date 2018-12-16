@@ -34,8 +34,6 @@ public class CategoryRequestViewDto {
         }
         CategoryRequestView categoryRequestView = new CategoryRequestView();
 
-        //TODO:Use DB and Integer format not object from base
-        //TODO:categoryRequestView.setId(categoryById.getId());
         categoryRequestView.setName(categoryById.getName());
         categoryRequestView.setLimit(categoryById.getLimit());
         return categoryRequestView;
@@ -48,8 +46,7 @@ public class CategoryRequestViewDto {
             category = new Category();
             newCategory = true;
         }
-        //TODO: Get ID from DB terminal based categoory dont have id
-//        category.setId(categoryRequestView.getId());
+
         category.setLimit(categoryRequestView.getLimit());
         category.setName(categoryRequestView.getName());
 

@@ -18,11 +18,10 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-@Transactional
-@WebServlet(urlPatterns = "/test")
-public class TestServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/about")
+public class AboutUsServlet extends HttpServlet {
 
-    private static final String TEMPLATE_NAME = "user";
+    private static final String TEMPLATE_NAME = "static/aboutUs";
 
     @Inject
     private TemplateProvider templateProvider;

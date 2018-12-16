@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@WebServlet(urlPatterns = "/add-expensive")
+@WebServlet(urlPatterns = "/add-expense")
 public class AddExpense extends HttpServlet {
     private static final String TEMPLATE_NAME = "transactions/newTransaction";
     private static final String TEMPLATE_EXPENSES_LIST = "/expenses";
@@ -34,6 +34,7 @@ public class AddExpense extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.addHeader("Content-Type", "text/html; charset=utf-8");
         HashMap<String, Object> dataModel = new HashMap<>();
         handleTemplate(dataModel, TEMPLATE_NAME, resp);
     }
@@ -41,10 +42,9 @@ public class AddExpense extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ExpenseRequestView expenseRequestView = expenseRequestViewDto.getRequestView(req);
-        //TODO: Make methods for Category and validation
         Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("expense", expenseRequestView);
-        handleResponse(resp, dataModel, expenseRequestView);
+        handleResponse(resp, expenseRequestView);
     }
 
     private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
@@ -56,7 +56,7 @@ public class AddExpense extends HttpServlet {
         }
     }
 
-    private void handleResponse(HttpServletResponse resp, Map<String, Object> model, ExpenseRequestView expenseView) throws IOException {
+    private void handleResponse(HttpServletResponse resp, ExpenseRequestView expenseView) throws IOException {
         expenseRequestViewDto.saveExpense(expenseView);
         resp.sendRedirect(TEMPLATE_EXPENSES_LIST);
     }

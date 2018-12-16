@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 @WebServlet(urlPatterns = "/home")
 public class MainPageServlet extends HttpServlet {
-    private static final String TEMPLATE_NAME = "home";
+    private static final String TEMPLATE_NAME = "welcome";
     private  final Logger logger = Logger.getLogger(getClass().getName());
 
     @Inject
@@ -27,9 +27,6 @@ public class MainPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        resp.addHeader("Content-Type", "text/html; charset=utf-8");
-
-        Template template = templateProvider.getTemplate(getServletContext(), TEMPLATE_NAME);
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
         Map<String, Object> dataModel = new HashMap<>();
         List<Integer> expenses = new ArrayList<>();
