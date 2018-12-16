@@ -5,11 +5,64 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-
-import static java.util.stream.Collectors.toList;
+import java.util.Objects;
 
 @Entity
 @Table(name = "EXPENSES")
+@NamedQueries({
+        @NamedQuery(
+                name = "Expense.findExpensesPerCategory",
+                query = "SELECT e FROM Expense e WHERE :param1 MEMBER OF e.categories ORDER BY e.date"
+        ),
+        @NamedQuery(
+                name = "Expense.findExpensesCreatedAfterOrEven",
+                query = "SELECT e FROM Expense e WHERE e.date >= :param1 ORDER BY e.date"
+        ),
+        @NamedQuery(
+                name = "Expense.findExpensesCreatedBeforeOrEven",
+                query = "SELECT e FROM Expense e WHERE e.date <= :param1 ORDER BY e.date"
+        ),
+        @NamedQuery(
+                name = "Expense.findExpensesByDateBetween",
+                query = "SELECT e FROM Expense e WHERE e.date >= :param1 AND e.date <= :param2"
+        ),
+        @NamedQuery(
+                name = "Expense.findExpensesCreatedAt",
+                query = "SELECT e From Expense e WHERE e.date = :param1"
+        ),
+        @NamedQuery(
+                name = "Expense.findExpensesCheaperOrEven",
+                query = "SELECT e FROM Expense e WHERE e.amount <= :param1 ORDER BY e.date"
+        ),
+        @NamedQuery(
+                name = "Expense.findExpensesMoreExpOrEven",
+                query = "SELECT e FROM Expense e WHERE e.amount >= :param1 ORDER BY e.date"
+        ),
+        @NamedQuery(
+                name = "Expense.findExpensesEven",
+                query = "SELECT e FROM Expense e WHERE e.amount = :param1 ORDER BY e.date"
+        ),
+        @NamedQuery(
+                name = "Expense.findExpensesByName",
+                query = "SELECT e FROM Expense e WHERE e.name = :param1 ORDER BY e.date"
+        ),
+        @NamedQuery(
+                name = "Expense.orderByDateAsc",
+                query = "SELECT e FROM Expense e ORDER BY e.date"
+        ),
+        @NamedQuery(
+                name = "Expense.orderByDateDesC",
+                query = "SELECT e FROM Expense e ORDER BY e.date DESC"
+        ),
+        @NamedQuery(
+                name = "Expense.orderByAmountAsc",
+                query = "SELECT e FROM Expense e ORDER BY e.amount"
+        ),
+        @NamedQuery(
+                name = "Expense.orderByAmountDesc",
+                query = "SELECT e FROM Expense e ORDER BY e.amount DESC"
+        )
+})
 public class Expense {
 
     @Id
@@ -39,51 +92,50 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(@NotNull String name, @NotNull String comment, @NotNull BigDecimal amount, @NotNull LocalDate date, List<Category> categories) {
+    public Expense(String name, String comment, BigDecimal amount, LocalDate date) {
         this.name = name;
         this.comment = comment;
         this.amount = amount;
         this.date = date;
-        this.categories = categories;
     }
 
     public Long getId() {
         return id;
     }
 
-    @NotNull
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
-    public void setName(@NotNull String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    @NotNull
     public String getComment() {
         return comment;
     }
 
-    public void setComment(@NotNull String comment) {
+    public void setComment(String comment) {
         this.comment = comment;
     }
 
-    @NotNull
     public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(@NotNull BigDecimal amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
-    @NotNull
     public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(@NotNull LocalDate date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -103,9 +155,25 @@ public class Expense {
                 ", comment='" + comment + '\'' +
                 ", amount=" + amount +
                 ", date=" + date +
-                ", categories=" + categories.stream()
-                                .map(Category::getId)
-                                .collect(toList())+
+                ", categories=" + categories +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Expense expense = (Expense) o;
+        return Objects.equals(id, expense.id) &&
+                Objects.equals(name, expense.name) &&
+                Objects.equals(comment, expense.comment) &&
+                Objects.equals(amount, expense.amount) &&
+                Objects.equals(date, expense.date) &&
+                Objects.equals(categories, expense.categories);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, comment, amount, date, categories);
     }
 }
