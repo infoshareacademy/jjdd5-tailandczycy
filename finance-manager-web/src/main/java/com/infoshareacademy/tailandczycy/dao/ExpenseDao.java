@@ -4,6 +4,7 @@ import com.infoshareacademy.tailandczycy.model.Category;
 import com.infoshareacademy.tailandczycy.model.Expense;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -13,6 +14,12 @@ import java.util.List;
 
 @Stateless
 public class ExpenseDao {
+
+    final String PARAM1 = "param1";
+    final String PARAM2 = "param2";
+
+    @Inject
+    CategoryDao categoryDao;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -46,56 +53,56 @@ public class ExpenseDao {
     public List<Expense> findExpensesPerCategory(Category category) {
         final Query query = entityManager
                 .createNamedQuery("Expense.findExpensesPerCategory");
-        query.setParameter("param1", category);
+        query.setParameter(PARAM1, category);
         return query.getResultList();
     }
 
     public List<Expense> findExpensesCreatedAfterOrEven(LocalDate date) {
         final Query query = entityManager
                 .createNamedQuery("Expense.findExpensesCreatedAfterOrEven");
-        query.setParameter("param1", date);
+        query.setParameter(PARAM1, date);
         return query.getResultList();
     }
 
     public List<Expense> findExpensesCreatedBeforeOrEven(LocalDate date) {
         final Query query = entityManager
                 .createNamedQuery("Expense.findExpensesCreatedBeforeOrEven");
-        query.setParameter("param1", date);
+        query.setParameter(PARAM1, date);
         return query.getResultList();
     }
 
     public List<Expense> findExpensesCreatedAt(LocalDate date) {
         final Query query = entityManager
                 .createNamedQuery("Expense.findExpensesCreatedAt");
-        query.setParameter("param1", date);
+        query.setParameter(PARAM1, date);
         return query.getResultList();
     }
 
     public List<Expense> findExpensesCheaperOrEven(BigDecimal bigDecimal) {
         final Query query = entityManager
                 .createNamedQuery("Expense.findExpensesCheaperOrEven");
-        query.setParameter("param1", bigDecimal);
+        query.setParameter(PARAM1, bigDecimal);
         return query.getResultList();
     }
 
     public List<Expense> findExpensesMoreExpOrEven(BigDecimal bigDecimal) {
         final Query query = entityManager
                 .createNamedQuery("Expense.findExpensesMoreExpOrEven");
-        query.setParameter("param1", bigDecimal);
+        query.setParameter(PARAM1, bigDecimal);
         return query.getResultList();
     }
 
     public List<Expense> findExpensesEven(BigDecimal bigDecimal) {
         final Query query = entityManager
                 .createNamedQuery("Expense.findExpensesEven");
-        query.setParameter("param1", bigDecimal);
+        query.setParameter(PARAM1, bigDecimal);
         return query.getResultList();
     }
 
     public List<Expense> findExpensesByName(String string) {
         final Query query = entityManager
                 .createNamedQuery("Expense.findExpensesByName");
-        query.setParameter("param1", string);
+        query.setParameter(PARAM1, string);
         return query.getResultList();
     }
 
@@ -126,8 +133,8 @@ public class ExpenseDao {
     public List<Expense> findExpensesByDateBetween(LocalDate date1, LocalDate date2) {
         final Query query = entityManager
                 .createNamedQuery("Expense.findExpensesByDateBetween");
-        query.setParameter("param1", date1);
-        query.setParameter("param2", date2);
+        query.setParameter(PARAM1, date1);
+        query.setParameter(PARAM2, date2);
         return query.getResultList();
     }
 }

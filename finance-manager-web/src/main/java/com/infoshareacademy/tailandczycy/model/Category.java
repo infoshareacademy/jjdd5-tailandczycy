@@ -1,7 +1,6 @@
 package com.infoshareacademy.tailandczycy.model;
 
 import javax.persistence.*;
-import javax.validation.Constraint;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
