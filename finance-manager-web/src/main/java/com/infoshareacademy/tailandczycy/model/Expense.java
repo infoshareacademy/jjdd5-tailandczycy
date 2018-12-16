@@ -7,8 +7,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-import static java.util.stream.Collectors.toList;
-
 @Entity
 @Table(name = "EXPENSES")
 @NamedQueries({

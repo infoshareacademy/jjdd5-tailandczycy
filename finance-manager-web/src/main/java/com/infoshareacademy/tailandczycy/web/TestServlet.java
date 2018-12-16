@@ -3,13 +3,10 @@ package com.infoshareacademy.tailandczycy.web;
 import com.infoshareacademy.tailandczycy.dao.CategoryDao;
 import com.infoshareacademy.tailandczycy.dao.ExpenseDao;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
-import com.infoshareacademy.tailandczycy.model.Category;
-import com.infoshareacademy.tailandczycy.model.Expense;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,9 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
