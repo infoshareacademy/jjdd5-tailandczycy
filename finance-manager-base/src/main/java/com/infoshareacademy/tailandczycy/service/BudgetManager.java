@@ -84,7 +84,7 @@ public class BudgetManager {
         if (checkIfExpensePresent(id)) {
             System.out.println(expenseDao.get(id).get());
         } else {
-            System.out.println("no such expense");
+            LOG.error("no such expense");
         }
     }
 

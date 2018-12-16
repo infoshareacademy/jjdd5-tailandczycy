@@ -17,6 +17,7 @@ public class UserInterface {
     private BudgetManager budgetManager = new BudgetManager();
     private final String TYPE_IN_AMOUNT = "type in amount: ";
     private final String DO_YOU_WANT_TO_SAVE = "do you want to save?";
+    private final String NO_SUCH_CATEGORY = "no such category";
 
     public void addExpense() {
         boolean abort = false;
@@ -212,7 +213,7 @@ public class UserInterface {
             budgetManager.deleteCategory(name);
 
         } else {
-            LOG.error("no such category");
+            LOG.error(NO_SUCH_CATEGORY);
         }
     }
 
@@ -224,7 +225,7 @@ public class UserInterface {
         if (budgetManager.checkIfCategoryPresent(category.toLowerCase())) {
             budgetManager.displayExpensePerCategory(category.toLowerCase());
         } else {
-            LOG.error("no such category");
+            LOG.error(NO_SUCH_CATEGORY);
         }
     }
 
@@ -261,7 +262,7 @@ public class UserInterface {
             }
             budgetManager.setUpLimit(category.toLowerCase(), limit);
         } else {
-            LOG.info("no such category");
+            LOG.info(NO_SUCH_CATEGORY);
         }
     }
 
