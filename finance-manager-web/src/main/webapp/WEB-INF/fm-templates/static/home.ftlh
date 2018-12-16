@@ -79,7 +79,7 @@
                                 <button type="button" class="btn btn-primary btn-sm">Edytuj</button>&nbsp;<button
                                     type="button"
                                     class="btn btn-danger btn-sm">
-                                Usuń
+                                <a href="/delete-expense?id=${expense.id}"> Usuń </a>
                             </button>
                             </td>
                         </tr>

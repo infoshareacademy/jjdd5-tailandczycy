@@ -22,20 +22,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @WebServlet("/delete-expense")
-public class DeleteExpenseServlet extends HttpServlet {
-    private static final String TEMPLATE_NAME = "delete-expense";
+public class DeleteExpenseMainPageServlet extends HttpServlet {
     private final Logger logger = Logger.getLogger(getClass().getName());
-    private static final String TEMPLATE_EXPENSE_LIST = "expense-list";
+    private static final String TEMPLATE_EXPENSE_LIST = "/home";
 
     @Inject
     private
     ExpenseDao expenseDao;
-
-    @Inject
-    ExpenseRequestViewDto expenseRequestViewDto;
-
-    @Inject
-    private TemplateProvider templateProvider;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,6 +40,7 @@ public class DeleteExpenseServlet extends HttpServlet {
 
     private void handleResponse(HttpServletResponse resp, Long id) throws IOException {
         expenseDao.delete(id);
+        logger.log(Level.INFO, "Deleting expense with id: " + id);
         resp.sendRedirect(TEMPLATE_EXPENSE_LIST);
     }
 }
