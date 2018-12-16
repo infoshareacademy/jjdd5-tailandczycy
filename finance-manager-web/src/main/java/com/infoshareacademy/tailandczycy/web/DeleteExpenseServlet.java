@@ -2,8 +2,10 @@ package com.infoshareacademy.tailandczycy.web;
 
 
 import com.infoshareacademy.tailandczycy.dao.ExpenseDao;
+import com.infoshareacademy.tailandczycy.dto.ExpenseRequestViewDto;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
 import com.infoshareacademy.tailandczycy.model.Expense;
+import com.infoshareacademy.tailandczycy.views.ExpenseRequestView;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -23,8 +25,14 @@ import java.util.logging.Logger;
 public class DeleteExpenseServlet extends HttpServlet {
     private static final String TEMPLATE_NAME = "delete-expense";
     private final Logger logger = Logger.getLogger(getClass().getName());
+    private static final String TEMPLATE_EXPENSE_LIST = "expense-list";
+
     @Inject
+    private
     ExpenseDao expenseDao;
+
+    @Inject
+    ExpenseRequestViewDto expenseRequestViewDto;
 
     @Inject
     private TemplateProvider templateProvider;
@@ -32,16 +40,9 @@ public class DeleteExpenseServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
-        HashMap<String, Object> dataModel = new HashMap<>();
         Long id = Long.parseLong(req.getParameter("id"));
-        //Validate if there is any object with this id
         Expense expense = expenseDao.findById(id);
-        dataModel.put("expenses", expense);
-        expenseDao.delete(id);
-        handleTemplate(dataModel, TEMPLATE_NAME, resp);
-
-
-
+        handleResponse(resp, expense.getId());
     }
 
     private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
@@ -52,5 +53,9 @@ public class DeleteExpenseServlet extends HttpServlet {
         } catch (TemplateException e) {
             logger.log(Level.SEVERE, e.getMessage());
         }
+    }
+    private void handleResponse(HttpServletResponse resp, Long id) throws IOException {
+        expenseDao.delete(id);
+        resp.sendRedirect(TEMPLATE_EXPENSE_LIST);
     }
 }

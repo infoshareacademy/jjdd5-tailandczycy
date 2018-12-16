@@ -62,8 +62,7 @@ TODO:expenseRequestView.setCategories();
         expense.setAmount(expenseRequestView.getAmount());
         expense.setComment(expense.getComment());
         expense.setDate(expenseRequestView.getDate());
-        //TODO:Use DB and this will be list of categories not list of Strings
-        //TODO:expense.setCategories(expenseRequestView.getCategories());
+       //TODO: expense.setCategories(expenseRequestView.getCategories());
 
         if (newExpense) {
             expenseDao.save(expense);
