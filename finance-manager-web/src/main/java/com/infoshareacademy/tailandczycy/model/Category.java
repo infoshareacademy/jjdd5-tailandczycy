@@ -5,6 +5,7 @@ import javax.validation.Constraint;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Entity
@@ -34,9 +35,10 @@ public class Category {
     public Category() {
     }
 
-    public Category(String name, BigDecimal limit) {
+    public Category(String name, BigDecimal limit, List<Expense> expenses) {
         this.name = name;
         this.limit = limit;
+        this.expenses = expenses;
     }
 
     public Long getId() {
@@ -81,5 +83,21 @@ public class Category {
                                 .map(Expense::getId)
                                 .collect(Collectors.toList())+
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Category category = (Category) o;
+        return Objects.equals(id, category.id) &&
+                Objects.equals(name, category.name) &&
+                Objects.equals(limit, category.limit) &&
+                Objects.equals(expenses, category.expenses);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, limit, expenses);
     }
 }

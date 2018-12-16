@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 import static java.util.stream.Collectors.toList;
 
@@ -39,12 +40,11 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(String name, String comment, BigDecimal amount, LocalDate date, List<Category> categories) {
+    public Expense(String name, String comment, BigDecimal amount, LocalDate date) {
         this.name = name;
         this.comment = comment;
         this.amount = amount;
         this.date = date;
-        this.categories = categories;
     }
 
     public Long getId() {
@@ -105,5 +105,23 @@ public class Expense {
                 ", date=" + date +
                 ", categories=" + categories +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Expense expense = (Expense) o;
+        return Objects.equals(id, expense.id) &&
+                Objects.equals(name, expense.name) &&
+                Objects.equals(comment, expense.comment) &&
+                Objects.equals(amount, expense.amount) &&
+                Objects.equals(date, expense.date) &&
+                Objects.equals(categories, expense.categories);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, comment, amount, date, categories);
     }
 }

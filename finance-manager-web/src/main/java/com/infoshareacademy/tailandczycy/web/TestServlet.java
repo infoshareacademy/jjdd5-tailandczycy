@@ -43,11 +43,11 @@ public class TestServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
-        Category category = new Category("category", new BigDecimal(1500));
-        categoryDao.save(category);
-
-        Expense expense = new Expense("expense", "csfsd ffds", new BigDecimal(200), LocalDate.of(2018,03,03), Arrays.asList(category));
+        Expense expense = new Expense("expense", "csfsd ffds", new BigDecimal(200), LocalDate.of(2018,03,03));
         expenseDao.save(expense);
+
+        Category category = new Category("category", new BigDecimal(1500), Arrays.asList(expense));
+        categoryDao.save(category);
     }
 
     @Override
