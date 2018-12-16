@@ -1,6 +1,7 @@
 package com.infoshareacademy.tailandczycy.model;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;

@@ -69,12 +69,12 @@
             <tbody>
                 <#items as expense>
                         <tr>
-                            <th scope="row">4</th>
+                            <th scope="row">${expense.id}</th>
                             <td>${expense.name}</td>
-                            <td>${expense.comment}</td>
-                            <td>${expense.amount}</td>
+                            <td><#list expense.categories as c>${c.name}</#list></td>
                             <td>${expense.date}</td>
-                            <td>${expense.categories.name}</td>
+                            <td>${expense.amount}</td>
+                            <td>${expense.comment}</td>
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm">Edytuj</button>&nbsp;<button
                                     type="button"
@@ -87,20 +87,6 @@
 
                 </#items>
             </#list>
-
-        <tr>
-            <th scope="row">4</th>
-            <td>Jerry</td>
-            <td>Horwitz</td>
-            <td>Italy</td>
-            <td>5</td>
-            <td>Editor-in-chief</td>
-            <td>
-                <button type="button" class="btn btn-primary btn-sm">Edytuj</button>&nbsp;<button type="button"
-                                                                                                  class="btn btn-danger btn-sm">
-                Usuń
-            </button>
-
         </tbody>
         </table>
 
