@@ -4,8 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.infoshareacademy.tailandczycy.service.Category;
 import com.infoshareacademy.tailandczycy.service.Expense;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -17,8 +15,6 @@ import java.util.*;
 
 
 public class FileOperations {
-
-    private static final Logger LOG = LoggerFactory.getLogger(FileOperations.class);
 
     private Gson gsonBuilder = new GsonBuilder()
             .registerTypeHierarchyAdapter(LocalDate.class, new GsonLocalDateTypeAdapter())

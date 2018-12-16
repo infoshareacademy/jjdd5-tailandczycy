@@ -1,12 +1,8 @@
 package com.infoshareacademy.tailandczycy.service;
 
 import com.infoshareacademy.tailandczycy.console.UserInterface;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class Switch {
-
-    private static final Logger LOG = LoggerFactory.getLogger(Switch.class);
 
     private UserInterface userInterface = new UserInterface();
 
