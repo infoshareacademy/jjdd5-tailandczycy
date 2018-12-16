@@ -15,6 +15,8 @@ public class UserInterface {
 
     private ConsoleReader consoleReader = new ConsoleReader();
     private BudgetManager budgetManager = new BudgetManager();
+    private final String TYPE_IN_AMOUNT = "type in amount: ";
+    private final String DO_YOU_WANT_TO_SAVE = "do you want to save?";
 
     public void addExpense() {
         boolean abort = false;
@@ -34,7 +36,7 @@ public class UserInterface {
         } while (!option.equals("2"));
         LOG.info("Type in comment: ");
         comment = consoleReader.readString();
-        LOG.info("Type in amount: ");
+        LOG.info(TYPE_IN_AMOUNT);
         amount = consoleReader.readBigDecimal();
         while (budgetManager.isExceedingLimit(categories, amount)) {
             LOG.warn("Expense has exceeded category limit");
@@ -96,7 +98,7 @@ public class UserInterface {
             option = consoleReader.readInt();
         } while (option != 2);
         System.out.println(categories);
-        LOG.info("Do you want to save?");
+        LOG.info(DO_YOU_WANT_TO_SAVE);
         LOG.info("y/n");
         if (consoleReader.readString().equals("y")) {
             budgetManager.changeCategories(id, categories);
@@ -108,7 +110,7 @@ public class UserInterface {
 
         LOG.info("Type in comment: ");
         comment = consoleReader.readString();
-        LOG.info("Do you want to save?");
+        LOG.info(DO_YOU_WANT_TO_SAVE);
         LOG.info("y/n");
         if (consoleReader.readString().equals("y")) {
             budgetManager.changeComment(id, comment);
@@ -119,14 +121,14 @@ public class UserInterface {
         BigDecimal amount;
         boolean abort = false;
 
-        LOG.info("Type in amount: ");
+        LOG.info(TYPE_IN_AMOUNT);
         amount = consoleReader.readBigDecimal();
         while (budgetManager.isExceedingLimit(budgetManager.getExpense(id).get().getCategories(), amount)) {
             LOG.error("Thats too much for a category limit!");
             LOG.info("Do you want to continue?");
             LOG.info("y/n");
             if (consoleReader.readString().equals("y")) {
-                LOG.info("Type in amount: ");
+                LOG.info(TYPE_IN_AMOUNT);
                 amount = consoleReader.readBigDecimal();
             } else {
                 abort = true;
@@ -134,7 +136,7 @@ public class UserInterface {
             }
         }
         if (!abort) {
-            LOG.info("Do you want to save?");
+            LOG.info(DO_YOU_WANT_TO_SAVE);
             LOG.info("y/n");
             if (consoleReader.readString().equals("y")) {
                 budgetManager.changeAmount(id, amount);
