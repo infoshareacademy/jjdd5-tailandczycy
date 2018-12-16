@@ -19,22 +19,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Transactional
-@WebServlet(urlPatterns = "/test")
-public class TestServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/about")
+public class AboutUsServlet extends HttpServlet {
 
-    private static final String TEMPLATE_NAME = "test";
+    private static final String TEMPLATE_NAME = "static/aboutUs";
 
     @Inject
     private TemplateProvider templateProvider;
 
     @Inject
-    ExpenseDao expenseDao;
-
-    @Inject
     CategoryDao categoryDao;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
+        resp.addHeader("Content-Type", "text/html; charset=utf-8");
 
         Map<String, Object> model = new HashMap<>();
         model.put("expenses", categoryDao.findCategoriesEven(new BigDecimal(800)));
