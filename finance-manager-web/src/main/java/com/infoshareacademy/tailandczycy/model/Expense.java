@@ -11,6 +11,60 @@ import static java.util.stream.Collectors.toList;
 
 @Entity
 @Table(name = "EXPENSES")
+@NamedQueries({
+        @NamedQuery(
+                name = "Expense.findExpensesPerCategory",
+                query = "SELECT e FROM Expense e WHERE :param1 MEMBER OF e.categories ORDER BY e.date"
+        ),
+        @NamedQuery(
+                name = "Expense.findExpensesCreatedAfterOrEven",
+                query = "SELECT e FROM Expense e WHERE e.date >= :param1 ORDER BY e.date"
+        ),
+        @NamedQuery(
+                name = "Expense.findExpensesCreatedBeforeOrEven",
+                query = "SELECT e FROM Expense e WHERE e.date <= :param1 ORDER BY e.date"
+        ),
+        @NamedQuery(
+                name = "Expense.findExpensesByDateBetween",
+                query = "SELECT e FROM Expense e WHERE e.date >= :param1 AND e.date <= :param2"
+        ),
+        @NamedQuery(
+                name = "Expense.findExpensesCreatedAt",
+                query = "SELECT e From Expense e WHERE e.date = :param1"
+        ),
+        @NamedQuery(
+                name = "Expense.findExpensesCheaperOrEven",
+                query = "SELECT e FROM Expense e WHERE e.amount <= :param1 ORDER BY e.date"
+        ),
+        @NamedQuery(
+                name = "Expense.findExpensesMoreExpOrEven",
+                query = "SELECT e FROM Expense e WHERE e.amount >= :param1 ORDER BY e.date"
+        ),
+        @NamedQuery(
+                name = "Expense.findExpensesEven",
+                query = "SELECT e FROM Expense e WHERE e.amount = :param1 ORDER BY e.date"
+        ),
+        @NamedQuery(
+                name = "Expense.findExpensesByName",
+                query = "SELECT e FROM Expense e WHERE e.name = :param1 ORDER BY e.date"
+        ),
+        @NamedQuery(
+                name = "Expense.orderByDateAsc",
+                query = "SELECT e FROM Expense e ORDER BY e.date"
+        ),
+        @NamedQuery(
+                name = "Expense.orderByDateDesC",
+                query = "SELECT e FROM Expense e ORDER BY e.date DESC"
+        ),
+        @NamedQuery(
+                name = "Expense.orderByAmountAsc",
+                query = "SELECT e FROM Expense e ORDER BY e.amount"
+        ),
+        @NamedQuery(
+                name = "Expense.orderByAmountDesc",
+                query = "SELECT e FROM Expense e ORDER BY e.amount DESC"
+        )
+})
 public class Expense {
 
     @Id

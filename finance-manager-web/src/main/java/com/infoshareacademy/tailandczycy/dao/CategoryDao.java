@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Stateless
@@ -37,6 +38,34 @@ public class CategoryDao {
     public List<Category> findAll() {
         final Query query = entityManager.createQuery("SELECT s FROM Category s");
 
+        return query.getResultList();
+    }
+
+    public List<Category> findCategoriesByName(String string) {
+        final Query query = entityManager
+                .createNamedQuery("Category.findCategoriesByName");
+        query.setParameter("param1", string.toLowerCase());
+        return query.getResultList();
+    }
+
+    public List<Category> findCategoriesCheaperOrEven(BigDecimal bigDecimal) {
+        final Query query = entityManager
+                .createNamedQuery("Category.findCategoriesCheaperOrEven");
+        query.setParameter("param1", bigDecimal);
+        return query.getResultList();
+    }
+
+    public List<Category> findCategoriesMoreExpOrEven(BigDecimal bigDecimal) {
+        final Query query = entityManager
+                .createNamedQuery("Category.findCategoriesMoreExpOrEven");
+        query.setParameter("param1", bigDecimal);
+        return query.getResultList();
+    }
+
+    public List<Category> findCategoriesEven(BigDecimal bigDecimal) {
+        final Query query = entityManager
+                .createNamedQuery("Category.findCategoriesEven");
+        query.setParameter("param1", bigDecimal);
         return query.getResultList();
     }
 }

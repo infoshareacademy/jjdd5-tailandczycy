@@ -40,21 +40,10 @@ public class TestServlet extends HttpServlet {
     CategoryDao categoryDao;
 
     @Override
-    public void init(ServletConfig config) throws ServletException {
-        super.init(config);
-
-        Expense expense = new Expense("expense", "csfsd ffds", new BigDecimal(200), LocalDate.of(2018,03,03));
-        expenseDao.save(expense);
-
-        Category category = new Category("category", new BigDecimal(1500), Arrays.asList(expense));
-        categoryDao.save(category);
-    }
-
-    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Map<String, Object> model = new HashMap<>();
-        model.put("expenses", expenseDao.findAll());
+        model.put("expenses", categoryDao.findCategoriesEven(new BigDecimal(800)));
 
         Template template = templateProvider.getTemplate(getServletContext(), TEMPLATE_NAME);
 

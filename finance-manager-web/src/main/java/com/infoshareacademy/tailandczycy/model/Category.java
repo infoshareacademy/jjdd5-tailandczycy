@@ -10,6 +10,24 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "CATEGORIES")
+@NamedQueries({
+        @NamedQuery(
+                name = "Category.findCategoriesByName",
+                query = "SELECT c FROM Category c WHERE c.name = :param1 ORDER BY c.limit"
+        ),
+        @NamedQuery(
+                name = "Category.findCategoriesCheaperOrEven",
+                query = "SELECT c FROM Category c WHERE c.limit <= :param1 ORDER BY c.limit"
+        ),
+        @NamedQuery(
+                name = "Category.findCategoriesMoreExpOrEven",
+                query = "SELECT c FROM Category c WHERE c.limit >= :param1 ORDER BY c.limit"
+        ),
+        @NamedQuery(
+                name = "Category.findCategoriesEven",
+                query = "SELECT c FROM Category c WHERE c.limit = :param1 ORDER BY c.name"
+        )
+})
 public class Category {
 
     @Id
