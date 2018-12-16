@@ -12,7 +12,6 @@
         text-shadow: white;
     }
 </style>
-
 <div class="footer">
-    <p>© 2018 Copyright: <a href="https://pornhub.com">Tailandczycy</a></p>
+    <p>© 2018 Copyright: <a href="about">Tailandczycy</a></p>
 </div>

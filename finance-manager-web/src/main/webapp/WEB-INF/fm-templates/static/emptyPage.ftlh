@@ -1,4 +1,4 @@
-<#include "../static/head.ftlh">
+<#include "head.ftlh">
 <div class="wrapper">
     <!-- Sidebar  -->
     <nav id="sidebar">
@@ -70,7 +70,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href=""></a>
+                            <a class="nav-link" href="">${date}</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="#">Login</a>
@@ -79,36 +79,5 @@
                 </div>
             </div>
         </nav>
-        <h2>Wydatki<span class="badge badge-secondary">Nowy</span></h2>
-        <form>
-            <div class="form-group">
-                <label for="usr">Nazwa:</label>
-                <input type="text" class="form-control" id="usr">
-            </div>
-            <div class="form-group">
-                <label for="pwd">Data:</label>
-                <input type="date" class="form-control" id="pwd">
-            </div>
-            <div class="form-group">
-                <label for="pwd">Kwota:</label>
-                <input type="number" class="form-control" id="pwd">
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlSelect2">Kategoria:</label>
-                <select multiple class="form-control" id="exampleFormControlSelect2">
-                    <option>Dom i rachunki</option>
-                    <option>Odzież i obuwie</option>
-                    <option>Wydatki podstawowe</option>
-                    <option>Zdrowie i uroda</option>
-                    <option>Rozrywka i podróże</option>
-                    <option>Samochód i transport</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Komentarz:</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-        </form>
-        <button type="button" class="btn btn-primary active">Wyślij</button>
-    <#include "../static/footer.ftlh">
-    <#include "../static/scripts.ftlh">
+    <#include "footer.ftlh">
+    <#include "scripts.ftlh">
