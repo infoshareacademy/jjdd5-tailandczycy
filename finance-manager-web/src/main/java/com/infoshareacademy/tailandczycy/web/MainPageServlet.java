@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 @Transactional
 @WebServlet(urlPatterns = "/home")
 public class MainPageServlet extends HttpServlet {
-    private static final String TEMPLATE_NAME = "welcome";
+    private static final String TEMPLATE_NAME = "home";
     private  final Logger logger = Logger.getLogger(getClass().getName());
     @Inject
     private ExpenseDao expenseDao;
