@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,8 +31,8 @@ public class ExpenseRequestViewDto {
         expenseRequestView.setName(req.getParameter("name"));
         expenseRequestView.setAmount(parseStringToBigDecimal(req.getParameter("amount")));
         expenseRequestView.setDate(parseStringToLocalDate(req.getParameter("date")));
-        List<String> categories = Arrays.asList(req.getParameterValues("categories"));
-        expenseRequestView.setCategories(parseListOfStringsToListOfCategories(categories));
+        List<Category> categories =parseListOfStringsToListOfCategories(req.getParameterValues("categories"));
+        expenseRequestView.setCategories(categories);
         return expenseRequestView;
     }
 
@@ -62,26 +63,27 @@ public class ExpenseRequestViewDto {
 
 
     public void saveExpense(ExpenseRequestView expenseRequestView) {
-        Expense expense = expenseDao.findById(expenseRequestView.getId());
-        boolean newExpense = false;
-        if (expense == null) {
-            expense = new Expense();
-            newExpense = true;
-        }
+//        Expense expense = expenseDao.findById(expenseRequestView.getId());
+//        boolean newExpense = false;
+//        if (expense == null) {
+//            expense = new Expense();
+//            newExpense = true;
+//        }
+        Expense expense = new Expense();
         expense.setAmount(expenseRequestView.getAmount());
         expense.setComment(expense.getComment());
         expense.setDate(expenseRequestView.getDate());
         expense.setCategories(expenseRequestView.getCategories());
-        if (newExpense) {
+//        if (newExpense) {
             expenseDao.save(expense);
-        }
+//        }
     }
 
-    private List<Category> parseListOfStringsToListOfCategories(List<String> param) {
-        List<Category> categories = Arrays.asList();
+    private List<Category> parseListOfStringsToListOfCategories(String[] param) {
+        List<Category> categories = new ArrayList<>();
         for (String category : param) {
             List<Category> category1 = categoryDao.findCategoriesByName(category);
-            if (!category1.isEmpty()) {
+            if (category1.size()>0) {
                 categories.add(category1.get(0));
             }
         }
@@ -96,7 +98,7 @@ public class ExpenseRequestViewDto {
     }
 
     private BigDecimal parseStringToBigDecimal(String param) {
-        if (param == null || param.isEmpty() || StringUtils.isNumeric(param)) {
+        if (param == null || param.isEmpty() || !StringUtils.isNumeric(param)) {
             return null;
         }
         return new BigDecimal(param);
@@ -108,7 +110,7 @@ public class ExpenseRequestViewDto {
     }
 
     private boolean validateParameter(String param) {
-        if (param == null || param.isEmpty() || !StringUtils.isNumeric(param)) {
+        if (param == null || param.isEmpty() || StringUtils.isNumeric(param)) {
             return true;
         }
         return false;
