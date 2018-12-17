@@ -18,23 +18,29 @@
                 </ul>
             </li>
             <li>
-                <a href="add-expense">
+                <li class="active">
+                <a href="#expenseMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-briefcase"></i>
                     Wydatki
                 </a>
+                <ul class="collapse list-unstyled" id="expenseMenu">
+                    <li><a href="">kutas</a></li>
+                    <li>
+                        <a href="edit-category">List of All</a>
+                    </li>
+                </ul>
+
+
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-copy"></i>
                     Kategorie
                 </a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
-                        <a href="add-category">Dodaj</a>
+                        <a href="add-category">Add</a>
                     </li>
                     <li>
-                        <a href="edit-category">Edytuj</a>
-                    </li>
-                    <li>
-                        <a href="delete-category">Usuń</a>
+                        <a href="edit-category">List of All</a>
                     </li>
                 </ul>
             </li>

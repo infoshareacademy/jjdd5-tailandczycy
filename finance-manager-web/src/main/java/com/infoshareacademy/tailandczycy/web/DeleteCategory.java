@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 public class DeleteCategory extends HttpServlet {
     private final Logger logger = Logger.getLogger(getClass().getName());
     private final static String TEMPLATE_NAME = "delete-category";
+
     @Inject
     private TemplateProvider templateProvider;
     @Inject

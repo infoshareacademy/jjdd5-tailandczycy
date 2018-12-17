@@ -10,6 +10,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,17 +21,16 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@WebServlet("/delete-expense")
-public class DeleteExpenseServlet extends HttpServlet {
-    private static final String TEMPLATE_NAME = "delete-expense";
+@WebServlet("/delete-expense-main")
+public class DeleteExpenseMainPageServlet extends HttpServlet {
     private final Logger logger = Logger.getLogger(getClass().getName());
-    private static final String TEMPLATE_EXPENSE_LIST = "expense-list";
+    private static final String TEMPLATE_EXPENSE_LIST = "/home";
 
     @Inject
     private ExpenseDao expenseDao;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
         Long id = Long.parseLong(req.getParameter("id"));
         Expense expense = expenseDao.findById(id);
@@ -39,6 +39,7 @@ public class DeleteExpenseServlet extends HttpServlet {
 
     private void handleResponse(HttpServletResponse resp, Long id) throws IOException {
         expenseDao.delete(id);
+        logger.log(Level.INFO, "Deleting expense with id: " + id);
         resp.sendRedirect(TEMPLATE_EXPENSE_LIST);
     }
 }

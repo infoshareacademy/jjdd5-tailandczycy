@@ -1,5 +1,6 @@
 package com.infoshareacademy.tailandczycy.web;
 
+import com.infoshareacademy.tailandczycy.dao.ExpenseDao;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
 
 import freemarker.template.Template;
@@ -10,16 +11,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Transactional
 @WebServlet(urlPatterns = "/home")
 public class MainPageServlet extends HttpServlet {
-    private static final String TEMPLATE_NAME = "welcome";
-    private  final Logger logger = Logger.getLogger(getClass().getName());
+    private static final String TEMPLATE_NAME = "home";
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
+    @Inject
+    private ExpenseDao expenseDao;
     @Inject
     private TemplateProvider templateProvider;
 
@@ -28,8 +33,7 @@ public class MainPageServlet extends HttpServlet {
 
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
         Map<String, Object> dataModel = new HashMap<>();
-        List<Integer> expenses = new ArrayList<>();
-        dataModel.put("expenses", expenses);
+        dataModel.put("expenses", expenseDao.orderByAmountDescLimit5());
         handleTemplate(dataModel, TEMPLATE_NAME, resp);
     }
 

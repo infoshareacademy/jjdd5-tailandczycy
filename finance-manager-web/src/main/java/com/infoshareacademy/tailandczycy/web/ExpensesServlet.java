@@ -23,8 +23,9 @@ import java.util.logging.Logger;
 public class ExpensesServlet extends HttpServlet {
     private static final String TEMPLATE_NAME = "";
     private final Logger logger = Logger.getLogger(getClass().getName());
+
     @Inject
-   private TemplateProvider templateProvider;
+    private TemplateProvider templateProvider;
     @Inject
     private ExpenseDao expenseDao;
 
