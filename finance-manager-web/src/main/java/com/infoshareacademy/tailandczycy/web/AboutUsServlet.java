@@ -21,7 +21,6 @@ import java.util.Map;
 @Transactional
 @WebServlet(urlPatterns = "/about")
 public class AboutUsServlet extends HttpServlet {
-
     private static final String TEMPLATE_NAME = "static/aboutUs";
 
     @Inject

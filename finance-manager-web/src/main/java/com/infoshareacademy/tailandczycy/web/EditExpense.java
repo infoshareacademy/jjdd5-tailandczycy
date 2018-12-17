@@ -1,9 +1,8 @@
 package com.infoshareacademy.tailandczycy.web;
 
-import com.infoshareacademy.tailandczycy.dao.ExpenseDao;
+
 import com.infoshareacademy.tailandczycy.dto.ExpenseRequestViewDto;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
-import com.infoshareacademy.tailandczycy.model.Expense;
 import com.infoshareacademy.tailandczycy.views.ExpenseRequestView;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -25,6 +24,7 @@ public class EditExpense extends HttpServlet {
     private final Logger logger = Logger.getLogger(getClass().getName());
     private static final String TEMPLATE_NAME = "edit-expense";
     private static final String TEMPLATE_EXPENSES_LIST = "/expenses";
+
     @Inject
     private TemplateProvider templateProvider;
     @Inject
@@ -60,6 +60,7 @@ public class EditExpense extends HttpServlet {
             logger.log(Level.SEVERE, e.getMessage());
         }
     }
+
     private void handleResponse(HttpServletResponse resp, Map<String, Object> model, ExpenseRequestView expenseView) throws IOException {
         expenseRequestViewDto.updateExpense(expenseView);
         resp.sendRedirect(TEMPLATE_EXPENSES_LIST);

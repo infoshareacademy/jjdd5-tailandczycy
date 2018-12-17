@@ -21,7 +21,8 @@ import java.util.logging.Logger;
 @WebServlet(urlPatterns = "/home")
 public class MainPageServlet extends HttpServlet {
     private static final String TEMPLATE_NAME = "home";
-    private  final Logger logger = Logger.getLogger(getClass().getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
+
     @Inject
     private ExpenseDao expenseDao;
     @Inject
@@ -32,7 +33,7 @@ public class MainPageServlet extends HttpServlet {
 
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
         Map<String, Object> dataModel = new HashMap<>();
-        dataModel.put("expenses",expenseDao.orderByAmountDescLimit5());
+        dataModel.put("expenses", expenseDao.orderByAmountDescLimit5());
         handleTemplate(dataModel, TEMPLATE_NAME, resp);
     }
 

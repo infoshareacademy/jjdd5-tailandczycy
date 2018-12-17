@@ -1,7 +1,6 @@
 package com.infoshareacademy.tailandczycy.views;
 
 
-
 import com.infoshareacademy.tailandczycy.model.Category;
 
 import java.math.BigDecimal;

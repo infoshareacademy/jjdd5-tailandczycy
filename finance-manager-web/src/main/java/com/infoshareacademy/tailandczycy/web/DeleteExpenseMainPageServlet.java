@@ -27,8 +27,7 @@ public class DeleteExpenseMainPageServlet extends HttpServlet {
     private static final String TEMPLATE_EXPENSE_LIST = "/home";
 
     @Inject
-    private
-    ExpenseDao expenseDao;
+    private ExpenseDao expenseDao;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

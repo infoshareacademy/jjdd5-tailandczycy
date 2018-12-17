@@ -56,7 +56,7 @@ public class ExpenseRequestViewDto {
         expense.setComment(expense.getComment());
         expense.setDate(expenseRequestView.getDate());
         expense.setCategories(expenseRequestView.getCategories());
-            expenseDao.update(expense);
+        expenseDao.update(expense);
 
     }
 

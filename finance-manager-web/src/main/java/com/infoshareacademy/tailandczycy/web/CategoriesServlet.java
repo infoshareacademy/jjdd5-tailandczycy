@@ -27,6 +27,7 @@ public class CategoriesServlet extends HttpServlet {
     private TemplateProvider templateProvider;
     @Inject
     private CategoryDao categoryDao;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
@@ -35,7 +36,6 @@ public class CategoriesServlet extends HttpServlet {
         dataModel.put("expenses", listOfExpenses);
         handleTemplate(dataModel, TEMPLATE_NAME, resp);
     }
-
 
     private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
         Template template = templateProvider.getTemplate(getServletContext(), templateName);

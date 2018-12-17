@@ -10,7 +10,6 @@ import javax.servlet.ServletContext;
 
 @ApplicationScoped
 public class TemplateProvider {
-
     private static final String TEMPLATE_DIRECTORY_PATH = "WEB-INF/fm-templates";
     private static final String TEMPLATE_EXT = ".ftlh";
 

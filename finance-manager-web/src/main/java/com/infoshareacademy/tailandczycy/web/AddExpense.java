@@ -23,8 +23,8 @@ import java.util.logging.Logger;
 public class AddExpense extends HttpServlet {
     private static final String TEMPLATE_NAME = "add-expense";
     private static final String TEMPLATE_EXPENSES_LIST = "/expenses";
-
     private Logger logger = Logger.getLogger(getClass().getName());
+
     @Inject
     TemplateProvider templateProvider;
     @Inject

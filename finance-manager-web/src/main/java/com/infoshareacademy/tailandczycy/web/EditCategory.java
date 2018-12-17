@@ -24,10 +24,11 @@ public class EditCategory extends HttpServlet {
     private final Logger logger = Logger.getLogger(getClass().getName());
     private static final String TEMPLATE_NAME = "edit-category";
     private static final String TEMPLATE_EXPENSES_LIST = "/expenses";
+
     @Inject
-    TemplateProvider templateProvider;
+    private TemplateProvider templateProvider;
     @Inject
-    CategoryRequestViewDto categoryRequestViewDto;
+    private CategoryRequestViewDto categoryRequestViewDto;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
