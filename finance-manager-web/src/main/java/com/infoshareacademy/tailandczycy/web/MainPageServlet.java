@@ -1,16 +1,26 @@
 package com.infoshareacademy.tailandczycy.web;
 
+import com.infoshareacademy.tailandczycy.dao.BudgetDao;
+import com.infoshareacademy.tailandczycy.dao.CategoryDao;
+import com.infoshareacademy.tailandczycy.dao.ExpenseDao;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
 
+import com.infoshareacademy.tailandczycy.model.Budget;
+import com.infoshareacademy.tailandczycy.model.Category;
+import com.infoshareacademy.tailandczycy.model.Expense;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +32,16 @@ public class MainPageServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
+
+    @Inject
+    CategoryDao categoryDao;
+
+    @Inject
+    ExpenseDao expenseDao;
+
+    @Inject
+    BudgetDao budgetDao;
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {

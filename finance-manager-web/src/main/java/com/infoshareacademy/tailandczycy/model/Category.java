@@ -42,28 +42,19 @@ public class Category {
     @NotNull
     private BigDecimal limit;
 
-    @ManyToMany
-    @JoinTable(name = "CATEGORIES_TO_EXPENSES",
-            joinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "expense_id", referencedColumnName = "id"),
-            uniqueConstraints = @UniqueConstraint(columnNames = {"category_id", "expense_id"}))
+    @ManyToMany(mappedBy = "categories")
     private List<Expense> expenses;
 
     public Category() {
     }
 
-    public Category(String name, BigDecimal limit, List<Expense> expenses) {
+    public Category(String name, BigDecimal limit) {
         this.name = name;
         this.limit = limit;
-        this.expenses = expenses;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -91,18 +82,6 @@ public class Category {
     }
 
     @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", limit=" + limit +
-                ", expenses=" + expenses.stream()
-                                .map(Expense::getId)
-                                .collect(Collectors.toList())+
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -116,5 +95,17 @@ public class Category {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, limit, expenses);
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", limit=" + limit +
+                ", expenses=" + expenses.stream()
+                                .map(Expense::getId)
+                                .collect(Collectors.toList())+
+                '}';
     }
 }
