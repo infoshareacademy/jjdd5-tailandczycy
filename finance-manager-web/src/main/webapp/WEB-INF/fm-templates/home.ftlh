@@ -43,7 +43,7 @@
                                 </button>&nbsp;<button
                                     type="button"
                                     class="btn btn-danger btn-sm">
-                                <a href="/delete-expense?id=${expense.id}"> Delete </a>
+                                <a href="/delete-expense-main?id=${expense.id}"> Delete </a>
                             </button>
                             </td>
                         </tr>
