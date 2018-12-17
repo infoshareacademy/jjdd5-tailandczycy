@@ -25,7 +25,8 @@ public class ExpensesServlet extends HttpServlet {
     private final Logger logger = Logger.getLogger(getClass().getName());
     @Inject
    private TemplateProvider templateProvider;
-    private ExpenseDao expenseDao = new ExpenseDao();
+    @Inject
+    private ExpenseDao expenseDao;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
