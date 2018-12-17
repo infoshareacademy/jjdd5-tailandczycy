@@ -38,10 +38,12 @@
                             <td>${expense.amount}</td>
                             <td>${expense.comment}</td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm">Edytuj</button>&nbsp;<button
+                                <button type="button" class="btn btn-primary btn-sm">
+                                    <a href="/edit-expense?id=${expense.id}"> Edit </a
+                                </button>&nbsp;<button
                                     type="button"
                                     class="btn btn-danger btn-sm">
-                                Usuń
+                                <a href="/delete-expense?id=${expense.id}"> Delete </a>
                             </button>
                             </td>
                         </tr>

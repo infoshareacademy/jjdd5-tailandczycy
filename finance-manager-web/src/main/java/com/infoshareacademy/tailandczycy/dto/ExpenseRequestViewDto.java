@@ -49,6 +49,18 @@ public class ExpenseRequestViewDto {
         return expenseRequestView;
     }
 
+    public void updateExpense(ExpenseRequestView expenseRequestView) {
+        Expense expense = expenseDao.findById(expenseRequestView.getId());
+
+        expense.setAmount(expenseRequestView.getAmount());
+        expense.setComment(expense.getComment());
+        expense.setDate(expenseRequestView.getDate());
+        expense.setCategories(expenseRequestView.getCategories());
+            expenseDao.update(expense);
+
+    }
+
+
     public void saveExpense(ExpenseRequestView expenseRequestView) {
         Expense expense = expenseDao.findById(expenseRequestView.getId());
         boolean newExpense = false;

@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@WebServlet("/delete-expense")
+@WebServlet("/delete-expense-main")
 public class DeleteExpenseMainPageServlet extends HttpServlet {
     private final Logger logger = Logger.getLogger(getClass().getName());
     private static final String TEMPLATE_EXPENSE_LIST = "/home";
