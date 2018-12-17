@@ -58,11 +58,11 @@
             <#list expenses>
             <tr>
                 <th>#</th>
-                <th>Nazwa</th>
-                <th>Kategoria</th>
-                <th>Data</th>
-                <th>Kwota</th>
-                <th>Komentarz</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Comment</th>
                 <th></th>
             </tr>
             </thead>
