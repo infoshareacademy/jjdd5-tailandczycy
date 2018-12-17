@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 @WebServlet(urlPatterns = "edit-expense")
 public class EditExpense extends HttpServlet {
     private final Logger logger = Logger.getLogger(getClass().getName());
-    private static final String TEMPLATE_NAME = "edit-expense";
+    private static final String TEMPLATE_NAME = "transactions/editTransaction";
     private static final String TEMPLATE_EXPENSES_LIST = "/expenses";
 
     @Inject

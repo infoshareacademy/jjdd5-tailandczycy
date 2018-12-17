@@ -45,7 +45,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="contact-us">
                     <i class="fas fa-paper-plane"></i>
                     Kontakt
                 </a>
@@ -106,7 +106,7 @@
                 <td>5</td>
                 <td>Editor-in-chief</td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-sm">Edytuj</button>&nbsp;<button type="button"
+                    <button type="button" class="btn btn-primary btn-sm"><a href="edit-expense">Edytuj</a></button>&nbsp;<button type="button"
                                                                                                       class="btn btn-danger btn-sm">
                     Usuń
                 </button>
