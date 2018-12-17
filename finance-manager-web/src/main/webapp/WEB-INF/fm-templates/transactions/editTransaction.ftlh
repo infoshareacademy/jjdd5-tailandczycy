@@ -83,15 +83,15 @@
         <form>
             <div class="form-group">
                 <label for="usr">Nazwa:</label>
-                <input type="text" class="form-control" id="usr">
+                <input type="text" class="form-control" id="usr" value="???">
             </div>
             <div class="form-group">
                 <label for="pwd">Data:</label>
-                <input type="date" class="form-control" id="pwd">
+                <input type="date" class="form-control" id="pwd" value="???">
             </div>
             <div class="form-group">
                 <label for="pwd">Kwota:</label>
-                <input type="number" class="form-control" id="pwd">
+                <input type="number" class="form-control" id="pwd" value="???">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlSelect2">Kategoria:</label>
