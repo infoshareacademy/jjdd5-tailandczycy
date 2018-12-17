@@ -14,17 +14,17 @@
 
         <#include "static/menu.ftlh">
 
-        <h2>Wydatki</h2>
+        <h2>Expenses</h2>
         <table class="table table-hover table-fixed">
             <thead>
                 <#list expenses>
                 <tr>
                     <th>#</th>
-                    <th>Nazwa</th>
-                    <th>Kategoria</th>
-                    <th>Data</th>
-                    <th>Kwota</th>
-                    <th>Komentarz</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Comment</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -52,7 +52,7 @@
             </tbody>
         </table>
 
-        <h2>Analiza wydatków</h2>
+        <h2>Expense analysis</h2>
 
         <div id="piechart"></div>
 
