@@ -10,7 +10,7 @@
             <li class="active">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-home"></i>
-                    Konto
+                    Account
                 </a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
@@ -21,34 +21,34 @@
             <li>
                 <a href="add-expense">
                     <i class="fas fa-briefcase"></i>
-                    Wydatki
+                    Expenses
                 </a>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-copy"></i>
-                    Kategorie
+                    Categories
                 </a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
-                        <a href="add-category">Dodaj</a>
+                        <a href="add-category">Add</a>
                     </li>
                     <li>
-                        <a href="edit-category">Edytuj</a>
+                        <a href="edit-category">Edit</a>
                     </li>
                     <li>
-                        <a href="delete-category">Usuń</a>
+                        <a href="delete-category">Delete</a>
                     </li>
                 </ul>
             </li>
             <li>
                 <a href="about">
                     <i class="fas fa-question"></i>
-                    O nas
+                    About us
                 </a>
             </li>
             <li>
                 <a href="">
                     <i class="fas fa-paper-plane"></i>
-                    Kontakt
+                    Contact
                 </a>
             </li>
         </ul>
@@ -79,36 +79,33 @@
                 </div>
             </div>
         </nav>
-        <h2>Wydatki<span class="badge badge-secondary">Nowy</span></h2>
-        <form>
+        <h2>Expenses<span class="badge badge-secondary">Edit</span></h2>
+        <form method="post" action="/edit-expense">
             <div class="form-group">
-                <label for="usr">Nazwa:</label>
-                <input type="text" class="form-control" id="usr" value="???">
+                <label for="usr">Name:</label>
+                <input type="text" class="form-control" id="usr" name="name" value="${expense.name}">
             </div>
             <div class="form-group">
-                <label for="pwd">Data:</label>
-                <input type="date" class="form-control" id="pwd" value="???">
+                <label for="pwd">Date:</label>
+                <input type="date" class="form-control" id="pwd" name="date" value="${expense.date}">
             </div>
             <div class="form-group">
-                <label for="pwd">Kwota:</label>
-                <input type="number" class="form-control" id="pwd" value="???">
+                <label for="amt">Amount:</label>
+                <input type="number" class="form-control" id="amt" name="amount" value=${bigdecimal}>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlSelect2">Kategoria:</label>
-                <select multiple class="form-control" id="exampleFormControlSelect2">
-                    <option>Dom i rachunki</option>
-                    <option>Odzież i obuwie</option>
-                    <option>Wydatki podstawowe</option>
-                    <option>Zdrowie i uroda</option>
-                    <option>Rozrywka i podróże</option>
-                    <option>Samochód i transport</option>
+                <label for="exampleFormControlSelect2">Category:</label>
+                <select multiple class="form-control" id="exampleFormControlSelect2" name="categories">
+                    <#list category as c>
+                        <option value="${c.name}">${c.name}</option>
+                    </#list>
                 </select>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">Komentarz:</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <label for="exampleFormControlTextarea1">Commentary:</label>
+                <input type="text" value="${expense.comment}" class="form-control" id="exampleFormControlTextarea1" rows="3" name="comment"></input>
             </div>
+            <input type="submit" name="save" class="btn btn-primary active" value="Send"/>
         </form>
-        <button type="button" class="btn btn-primary active">Wyślij</button>
     <#include "../static/footer.ftlh">
     <#include "../static/scripts.ftlh">
