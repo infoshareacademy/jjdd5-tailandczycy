@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@WebServlet(urlPatterns = "edit-category")
+@WebServlet(urlPatterns = "/edit-category")
 public class EditCategory extends HttpServlet {
     private final Logger logger = Logger.getLogger(getClass().getName());
     private static final String TEMPLATE_NAME = "edit-category";
