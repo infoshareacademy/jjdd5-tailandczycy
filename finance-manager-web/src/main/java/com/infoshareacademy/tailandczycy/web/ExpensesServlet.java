@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 @WebServlet(urlPatterns = "/expenses")
 public class ExpensesServlet extends HttpServlet {
-    private static final String TEMPLATE_NAME = "expenses";
+    private static final String TEMPLATE_NAME = "transactions/listTransaction";
     private final Logger logger = Logger.getLogger(getClass().getName());
 
     @Inject

@@ -81,6 +81,7 @@
         </nav>
         <h2>Expenses<span class="badge badge-secondary">Edit</span></h2>
         <form method="post" action="/edit-expense">
+            <input type="hidden" name="expenseId" value="${expense.id}"/>
             <div class="form-group">
                 <label for="usr">Name:</label>
                 <input type="text" class="form-control" id="usr" name="name" value="${expense.name}">

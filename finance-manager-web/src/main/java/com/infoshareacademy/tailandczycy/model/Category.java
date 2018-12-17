@@ -42,11 +42,7 @@ public class Category {
     @NotNull
     private BigDecimal limit;
 
-    @ManyToMany
-    @JoinTable(name = "CATEGORIES_TO_EXPENSES",
-            joinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "expense_id", referencedColumnName = "id"),
-            uniqueConstraints = @UniqueConstraint(columnNames = {"category_id", "expense_id"}))
+    @ManyToMany(mappedBy = "categories")
     private List<Expense> expenses;
 
     public Category() {
