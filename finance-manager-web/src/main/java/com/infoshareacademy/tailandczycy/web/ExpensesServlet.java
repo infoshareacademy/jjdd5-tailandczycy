@@ -24,7 +24,7 @@ public class ExpensesServlet extends HttpServlet {
     private static final String TEMPLATE_NAME = "";
     private final Logger logger = Logger.getLogger(getClass().getName());
     @Inject
-   private TemplateProvider templateProvider;
+    private TemplateProvider templateProvider;
     private ExpenseDao expenseDao = new ExpenseDao();
 
     @Override

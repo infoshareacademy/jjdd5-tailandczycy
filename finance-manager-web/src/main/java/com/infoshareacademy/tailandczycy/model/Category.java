@@ -104,8 +104,8 @@ public class Category {
                 ", name='" + name + '\'' +
                 ", limit=" + limit +
                 ", expenses=" + expenses.stream()
-                                .map(Expense::getId)
-                                .collect(Collectors.toList())+
+                .map(Expense::getId)
+                .collect(Collectors.toList()) +
                 '}';
     }
 }

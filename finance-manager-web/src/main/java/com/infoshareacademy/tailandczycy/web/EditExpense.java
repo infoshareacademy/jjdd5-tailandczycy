@@ -39,6 +39,7 @@ public class EditExpense extends HttpServlet {
         handleResponse(resp, expenseRequestView);
 
     }
+
     private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
         Template template = templateProvider.getTemplate(getServletContext(), templateName);
 
@@ -48,6 +49,7 @@ public class EditExpense extends HttpServlet {
             logger.log(Level.SEVERE, e.getMessage());
         }
     }
+
     private void handleResponse(HttpServletResponse resp, ExpenseRequestView expenseView) throws IOException {
         expenseRequestViewDto.saveExpense(expenseView);
         resp.sendRedirect(TEMPLATE_EXPENSES_LIST);
