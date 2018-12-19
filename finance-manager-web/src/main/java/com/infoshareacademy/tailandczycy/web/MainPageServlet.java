@@ -1,5 +1,8 @@
 package com.infoshareacademy.tailandczycy.web;
 
+import com.infoshareacademy.tailandczycy.dao.BudgetDao;
+import com.infoshareacademy.tailandczycy.dao.CategoryDao;
+import com.infoshareacademy.tailandczycy.dao.ExpenseDao;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
 
 import freemarker.template.Template;
@@ -18,10 +21,20 @@ import java.util.logging.Logger;
 @WebServlet(urlPatterns = "/home")
 public class MainPageServlet extends HttpServlet {
     private static final String TEMPLATE_NAME = "welcome";
-    private  final Logger logger = Logger.getLogger(getClass().getName());
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     @Inject
     private TemplateProvider templateProvider;
+
+    @Inject
+    CategoryDao categoryDao;
+
+    @Inject
+    ExpenseDao expenseDao;
+
+    @Inject
+    BudgetDao budgetDao;
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {

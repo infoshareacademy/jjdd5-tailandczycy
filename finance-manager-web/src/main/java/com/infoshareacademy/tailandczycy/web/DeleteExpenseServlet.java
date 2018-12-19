@@ -40,7 +40,6 @@ public class DeleteExpenseServlet extends HttpServlet {
         handleTemplate(dataModel, TEMPLATE_NAME, resp);
 
 
-
     }
 
     private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
