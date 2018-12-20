@@ -1,8 +1,8 @@
 package com.infoshareacademy.tailandczycy.web;
 
-import com.infoshareacademy.tailandczycy.dto.ExpenseRequestViewDto;
+import com.infoshareacademy.tailandczycy.cdi.ExpenseBean;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
-import com.infoshareacademy.tailandczycy.views.ExpenseRequestView;
+import com.infoshareacademy.tailandczycy.dto.ExpenseDto;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -28,7 +28,7 @@ public class AddExpense extends HttpServlet {
     TemplateProvider templateProvider;
 
     @Inject
-    ExpenseRequestViewDto expenseRequestViewDto;
+    ExpenseBean expenseBean;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -39,10 +39,11 @@ public class AddExpense extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        ExpenseRequestView expenseRequestView = expenseRequestViewDto.getRequestView(req);
+        ExpenseDto expenseDto = expenseBean.getRequestView(req);
+        //walidacja
         Map<String, Object> dataModel = new HashMap<>();
-        dataModel.put("expense", expenseRequestView);
-        handleResponse(resp, expenseRequestView);
+        dataModel.put("expense", expenseDto);
+        handleResponse(resp, expenseDto);
     }
 
     private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
@@ -54,8 +55,8 @@ public class AddExpense extends HttpServlet {
         }
     }
 
-    private void handleResponse(HttpServletResponse resp, ExpenseRequestView expenseView) throws IOException {
-        expenseRequestViewDto.saveExpense(expenseView);
+    private void handleResponse(HttpServletResponse resp, ExpenseDto expenseView) throws IOException {
+        expenseBean.saveExpense(expenseView);
         resp.sendRedirect(TEMPLATE_EXPENSES_LIST);
     }
 }

@@ -1,7 +1,7 @@
 package com.infoshareacademy.tailandczycy.web;
 
-import com.infoshareacademy.tailandczycy.dto.CategoryRequestViewDto;
-import com.infoshareacademy.tailandczycy.views.CategoryRequestView;
+import com.infoshareacademy.tailandczycy.cdi.CategoryBean;
+import com.infoshareacademy.tailandczycy.dto.CategoryDto;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
@@ -17,18 +17,18 @@ public class AddCategory extends HttpServlet {
     private static final String TEMPLATE_CATEGORY_LIST = "expenses";
 
     @Inject
-    CategoryRequestViewDto categoryRequestViewDto;
+    CategoryBean categoryBean;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        CategoryRequestView categoryRequestView = categoryRequestViewDto.getcategoryRequestView(req);
+        CategoryDto categoryRequestView = categoryBean.getCategoryDto(req);
         Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("category", categoryRequestView);
         handleResponse(resp, categoryRequestView);
     }
 
-    private void handleResponse(HttpServletResponse resp, CategoryRequestView categoryView) throws IOException {
-        categoryRequestViewDto.saveCategory(categoryView);
+    private void handleResponse(HttpServletResponse resp, CategoryDto categoryView) throws IOException {
+        categoryBean.saveCategory(categoryView);
         resp.sendRedirect(TEMPLATE_CATEGORY_LIST);
     }
 }

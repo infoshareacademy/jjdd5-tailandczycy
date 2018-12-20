@@ -1,12 +1,12 @@
-package com.infoshareacademy.tailandczycy.views;
+package com.infoshareacademy.tailandczycy.dto;
 
-import com.infoshareacademy.tailandczycy.service.Category;
+import com.infoshareacademy.tailandczycy.model.Category;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-public class ExpenseRequestView {
+public class ExpenseDto {
     Long id;
     String name;
     String comment;

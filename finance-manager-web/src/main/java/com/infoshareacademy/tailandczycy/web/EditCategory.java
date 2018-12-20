@@ -1,8 +1,8 @@
 package com.infoshareacademy.tailandczycy.web;
 
-import com.infoshareacademy.tailandczycy.dto.CategoryRequestViewDto;
+import com.infoshareacademy.tailandczycy.cdi.CategoryBean;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
-import com.infoshareacademy.tailandczycy.views.CategoryRequestView;
+import com.infoshareacademy.tailandczycy.dto.CategoryDto;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -25,12 +25,12 @@ public class EditCategory extends HttpServlet {
     @Inject
     TemplateProvider templateProvider;
     @Inject
-    CategoryRequestViewDto categoryRequestViewDto;
+    CategoryBean categoryBean;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
-        CategoryRequestView categoryRequestView = categoryRequestViewDto.getCategoryById(Long.parseLong(req.getParameter("id")));
+        CategoryDto categoryRequestView = categoryBean.getCategoryById(Long.parseLong(req.getParameter("id")));
         Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("category", categoryRequestView);
         handleTemplate(dataModel, TEMPLATE_NAME, resp);
@@ -48,8 +48,8 @@ public class EditCategory extends HttpServlet {
         }
     }
 
-    private void handleResponse(HttpServletResponse resp, CategoryRequestView categoryView) throws IOException {
-        categoryRequestViewDto.saveCategory(categoryView);
+    private void handleResponse(HttpServletResponse resp, CategoryDto categoryView) throws IOException {
+        categoryBean.saveCategory(categoryView);
         resp.sendRedirect(TEMPLATE_EXPENSES_LIST);
     }
 }
