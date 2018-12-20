@@ -1,7 +1,9 @@
 package com.infoshareacademy.tailandczycy.dto;
 
+import com.infoshareacademy.tailandczycy.dao.CategoryDao;
 import com.infoshareacademy.tailandczycy.dao.ExpenseDao;
 
+import com.infoshareacademy.tailandczycy.model.Category;
 import com.infoshareacademy.tailandczycy.model.Expense;
 import com.infoshareacademy.tailandczycy.views.ExpenseRequestView;
 import org.apache.commons.lang3.StringUtils;
@@ -12,20 +14,27 @@ import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @RequestScoped
 public class ExpenseRequestViewDto {
     @Inject
     private ExpenseDao expenseDao;
+    @Inject
+    private CategoryDao categoryDao;
 
     public ExpenseRequestView getRequestView(HttpServletRequest req) {
         ExpenseRequestView expenseRequestView = new ExpenseRequestView();
+        List<String> categoriesString = new ArrayList<>(Arrays.asList(req.getParameterValues("categories")));
+        List<Category> categories = categoryDao.findCategoryByName(categoriesString);
 
-        expenseRequestView.setId(parseStringToLong(req.getParameter("id")));
         expenseRequestView.setComment(req.getParameter("comment"));
         expenseRequestView.setName(req.getParameter("name"));
         expenseRequestView.setAmount(parseStringToBigDecimal(req.getParameter("amount")));
         expenseRequestView.setDate(parseStringToLocalDate(req.getParameter("date")));
+        expenseRequestView.setCategories(categories);
 
         return expenseRequestView;
     }
@@ -46,20 +55,13 @@ public class ExpenseRequestViewDto {
     }
 
     public void saveExpense(ExpenseRequestView expenseRequestView) {
-        Expense expense = expenseDao.findById(expenseRequestView.getId());
-        boolean newExpense = false;
-        if (expense == null) {
-            expense = new Expense();
-            newExpense = true;
-        }
-
-
+        Expense expense = new Expense();
+        expense.setName(expenseRequestView.getName());
         expense.setAmount(expenseRequestView.getAmount());
         expense.setComment(expense.getComment());
         expense.setDate(expenseRequestView.getDate());
-        if (newExpense) {
-            expenseDao.save(expense);
-        }
+        expense.setCategories(expenseRequestView.getCategories());
+        expenseDao.save(expense);
     }
 
     private LocalDate parseStringToLocalDate(String param) {

@@ -32,6 +32,7 @@ public class AddExpense extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        ExpenseRequestView expenseRequestView = expenseRequestViewDto.getRequestView(req);
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
         HashMap<String, Object> dataModel = new HashMap<>();
         handleTemplate(dataModel, TEMPLATE_NAME, resp);
