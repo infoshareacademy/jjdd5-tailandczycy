@@ -22,10 +22,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 @Transactional
@@ -70,26 +67,21 @@ public class EditExpense extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
-        Expense expense = new Expense();
+
+        List<Category> categories = categoryDao.findCategoriesByName(req.getParameter("categories"));
+        Category category = categories.get(0);
+
+        Long expenseId = Long.parseLong(req.getParameter("expenseId"));
+        Expense expense = expenseDao.findById(expenseId);
 //        ExpenseRequestView expenseRequestView = expenseRequestViewDto.getRequestView(req);
         expense.setAmount(BigDecimal.valueOf(Long.parseLong(req.getParameter("amount"))));
         expense.setComment(req.getParameter("comment"));
         expense.setDate(LocalDate.parse(req.getParameter("date")));
         expense.setName(req.getParameter("name"));
+        expense.setCategories(new ArrayList<>(Arrays.asList(category)));
         expenseDao.update(expense);
 
-        List<Category> categories = categoryDao.findCategoriesByName(req.getParameter("categories"));
-        Category category = categories.get(0);
-
-        if (category.getExpenses() == null) {
-            category.setExpenses(new ArrayList<>());
-        }
-        category.getExpenses().add(expense);
-        categoryDao.update(category);
-
-        Map<String, Object> dataModel = new HashMap<>();
-        handleResponse(resp, dataModel, expense);
-
+        handleResponse(resp);
     }
 
     private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
@@ -102,8 +94,7 @@ public class EditExpense extends HttpServlet {
         }
     }
 
-    private void handleResponse(HttpServletResponse resp, Map<String, Object> model, Expense expense) throws IOException {
-        expenseDao.update(expense);
+    private void handleResponse(HttpServletResponse resp) throws IOException {
         resp.sendRedirect(TEMPLATE_EXPENSES_LIST);
     }
 }

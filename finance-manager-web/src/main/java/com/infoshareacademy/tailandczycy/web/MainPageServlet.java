@@ -33,7 +33,7 @@ public class MainPageServlet extends HttpServlet {
 
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
         Map<String, Object> dataModel = new HashMap<>();
-        dataModel.put("expenses", expenseDao.orderByAmountDescLimit5());
+        dataModel.put("expenses", expenseDao.findAll());
         handleTemplate(dataModel, TEMPLATE_NAME, resp);
     }
 

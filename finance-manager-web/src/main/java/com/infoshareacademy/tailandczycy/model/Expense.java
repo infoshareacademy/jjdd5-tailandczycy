@@ -87,7 +87,11 @@ public class Expense {
     @NotNull
     private LocalDate date;
 
-    @ManyToMany(mappedBy = "expenses")
+    @ManyToMany
+    @JoinTable(name = "EXPENSES_TO_CATEGORIES",
+            joinColumns = @JoinColumn(name = "expense_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"expense_id", "category_id", }))
     private List<Category> categories;
 
     public Expense() {

@@ -52,22 +52,18 @@ AddExpense extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
+
+        List<Category> categories = categoryDao.findCategoriesByName(req.getParameter("categories"));
+        Category category = categories.get(0);
+
         Expense expense = new Expense();
 //        ExpenseRequestView expenseRequestView = expenseRequestViewDto.getRequestView(req);
         expense.setAmount(BigDecimal.valueOf(Long.parseLong(req.getParameter("amount"))));
         expense.setComment(req.getParameter("comment"));
         expense.setDate(LocalDate.parse(req.getParameter("date")));
         expense.setName(req.getParameter("name"));
+        expense.setCategories(new ArrayList<>(Arrays.asList(category)));
         expenseDao.save(expense);
-
-        List<Category> categories = categoryDao.findCategoriesByName(req.getParameter("categories"));
-        Category category = categories.get(0);
-
-        if (category.getExpenses() == null) {
-            category.setExpenses(new ArrayList<>());
-        }
-        category.getExpenses().add(expense);
-        categoryDao.update(category);
 
         Map<String, Object> dataModel = new HashMap<>();
 //        dataModel.put("expense", expense);
