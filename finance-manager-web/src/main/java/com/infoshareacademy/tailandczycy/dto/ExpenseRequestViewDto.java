@@ -10,6 +10,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 
 @RequestScoped
@@ -71,7 +72,7 @@ public class ExpenseRequestViewDto {
         if (param == null || param.isEmpty() || StringUtils.isNumeric(param)) {
             return null;
         }
-        BigDecimal amount = new BigDecimal(param);
+        BigDecimal amount = new BigDecimal(param).setScale(2, RoundingMode.HALF_UP);
         return amount;
     }
 
