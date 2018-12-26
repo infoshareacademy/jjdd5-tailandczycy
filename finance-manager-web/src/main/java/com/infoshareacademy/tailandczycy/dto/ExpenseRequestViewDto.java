@@ -61,6 +61,10 @@ public class ExpenseRequestViewDto {
 
     }
 
+    public void deleteExpense(Long id) {
+        expenseDao.delete(id);
+    }
+
 
     public void saveExpense(ExpenseRequestView expenseRequestView) {
 //        Expense expense = expenseDao.findById(expenseRequestView.getId());
