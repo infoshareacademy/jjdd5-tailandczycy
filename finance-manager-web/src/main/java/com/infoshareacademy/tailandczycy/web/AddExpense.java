@@ -1,5 +1,6 @@
 package com.infoshareacademy.tailandczycy.web;
 
+import com.infoshareacademy.tailandczycy.Validations.Validator;
 import com.infoshareacademy.tailandczycy.cdi.ExpenseBean;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
 import com.infoshareacademy.tailandczycy.dto.ExpenseDto;
@@ -19,10 +20,12 @@ import java.util.logging.Logger;
 
 @WebServlet(urlPatterns = "/add-expense")
 public class AddExpense extends HttpServlet {
-    private static final String TEMPLATE_NAME = "transactions/newTransaction";
-    private static final String TEMPLATE_EXPENSES_LIST = "/expenses";
+    private static final String TEMPLATE_ADD = "transactions/newTransaction";
 
     private Logger logger = Logger.getLogger(getClass().getName());
+
+    @Inject
+    Validator validator;
 
     @Inject
     TemplateProvider templateProvider;
@@ -34,16 +37,21 @@ public class AddExpense extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
         HashMap<String, Object> dataModel = new HashMap<>();
-        handleTemplate(dataModel, TEMPLATE_NAME, resp);
+        handleTemplate(dataModel, TEMPLATE_ADD, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         ExpenseDto expenseDto = expenseBean.getRequestView(req);
-        //walidacja
-        Map<String, Object> dataModel = new HashMap<>();
-        dataModel.put("expense", expenseDto);
-        handleResponse(resp, expenseDto);
+        HashMap<String, Object> dataModel = new HashMap<>();
+        if(validator.isExpenseCorrect(expenseDto)) {
+            expenseBean.saveExpense(expenseDto);
+            dataModel.put("state", "added");
+            handleTemplate(dataModel, TEMPLATE_ADD, resp);
+        } else {
+            dataModel.put("state", "error");
+            handleTemplate(dataModel, TEMPLATE_ADD, resp);
+        }
     }
 
     private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
@@ -53,11 +61,6 @@ public class AddExpense extends HttpServlet {
         } catch (TemplateException e) {
             logger.log(Level.SEVERE, e.getMessage());
         }
-    }
-
-    private void handleResponse(HttpServletResponse resp, ExpenseDto expenseView) throws IOException {
-        expenseBean.saveExpense(expenseView);
-        resp.sendRedirect(TEMPLATE_EXPENSES_LIST);
     }
 }
 

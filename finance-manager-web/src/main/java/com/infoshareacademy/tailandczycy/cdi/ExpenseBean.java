@@ -61,12 +61,15 @@ public class ExpenseBean {
         expense.setComment(expense.getComment());
         expense.setDate(expenseDto.getDate());
         expense.setCategories(expenseDto.getCategories());
+        expense.getCategories()
+                .forEach(category -> {
+                                        category.getTotal().add(expenseDto.getAmount());
+                                        categoryDao.update(category);
+                                     });
         expenseDao.save(expense);
     }
 
     private LocalDate parseStringToLocalDate(String param) {
-        if (validateParameter(param)) return null;
-
         return LocalDate.parse(param);
     }
 
@@ -79,14 +82,6 @@ public class ExpenseBean {
     }
 
     private Long parseStringToLong(String param) {
-        if (validateParameter(param)) return null;
         return Long.parseLong(param);
-    }
-
-    private boolean validateParameter(String param) {
-        if (param == null || param.isEmpty() || !StringUtils.isNumeric(param)) {
-            return true;
-        }
-        return false;
     }
 }
