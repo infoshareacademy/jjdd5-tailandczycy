@@ -48,7 +48,7 @@ public class Category {
     public Category() {
     }
 
-    public Category(String name, BigDecimal limit, List<Expense> expenses) {
+    public Category(String name, BigDecimal limit) {
         this.name = name;
         this.limit = limit;
         this.expenses = expenses;
@@ -56,10 +56,6 @@ public class Category {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -87,18 +83,6 @@ public class Category {
     }
 
     @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", limit=" + limit +
-                ", expenses=" + expenses.stream()
-                .map(Expense::getId)
-                .collect(Collectors.toList()) +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -112,5 +96,17 @@ public class Category {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, limit, expenses);
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", limit=" + limit +
+                ", expenses=" + expenses.stream()
+                .map(Expense::getId)
+                .collect(Collectors.toList()) +
+                '}';
     }
 }
