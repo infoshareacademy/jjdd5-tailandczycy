@@ -42,9 +42,9 @@ public class AddExpense extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        ExpenseDto expenseDto = expenseBean.getRequestView(req);
         HashMap<String, Object> dataModel = new HashMap<>();
-        if(validator.isExpenseCorrect(expenseDto)) {
+        if(validator.isExpenseCorrect(req)) {
+            ExpenseDto expenseDto = expenseBean.getRequestView(req);
             expenseBean.saveExpense(expenseDto);
             dataModel.put("state", "added");
             handleTemplate(dataModel, TEMPLATE_ADD, resp);

@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @Table(name = "CATEGORIES")
 @NamedQueries({
         @NamedQuery(
-                name = "Category.findCategoryByName",
+                name = "Category.findCategoriesByNames",
                 query = "SELECT c FROM Category c WHERE c.name IN :param1"
         ),
         @NamedQuery(

@@ -28,10 +28,10 @@ public class ExpenseBean {
     public ExpenseDto getRequestView(HttpServletRequest req) {
         ExpenseDto expenseDto = new ExpenseDto();
         List<String> categoriesString = new ArrayList<>(Arrays.asList(req.getParameterValues("categories")));
-        List<Category> categories = categoryDao.findCategoryByName(categoriesString);
+        List<Category> categories = categoryDao.findCategoriesByNames(categoriesString);
 
-        expenseDto.setComment(req.getParameter("comment"));
         expenseDto.setName(req.getParameter("name"));
+        expenseDto.setComment(req.getParameter("comment"));
         expenseDto.setAmount(parseStringToBigDecimal(req.getParameter("amount")));
         expenseDto.setDate(parseStringToLocalDate(req.getParameter("date")));
         expenseDto.setCategories(categories);
@@ -69,14 +69,11 @@ public class ExpenseBean {
         expenseDao.save(expense);
     }
 
-    private LocalDate parseStringToLocalDate(String param) {
-        return LocalDate.parse(param);
+    private LocalDate parseStringToLocalDate(String date) {
+        return LocalDate.parse(date);
     }
 
     private BigDecimal parseStringToBigDecimal(String param) {
-        if (param == null || param.isEmpty() || StringUtils.isNumeric(param)) {
-            return null;
-        }
         BigDecimal amount = new BigDecimal(param).setScale(2, RoundingMode.HALF_UP);
         return amount;
     }
