@@ -1,7 +1,7 @@
 version: "2"
 services:
   db:
-    image: mysql
+    image: 1148
     environment:
       - MYSQL_ROOT_PASSWORD=pass123
       - MYSQL_DATABASE=tailandczycy
