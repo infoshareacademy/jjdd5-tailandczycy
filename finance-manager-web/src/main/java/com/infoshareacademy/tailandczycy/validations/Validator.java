@@ -17,7 +17,7 @@ import java.util.List;
 public class Validator {
 
     @Inject
-    CategoryDao categoryDao;
+    private CategoryDao categoryDao;
 
     public boolean isExpenseCorrect(HttpServletRequest request) {
         if (!isNameCorrect(request.getParameter("name"))) {

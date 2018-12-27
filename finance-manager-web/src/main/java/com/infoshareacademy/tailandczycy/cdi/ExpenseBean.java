@@ -6,7 +6,6 @@ import com.infoshareacademy.tailandczycy.dao.ExpenseDao;
 import com.infoshareacademy.tailandczycy.model.Category;
 import com.infoshareacademy.tailandczycy.model.Expense;
 import com.infoshareacademy.tailandczycy.dto.ExpenseDto;
-import org.apache.commons.lang3.StringUtils;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
