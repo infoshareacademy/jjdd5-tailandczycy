@@ -1,8 +1,8 @@
 package com.infoshareacademy.tailandczycy.web;
 
-import com.infoshareacademy.tailandczycy.dto.ExpenseRequestViewDto;
+import com.infoshareacademy.tailandczycy.cdi.ExpenseBean;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
-import com.infoshareacademy.tailandczycy.views.ExpenseRequestView;
+import com.infoshareacademy.tailandczycy.dto.ExpenseDto;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -27,16 +27,16 @@ public class EditExpense extends HttpServlet {
     TemplateProvider templateProvider;
 
     @Inject
-    ExpenseRequestViewDto expenseRequestViewDto;
+    ExpenseBean expenseBean;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
-        ExpenseRequestView expenseRequestView = expenseRequestViewDto.getExpenseById(Long.parseLong(req.getParameter("id")));
+        ExpenseDto expenseDto = expenseBean.getExpenseById(Long.parseLong(req.getParameter("id")));
         Map<String, Object> dataModel = new HashMap<>();
-        dataModel.put("expense", expenseRequestView);
+        dataModel.put("expense", expenseDto);
         handleTemplate(dataModel, TEMPLATE_NAME, resp);
-        handleResponse(resp, expenseRequestView);
+        handleResponse(resp, expenseDto);
 
     }
 
@@ -50,8 +50,8 @@ public class EditExpense extends HttpServlet {
         }
     }
 
-    private void handleResponse(HttpServletResponse resp, ExpenseRequestView expenseView) throws IOException {
-        expenseRequestViewDto.saveExpense(expenseView);
+    private void handleResponse(HttpServletResponse resp, ExpenseDto expenseView) throws IOException {
+        expenseBean.saveExpense(expenseView);
         resp.sendRedirect(TEMPLATE_EXPENSES_LIST);
     }
 }
