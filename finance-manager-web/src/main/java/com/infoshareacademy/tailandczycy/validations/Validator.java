@@ -1,4 +1,4 @@
-package com.infoshareacademy.tailandczycy.Validations;
+package com.infoshareacademy.tailandczycy.validations;
 
 import com.infoshareacademy.tailandczycy.dao.CategoryDao;
 import com.infoshareacademy.tailandczycy.model.Category;

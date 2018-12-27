@@ -74,7 +74,7 @@ public class ExpenseBean {
     }
 
     private BigDecimal parseStringToBigDecimal(String param) {
-        BigDecimal amount = new BigDecimal(param).setScale(2, RoundingMode.HALF_UP);
-        return amount;
+
+        return new BigDecimal(param).setScale(2, RoundingMode.HALF_UP);
     }
 }

@@ -1,6 +1,6 @@
 package com.infoshareacademy.tailandczycy.web;
 
-import com.infoshareacademy.tailandczycy.Validations.Validator;
+import com.infoshareacademy.tailandczycy.validations.Validator;
 import com.infoshareacademy.tailandczycy.cdi.ExpenseBean;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
 import com.infoshareacademy.tailandczycy.dto.ExpenseDto;
