@@ -1,7 +1,7 @@
 version: "2"
 services:
   db:
-    image: 11418/tailandczycy
+    image: 11418/tailandczycy:user
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
       - MYSQL_DATABASE=tailandczycy
