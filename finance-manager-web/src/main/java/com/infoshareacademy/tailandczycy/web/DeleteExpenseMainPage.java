@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
-
-
 @WebServlet("/delete-expense-main")
 public class DeleteExpenseMainPage extends HttpServlet {
     private static final String TEMPLATE_MAIN_PAGE = "welcome";
@@ -32,14 +29,4 @@ public class DeleteExpenseMainPage extends HttpServlet {
         expenseBean.deleteExpense(id);
         resp.sendRedirect(TEMPLATE_MAIN_PAGE);
     }
-
-//    private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
-//        Template template = templateProvider.getTemplate(getServletContext(), templateName);
-//
-//        try {
-//            template.process(model, resp.getWriter());
-//        } catch (TemplateException e) {
-//            LOG.warn("Error while processing template" +  e.getMessage());
-//        }
-//    }
 }
