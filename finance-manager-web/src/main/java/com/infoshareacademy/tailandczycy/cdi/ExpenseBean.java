@@ -68,6 +68,10 @@ public class ExpenseBean {
         expenseDao.save(expense);
     }
 
+    public void deleteExpense(Long id) {
+        expenseDao.delete(id);
+    }
+
     private LocalDate parseStringToLocalDate(String date) {
         return LocalDate.parse(date);
     }

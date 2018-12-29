@@ -14,9 +14,9 @@ import java.io.IOException;
 
 
 
-@WebServlet("/delete-expense")
-public class DeleteExpenseServlet extends HttpServlet {
-    private static final String TEMPLATE_MAIN_PAGE = "expense-list";
+@WebServlet("/delete-expense-main")
+public class DeleteExpenseMainPage extends HttpServlet {
+    private static final String TEMPLATE_MAIN_PAGE = "welcome";
     private final Logger LOG = LoggerFactory.getLogger(getClass().getName());
     @Inject
     private ExpenseBean expenseBean;
@@ -32,6 +32,7 @@ public class DeleteExpenseServlet extends HttpServlet {
         expenseBean.deleteExpense(id);
         resp.sendRedirect(TEMPLATE_MAIN_PAGE);
     }
+
 //    private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
 //        Template template = templateProvider.getTemplate(getServletContext(), templateName);
 //
