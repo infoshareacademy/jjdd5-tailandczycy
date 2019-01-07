@@ -1,8 +1,5 @@
 package com.infoshareacademy.tailandczycy.web;
 
-import com.infoshareacademy.tailandczycy.dao.BudgetDao;
-import com.infoshareacademy.tailandczycy.dao.CategoryDao;
-import com.infoshareacademy.tailandczycy.dao.ExpenseDao;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
 
 import freemarker.template.Template;
@@ -26,16 +23,6 @@ public class MainPageServlet extends HttpServlet {
     @Inject
     private TemplateProvider templateProvider;
 
-    @Inject
-    CategoryDao categoryDao;
-
-    @Inject
-    ExpenseDao expenseDao;
-
-    @Inject
-    BudgetDao budgetDao;
-
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
@@ -43,11 +30,11 @@ public class MainPageServlet extends HttpServlet {
         Map<String, Object> dataModel = new HashMap<>();
         List<Integer> expenses = new ArrayList<>();
         dataModel.put("expenses", expenses);
-        handleTemplate(dataModel, TEMPLATE_NAME, resp);
+        handleTemplate(dataModel, resp);
     }
 
-    private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
-        Template template = templateProvider.getTemplate(getServletContext(), templateName);
+    private void handleTemplate(Map<String, Object> model, HttpServletResponse resp) throws IOException {
+        Template template = templateProvider.getTemplate(getServletContext(), MainPageServlet.TEMPLATE_NAME);
 
         try {
             template.process(model, resp.getWriter());
