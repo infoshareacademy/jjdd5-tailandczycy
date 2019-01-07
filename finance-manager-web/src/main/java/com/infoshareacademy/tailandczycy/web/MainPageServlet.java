@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.*;
 import java.util.logging.Level;
@@ -19,7 +18,7 @@ import java.util.logging.Logger;
 
 @WebServlet(urlPatterns = "/home")
 public class MainPageServlet extends HttpServlet {
-    private static final String TEMPLATE_NAME = "welcome";
+    private static final String TEMPLATE_NAME = "home";
     private final Logger logger = Logger.getLogger(getClass().getName());
 
     @Inject
