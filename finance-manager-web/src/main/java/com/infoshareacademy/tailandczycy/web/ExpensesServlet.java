@@ -21,24 +21,30 @@ import java.util.logging.Logger;
 
 @WebServlet(urlPatterns = "/expenses")
 public class ExpensesServlet extends HttpServlet {
-    private static final String TEMPLATE_NAME = "";
+
+    private static final String TEMPLATE_NAME = "test";
+
     private final Logger logger = Logger.getLogger(getClass().getName());
+
     @Inject
     private TemplateProvider templateProvider;
-    private ExpenseDao expenseDao = new ExpenseDao();
+
+    @Inject
+    private ExpenseDao expenseDao;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
         HashMap<String, Object> dataModel = new HashMap<>();
         List<Expense> listOfExpenses = expenseDao.findAll();
         dataModel.put("expenses", listOfExpenses);
-        handleTemplate(dataModel, TEMPLATE_NAME, resp);
-
+        handleTemplate(dataModel, resp);
     }
 
-    private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
-        Template template = templateProvider.getTemplate(getServletContext(), templateName);
+    private void handleTemplate(Map<String, Object> model, HttpServletResponse resp) throws IOException {
+
+        Template template = templateProvider.getTemplate(getServletContext(), ExpensesServlet.TEMPLATE_NAME);
 
         try {
             template.process(model, resp.getWriter());
