@@ -44,9 +44,9 @@ public class CategoryDao {
         return query.getResultList();
     }
 
-    public List<Category> findCategoryByName(List<String> string) {
+    public List<Category> findCategoriesByNames(List<String> string) {
         final TypedQuery<Category> query = entityManager
-                .createNamedQuery("Category.findCategoryByName", Category.class);
+                .createNamedQuery("Category.findCategoriesByNames", Category.class);
         query.setParameter(PARAM1, string);
         return query.getResultList();
     }

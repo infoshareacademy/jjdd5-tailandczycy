@@ -6,7 +6,6 @@ import com.infoshareacademy.tailandczycy.dao.ExpenseDao;
 import com.infoshareacademy.tailandczycy.model.Category;
 import com.infoshareacademy.tailandczycy.model.Expense;
 import com.infoshareacademy.tailandczycy.dto.ExpenseDto;
-import org.apache.commons.lang3.StringUtils;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -28,10 +27,10 @@ public class ExpenseBean {
     public ExpenseDto getRequestView(HttpServletRequest req) {
         ExpenseDto expenseDto = new ExpenseDto();
         List<String> categoriesString = new ArrayList<>(Arrays.asList(req.getParameterValues("categories")));
-        List<Category> categories = categoryDao.findCategoryByName(categoriesString);
+        List<Category> categories = categoryDao.findCategoriesByNames(categoriesString);
 
-        expenseDto.setComment(req.getParameter("comment"));
         expenseDto.setName(req.getParameter("name"));
+        expenseDto.setComment(req.getParameter("comment"));
         expenseDto.setAmount(parseStringToBigDecimal(req.getParameter("amount")));
         expenseDto.setDate(parseStringToLocalDate(req.getParameter("date")));
         expenseDto.setCategories(categories);
@@ -61,32 +60,20 @@ public class ExpenseBean {
         expense.setComment(expense.getComment());
         expense.setDate(expenseDto.getDate());
         expense.setCategories(expenseDto.getCategories());
+        expense.getCategories()
+                .forEach(category -> {
+                                        category.getTotal().add(expenseDto.getAmount());
+                                        categoryDao.update(category);
+                                     });
         expenseDao.save(expense);
     }
 
-    private LocalDate parseStringToLocalDate(String param) {
-        if (validateParameter(param)) return null;
-
-        return LocalDate.parse(param);
+    private LocalDate parseStringToLocalDate(String date) {
+        return LocalDate.parse(date);
     }
 
     private BigDecimal parseStringToBigDecimal(String param) {
-        if (param == null || param.isEmpty() || StringUtils.isNumeric(param)) {
-            return null;
-        }
-        BigDecimal amount = new BigDecimal(param).setScale(2, RoundingMode.HALF_UP);
-        return amount;
-    }
 
-    private Long parseStringToLong(String param) {
-        if (validateParameter(param)) return null;
-        return Long.parseLong(param);
-    }
-
-    private boolean validateParameter(String param) {
-        if (param == null || param.isEmpty() || !StringUtils.isNumeric(param)) {
-            return true;
-        }
-        return false;
+        return new BigDecimal(param).setScale(2, RoundingMode.HALF_UP);
     }
 }

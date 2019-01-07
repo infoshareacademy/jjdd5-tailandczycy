@@ -26,7 +26,7 @@ CREATE TABLE `BUDGETS` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `amount` decimal(19,2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +35,6 @@ CREATE TABLE `BUDGETS` (
 
 LOCK TABLES `BUDGETS` WRITE;
 /*!40000 ALTER TABLE `BUDGETS` DISABLE KEYS */;
-INSERT INTO `BUDGETS` VALUES (1,8000.00);
 /*!40000 ALTER TABLE `BUDGETS` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,8 +49,11 @@ CREATE TABLE `CATEGORIES` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `spending_limit` decimal(19,2) NOT NULL,
   `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `total` decimal(19,2) NOT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK639ujr2gq50n03e7k9b2c2oc0` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,33 +62,7 @@ CREATE TABLE `CATEGORIES` (
 
 LOCK TABLES `CATEGORIES` WRITE;
 /*!40000 ALTER TABLE `CATEGORIES` DISABLE KEYS */;
-INSERT INTO `CATEGORIES` VALUES (1,1500.00,'work'),(2,1000.00,'wife'),(3,300.00,'pub'),(4,2000.00,'home'),(5,800.00,'kids');
 /*!40000 ALTER TABLE `CATEGORIES` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `CATEGORIES_TO_EXPENSES`
---
-
-DROP TABLE IF EXISTS `CATEGORIES_TO_EXPENSES`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `CATEGORIES_TO_EXPENSES` (
-  `category_id` bigint(20) NOT NULL,
-  `expense_id` bigint(20) NOT NULL,
-  UNIQUE KEY `UKa80o7wnyv82y4wky0xl0mcopp` (`category_id`,`expense_id`),
-  KEY `FKi81y8f71x8dpusp1k6rpsilhx` (`expense_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `CATEGORIES_TO_EXPENSES`
---
-
-LOCK TABLES `CATEGORIES_TO_EXPENSES` WRITE;
-/*!40000 ALTER TABLE `CATEGORIES_TO_EXPENSES` DISABLE KEYS */;
-INSERT INTO `CATEGORIES_TO_EXPENSES` VALUES (1,3),(2,1),(3,2);
-/*!40000 ALTER TABLE `CATEGORIES_TO_EXPENSES` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -102,8 +78,10 @@ CREATE TABLE `EXPENSES` (
   `comment` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `user_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK75y67o4atdps7wwslsqr7vdc2` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +90,6 @@ CREATE TABLE `EXPENSES` (
 
 LOCK TABLES `EXPENSES` WRITE;
 /*!40000 ALTER TABLE `EXPENSES` DISABLE KEYS */;
-INSERT INTO `EXPENSES` VALUES (1,500.00,'black and white','2017-09-09','sofa'),(2,10.00,'tesco','2017-02-06','mug'),(3,200.00,'dress','2018-07-02','gift'),(4,80.00,'lager','2018-03-01','beer'),(5,700.00,'console, games ,pads','2018-12-17','playstation');
 /*!40000 ALTER TABLE `EXPENSES` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,8 +114,34 @@ CREATE TABLE `EXPENSES_TO_CATEGORIES` (
 
 LOCK TABLES `EXPENSES_TO_CATEGORIES` WRITE;
 /*!40000 ALTER TABLE `EXPENSES_TO_CATEGORIES` DISABLE KEYS */;
-INSERT INTO `EXPENSES_TO_CATEGORIES` VALUES (1,4),(2,1),(3,2),(4,3),(5,5);
 /*!40000 ALTER TABLE `EXPENSES_TO_CATEGORIES` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `USERS`
+--
+
+DROP TABLE IF EXISTS `USERS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `USERS` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `profile` varchar(255) DEFAULT NULL,
+  `budget_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_f9tc6q6gpd6cw3idsiuc6fyet` (`budget_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `USERS`
+--
+
+LOCK TABLES `USERS` WRITE;
+/*!40000 ALTER TABLE `USERS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `USERS` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -150,4 +153,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-17 21:35:22
+-- Dump completed on 2018-12-28 18:58:41

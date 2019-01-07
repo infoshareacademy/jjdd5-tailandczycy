@@ -93,6 +93,10 @@ public class Expense {
             uniqueConstraints = @UniqueConstraint(columnNames = {"expense_id", "category_id"}))
     private List<Category> categories;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Expense() {
     }
 
