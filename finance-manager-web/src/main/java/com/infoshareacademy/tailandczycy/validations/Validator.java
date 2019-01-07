@@ -44,7 +44,7 @@ public class Validator {
     }
 
     private boolean isNameCorrect(String name) {
-        if (name == null || name.isEmpty() || !StringUtils.isNumeric(name) || isLessThan15Letters(name)) {
+        if (name == null || name.isEmpty() || StringUtils.isNumeric(name) || isMoreThan15Letters(name)) {
             return false;
         }
         return true;
@@ -82,8 +82,8 @@ public class Validator {
         return true;
     }
 
-    private boolean isLessThan15Letters(String string) {
-        return string.chars().count() < 15;
+    private boolean isMoreThan15Letters(String string) {
+        return string.chars().count() > 15;
     }
 
     private boolean isBigDecimalCorrect(String bigDecimalString) {

@@ -80,7 +80,7 @@
             </div>
         </nav>
         <h2>Wydatki<span class="badge badge-secondary">Nowy</span></h2>
-        <form>
+        <form method="post">
             <div class="form-group">
                 <label for="usr">Nazwa:</label>
                 <input type="text" class="form-control" id="usr">
@@ -108,7 +108,7 @@
                 <label for="exampleFormControlTextarea1">Komentarz:</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
+            <button type="submit" class="btn btn-primary active">Wyślij</button>
         </form>
-        <button type="button" class="btn btn-primary active">Wyślij</button>
     <#include "../static/footer.ftlh">
     <#include "../static/scripts.ftlh">

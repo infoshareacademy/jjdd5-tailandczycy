@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 
 @WebServlet(urlPatterns = "/add-expense")
 public class AddExpense extends HttpServlet {
+
     private static final String TEMPLATE_ADD = "transactions/newTransaction";
 
     private Logger logger = Logger.getLogger(getClass().getName());
@@ -37,25 +38,28 @@ public class AddExpense extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
         HashMap<String, Object> dataModel = new HashMap<>();
-        handleTemplate(dataModel, TEMPLATE_ADD, resp);
+        handleTemplate(dataModel, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
         HashMap<String, Object> dataModel = new HashMap<>();
         if(validator.isExpenseCorrect(req)) {
             ExpenseDto expenseDto = expenseBean.getRequestView(req);
             expenseBean.saveExpense(expenseDto);
             dataModel.put("state", "added");
-            handleTemplate(dataModel, TEMPLATE_ADD, resp);
+            handleTemplate(dataModel, resp);
+            logger.info("expense added");
         } else {
             dataModel.put("state", "error");
-            handleTemplate(dataModel, TEMPLATE_ADD, resp);
+            handleTemplate(dataModel, resp);
+            logger.warning("wrong input");
         }
     }
 
-    private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
-        Template template = templateProvider.getTemplate(getServletContext(), templateName);
+    private void handleTemplate(Map<String, Object> model, HttpServletResponse resp) throws IOException {
+        Template template = templateProvider.getTemplate(getServletContext(), AddExpense.TEMPLATE_ADD);
         try {
             template.process(model, resp.getWriter());
         } catch (TemplateException e) {
