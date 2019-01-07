@@ -49,6 +49,10 @@ public class Category {
     @ManyToMany(mappedBy = "categories")
     private List<Expense> expenses;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Category() {
     }
 
