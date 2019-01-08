@@ -1,8 +1,8 @@
 package com.infoshareacademy.tailandczycy.web;
 
-import com.infoshareacademy.tailandczycy.dto.CategoryRequestViewDto;
+import com.infoshareacademy.tailandczycy.cdi.CategoryBean;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
-import com.infoshareacademy.tailandczycy.views.CategoryRequestView;
+import com.infoshareacademy.tailandczycy.dto.CategoryDto;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -17,21 +17,20 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@WebServlet(urlPatterns = "/edit-category")
+@WebServlet(urlPatterns = "edit-category")
 public class EditCategory extends HttpServlet {
     private final Logger logger = Logger.getLogger(getClass().getName());
     private static final String TEMPLATE_NAME = "edit-category";
     private static final String TEMPLATE_EXPENSES_LIST = "/expenses";
-
     @Inject
-    private TemplateProvider templateProvider;
+    TemplateProvider templateProvider;
     @Inject
-    private CategoryRequestViewDto categoryRequestViewDto;
+    CategoryBean categoryBean;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
-        CategoryRequestView categoryRequestView = categoryRequestViewDto.getCategoryById(Long.parseLong(req.getParameter("id")));
+        CategoryDto categoryRequestView = categoryBean.getCategoryById(Long.parseLong(req.getParameter("id")));
         Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("category", categoryRequestView);
         handleTemplate(dataModel, TEMPLATE_NAME, resp);
@@ -49,8 +48,8 @@ public class EditCategory extends HttpServlet {
         }
     }
 
-    private void handleResponse(HttpServletResponse resp, CategoryRequestView categoryView) throws IOException {
-        categoryRequestViewDto.saveCategory(categoryView);
+    private void handleResponse(HttpServletResponse resp, CategoryDto categoryView) throws IOException {
+        categoryBean.saveCategory(categoryView);
         resp.sendRedirect(TEMPLATE_EXPENSES_LIST);
     }
 }

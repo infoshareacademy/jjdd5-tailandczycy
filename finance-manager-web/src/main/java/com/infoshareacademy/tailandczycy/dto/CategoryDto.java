@@ -1,8 +1,8 @@
-package com.infoshareacademy.tailandczycy.views;
+package com.infoshareacademy.tailandczycy.dto;
 
 import java.math.BigDecimal;
 
-public class CategoryRequestView {
+public class CategoryDto {
     Long id;
     String name;
     BigDecimal limit;

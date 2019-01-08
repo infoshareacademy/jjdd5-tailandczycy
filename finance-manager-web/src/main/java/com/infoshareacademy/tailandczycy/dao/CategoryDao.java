@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -43,30 +44,30 @@ public class CategoryDao {
         return query.getResultList();
     }
 
-    public List<Category> findCategoriesByName(String string) {
-        final Query query = entityManager
-                .createNamedQuery("Category.findCategoriesByName");
-        query.setParameter(PARAM1, string.toLowerCase());
+    public List<Category> findCategoriesByNames(List<String> string) {
+        final TypedQuery<Category> query = entityManager
+                .createNamedQuery("Category.findCategoriesByNames", Category.class);
+        query.setParameter(PARAM1, string);
         return query.getResultList();
     }
 
     public List<Category> findCategoriesCheaperOrEven(BigDecimal bigDecimal) {
-        final Query query = entityManager
-                .createNamedQuery("Category.findCategoriesCheaperOrEven");
+        final TypedQuery<Category> query = entityManager
+                .createNamedQuery("Category.findCategoriesCheaperOrEven", Category.class);
         query.setParameter(PARAM1, bigDecimal);
         return query.getResultList();
     }
 
     public List<Category> findCategoriesMoreExpOrEven(BigDecimal bigDecimal) {
-        final Query query = entityManager
-                .createNamedQuery("Category.findCategoriesMoreExpOrEven");
+        final TypedQuery<Category> query = entityManager
+                .createNamedQuery("Category.findCategoriesMoreExpOrEven", Category.class);
         query.setParameter(PARAM1, bigDecimal);
         return query.getResultList();
     }
 
     public List<Category> findCategoriesEven(BigDecimal bigDecimal) {
-        final Query query = entityManager
-                .createNamedQuery("Category.findCategoriesEven");
+        final TypedQuery<Category> query = entityManager
+                .createNamedQuery("Category.findCategoriesEven", Category.class);
         query.setParameter(PARAM1, bigDecimal);
         return query.getResultList();
     }

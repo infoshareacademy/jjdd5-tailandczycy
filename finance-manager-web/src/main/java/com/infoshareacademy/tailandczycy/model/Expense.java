@@ -1,7 +1,6 @@
 package com.infoshareacademy.tailandczycy.model;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -91,25 +90,26 @@ public class Expense {
     @JoinTable(name = "EXPENSES_TO_CATEGORIES",
             joinColumns = @JoinColumn(name = "expense_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"),
-            uniqueConstraints = @UniqueConstraint(columnNames = {"expense_id", "category_id", }))
+            uniqueConstraints = @UniqueConstraint(columnNames = {"expense_id", "category_id"}))
     private List<Category> categories;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Expense() {
     }
 
-    public Expense(String name, String comment, BigDecimal amount, LocalDate date) {
+    public Expense(String name, String comment, BigDecimal amount, LocalDate date, List<Category> categories) {
         this.name = name;
         this.comment = comment;
         this.amount = amount;
         this.date = date;
+        this.categories = categories;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -153,18 +153,6 @@ public class Expense {
     }
 
     @Override
-    public String toString() {
-        return "Expense{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", comment='" + comment + '\'' +
-                ", amount=" + amount +
-                ", date=" + date +
-                ", categories=" + categories +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -180,5 +168,17 @@ public class Expense {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, comment, amount, date, categories);
+    }
+
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", comment='" + comment + '\'' +
+                ", amount=" + amount +
+                ", date=" + date +
+                ", categories=" + categories +
+                '}';
     }
 }

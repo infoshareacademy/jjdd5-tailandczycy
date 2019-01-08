@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 @Table(name = "CATEGORIES")
 @NamedQueries({
         @NamedQuery(
-                name = "Category.findCategoriesByName",
-                query = "SELECT c FROM Category c WHERE c.name = :param1 ORDER BY c.limit"
+                name = "Category.findCategoriesByNames",
+                query = "SELECT c FROM Category c WHERE c.name IN :param1"
         ),
         @NamedQuery(
                 name = "Category.findCategoriesCheaperOrEven",
@@ -38,6 +38,10 @@ public class Category {
     @NotNull
     private String name;
 
+    @Column(name = "total")
+    @NotNull
+    private BigDecimal total;
+
     @Column(name = "spending_limit")
     @NotNull
     private BigDecimal limit;
@@ -45,21 +49,21 @@ public class Category {
     @ManyToMany(mappedBy = "categories")
     private List<Expense> expenses;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Category() {
     }
 
-    public Category(String name, BigDecimal limit, List<Expense> expenses) {
+    public Category(String name, BigDecimal limit) {
         this.name = name;
         this.limit = limit;
-        this.expenses = expenses;
+        this.total = BigDecimal.ZERO;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -68,6 +72,14 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 
     public BigDecimal getLimit() {
@@ -87,30 +99,32 @@ public class Category {
     }
 
     @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", limit=" + limit +
-                ", expenses=" + expenses.stream()
-                .map(Expense::getId)
-                .collect(Collectors.toList()) +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
         return Objects.equals(id, category.id) &&
                 Objects.equals(name, category.name) &&
+                Objects.equals(total, category.total) &&
                 Objects.equals(limit, category.limit) &&
                 Objects.equals(expenses, category.expenses);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, limit, expenses);
+        return Objects.hash(id, name, total, limit, expenses);
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", total=" + total +
+                ", limit=" + limit +
+                ", expenses=" + expenses.stream()
+                                .map(Expense::getId)
+                                .collect(Collectors.toList())+
+                '}';
     }
 }

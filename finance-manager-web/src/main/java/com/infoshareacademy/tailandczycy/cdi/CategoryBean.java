@@ -1,8 +1,8 @@
-package com.infoshareacademy.tailandczycy.dto;
+package com.infoshareacademy.tailandczycy.cdi;
 
 import com.infoshareacademy.tailandczycy.dao.CategoryDao;
 import com.infoshareacademy.tailandczycy.model.Category;
-import com.infoshareacademy.tailandczycy.views.CategoryRequestView;
+import com.infoshareacademy.tailandczycy.dto.CategoryDto;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.enterprise.context.RequestScoped;
@@ -11,41 +11,45 @@ import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 
 @RequestScoped
-public class CategoryRequestViewDto {
+public class CategoryBean {
     @Inject
     private CategoryDao categoryDao;
 
-    public CategoryRequestView getcategoryRequestView(HttpServletRequest req) {
-        CategoryRequestView categoryRequestView = new CategoryRequestView();
-        categoryRequestView.setLimit(parseStringToBigDecimal(req.getParameter("limit")));
+    public CategoryDto getCategoryDto(HttpServletRequest req) {
+        CategoryDto categoryDto = new CategoryDto();
+        categoryDto.setId(parseStringToLong(req.getParameter("id")));
+        categoryDto.setLimit(parseStringToBigDecimal(req.getParameter("limit")));
         String category = req.getParameter("name");
         if (validateParameter(category)) {
             return null;
         }
-        categoryRequestView.setName(category);
-        return categoryRequestView;
+        categoryDto.setName(category);
+        return categoryDto;
     }
 
-    public CategoryRequestView getCategoryById(Long id) {
+    public CategoryDto getCategoryById(Long id) {
         Category categoryById = categoryDao.findById(id);
         if (categoryById == null) {
             return null;
         }
-        CategoryRequestView categoryRequestView = new CategoryRequestView();
-        categoryRequestView.setName(categoryById.getName());
-        categoryRequestView.setLimit(categoryById.getLimit());
-        return categoryRequestView;
+        CategoryDto categoryDto = new CategoryDto();
+
+        categoryDto.setName(categoryById.getName());
+        categoryDto.setLimit(categoryById.getLimit());
+        return categoryDto;
     }
 
-    public void saveCategory(CategoryRequestView categoryRequestView) {
-        Category category = categoryDao.findById(categoryRequestView.getId());
+    public void saveCategory(CategoryDto categoryDto) {
+        Category category = categoryDao.findById(categoryDto.getId());
         boolean newCategory = false;
         if (category == null) {
             category = new Category();
             newCategory = true;
         }
-        category.setLimit(categoryRequestView.getLimit());
-        category.setName(categoryRequestView.getName());
+
+        category.setLimit(categoryDto.getLimit());
+        category.setName(categoryDto.getName());
+
         if (newCategory) {
             categoryDao.save(category);
         }
@@ -62,6 +66,7 @@ public class CategoryRequestViewDto {
         }
         return new BigDecimal(param);
     }
+
 
     private boolean validateParameter(String param) {
         return param == null || param.isEmpty() || !StringUtils.isNumeric(param);
