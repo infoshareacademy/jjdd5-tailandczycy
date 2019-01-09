@@ -12,6 +12,8 @@
         crossorigin="anonymous"></script>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
 
 
 <script type="text/javascript">

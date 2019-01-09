@@ -17,7 +17,7 @@
                     <a class="nav-link" href=""></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="home">Login</a>
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
                 </li>
             </ul>
         </div>
