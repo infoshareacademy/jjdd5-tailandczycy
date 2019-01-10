@@ -84,8 +84,6 @@
 
         <h2>Wydatki</h2>
 
-        <div id="piechart"></div>
-
         <h2>Analiza wydatków</h2>
 
         <table class="table table-hover table-fixed">

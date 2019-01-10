@@ -9,5 +9,4 @@
 <#include "static/footer.ftlh">
 </body>
 <#include "static/scripts.ftlh">
-<#include "../../js/piechart.js">
 </html>

@@ -33,7 +33,7 @@ public class MainPageServlet extends HttpServlet {
         handleTemplate(dataModel, resp);
     }
 
-    private void handleTemplate(Map<String, Object> model, HttpServletResponse resp) throws IOException {
+    private void handleTemplate(Map<String, Object> model,   HttpServletResponse resp) throws IOException {
         Template template = templateProvider.getTemplate(getServletContext(), MainPageServlet.TEMPLATE_NAME);
 
         try {
