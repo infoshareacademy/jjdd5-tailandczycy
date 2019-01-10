@@ -33,13 +33,13 @@ public class EditCategory extends HttpServlet {
         CategoryDto categoryRequestView = categoryBean.getCategoryById(Long.parseLong(req.getParameter("id")));
         Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("category", categoryRequestView);
-        handleTemplate(dataModel, TEMPLATE_NAME, resp);
+        handleTemplate(dataModel, resp);
         handleResponse(resp, categoryRequestView);
     }
 
 
-    private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
-        Template template = templateProvider.getTemplate(getServletContext(), templateName);
+    private void handleTemplate(Map<String, Object> model, HttpServletResponse resp) throws IOException {
+        Template template = templateProvider.getTemplate(getServletContext(), EditCategory.TEMPLATE_NAME);
 
         try {
             template.process(model, resp.getWriter());

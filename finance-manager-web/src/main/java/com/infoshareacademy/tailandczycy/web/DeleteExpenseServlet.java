@@ -37,13 +37,13 @@ public class DeleteExpenseServlet extends HttpServlet {
         Expense expense = expenseDao.findById(id);
         dataModel.put("expenses", expense);
         expenseDao.delete(id);
-        handleTemplate(dataModel, TEMPLATE_NAME, resp);
+        handleTemplate(dataModel, resp);
 
 
     }
 
-    private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
-        Template template = templateProvider.getTemplate(getServletContext(), templateName);
+    private void handleTemplate(Map<String, Object> model, HttpServletResponse resp) throws IOException {
+        Template template = templateProvider.getTemplate(getServletContext(), DeleteExpenseServlet.TEMPLATE_NAME);
 
         try {
             template.process(model, resp.getWriter());

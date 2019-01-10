@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
       integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <link rel="stylesheet" href="styles.css">
+<meta name="google-signin-client_id" content="4310245586-2k3iaj08lkb9qg2cdnkd87umoim72506.apps.googleusercontent.com">
 <#--<#include "styles.css">-->
 
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"

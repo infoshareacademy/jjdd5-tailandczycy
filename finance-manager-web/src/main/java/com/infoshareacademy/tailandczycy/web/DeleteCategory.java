@@ -34,11 +34,11 @@ public class DeleteCategory extends HttpServlet {
         Category category = categoryDao.findById(id);
         dataModel.put("category", category);
         categoryDao.delete(category.getId());
-        handleTemplate(dataModel, TEMPLATE_NAME, resp);
+        handleTemplate(dataModel, resp);
     }
 
-    private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
-        Template template = templateProvider.getTemplate(getServletContext(), templateName);
+    private void handleTemplate(Map<String, Object> model, HttpServletResponse resp) throws IOException {
+        Template template = templateProvider.getTemplate(getServletContext(), DeleteCategory.TEMPLATE_NAME);
 
         try {
             template.process(model, resp.getWriter());

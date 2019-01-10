@@ -13,6 +13,8 @@
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+<script type="text/javascript" src="js/oauth.js"</script>
+
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -27,4 +29,7 @@
             $('#datetimepicker1').datetimepicker();
         });
     </script>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://apis.google.com/js/client.js" async defer></script>
 

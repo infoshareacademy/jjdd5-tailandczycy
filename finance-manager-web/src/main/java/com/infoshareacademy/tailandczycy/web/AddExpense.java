@@ -37,7 +37,7 @@ public class AddExpense extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.addHeader("Content-Type", "text/html; charset=utf-8");
         HashMap<String, Object> dataModel = new HashMap<>();
-        handleTemplate(dataModel, TEMPLATE_ADD, resp);
+        handleTemplate(dataModel, resp);
     }
 
     @Override
@@ -47,15 +47,15 @@ public class AddExpense extends HttpServlet {
             ExpenseDto expenseDto = expenseBean.getRequestView(req);
             expenseBean.saveExpense(expenseDto);
             dataModel.put("state", "added");
-            handleTemplate(dataModel, TEMPLATE_ADD, resp);
+            handleTemplate(dataModel, resp);
         } else {
             dataModel.put("state", "error");
-            handleTemplate(dataModel, TEMPLATE_ADD, resp);
+            handleTemplate(dataModel, resp);
         }
     }
 
-    private void handleTemplate(Map<String, Object> model, String templateName, HttpServletResponse resp) throws IOException {
-        Template template = templateProvider.getTemplate(getServletContext(), templateName);
+    private void handleTemplate(Map<String, Object> model, HttpServletResponse resp) throws IOException {
+        Template template = templateProvider.getTemplate(getServletContext(), AddExpense.TEMPLATE_ADD);
         try {
             template.process(model, resp.getWriter());
         } catch (TemplateException e) {

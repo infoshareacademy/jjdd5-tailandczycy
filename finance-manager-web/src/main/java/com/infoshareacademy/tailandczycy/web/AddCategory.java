@@ -22,8 +22,6 @@ public class AddCategory extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         CategoryDto categoryRequestView = categoryBean.getCategoryDto(req);
-        Map<String, Object> dataModel = new HashMap<>();
-        dataModel.put("category", categoryRequestView);
         handleResponse(resp, categoryRequestView);
     }
 
