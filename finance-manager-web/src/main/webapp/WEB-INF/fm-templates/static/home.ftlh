@@ -85,9 +85,13 @@
             </div>
         </nav>
 
+        <canvas id="horizontalBar"></canvas>
+
         <h2>Wydatki</h2>
 
         <div id="piechart"></div>
+
+
 
         <h2>Analiza wydatków</h2>
 
