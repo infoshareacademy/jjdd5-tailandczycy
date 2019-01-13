@@ -12,33 +12,25 @@
             <strong>FM</strong>
         </div>
         <ul class="list-unstyled components">
-            <li class="active">
-                <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                    <i class="fas fa-briefcase"></i>
-                    Expenses
-                </a>
-                <ul class="collapse list-unstyled" id="pageSubmenu1">
-                    <li>
-                        <a href="/add-expense">Add</a>
-                    </li>
-                    <li>
-                        <a href="/expenses">Display</a>
-                    </li>
-                </ul>
-            </li>
             <li>
-                <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-copy"></i>
                     Categories
                 </a>
-                <ul class="collapse list-unstyled" id="pageSubmenu2">
-                    <li>
-                        <a href="add-category">Add</a>
-                    </li>
-                    <li>
-                        <a href="/categories">Display</a>
-                    </li>
-                </ul>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li>
+                <a href="add-category">Add</a>
+                </li>
+                <li>
+                <a href="/categories">Display</a>
+                </li>
+            </ul>
+            </li>
+            <li>
+                <a href="/add-expense">
+                    <i class="fas fa-paper-plane"></i>
+                    Add Expense
+                </a>
             </li>
             <li>
                 <a href="/about">
@@ -55,31 +47,6 @@
         </ul>
     </nav>
     <div id="content">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                    <i class="fas fa-align-left"></i>
-                    <span>Menu</span>
-                </button>
-                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-align-justify"></i>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href=""></a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="home">Login</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
 
         <h2>Expenses</h2>
 
