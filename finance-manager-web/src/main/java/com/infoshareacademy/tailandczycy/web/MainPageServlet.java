@@ -1,5 +1,6 @@
 package com.infoshareacademy.tailandczycy.web;
 
+import com.infoshareacademy.tailandczycy.cdi.IdTokenVerifier;
 import com.infoshareacademy.tailandczycy.freemarker.TemplateProvider;
 
 import freemarker.template.Template;
@@ -20,6 +21,8 @@ public class MainPageServlet extends HttpServlet {
     private static final String TEMPLATE_NAME = "welcome";
     private final Logger logger = Logger.getLogger(getClass().getName());
 
+    @Inject
+    private IdTokenVerifier idTokenVerifier;
     @Inject
     private TemplateProvider templateProvider;
 

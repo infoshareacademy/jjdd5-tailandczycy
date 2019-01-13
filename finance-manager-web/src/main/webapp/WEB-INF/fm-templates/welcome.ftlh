@@ -5,6 +5,7 @@
 <#include "static/head.ftlh">
 </head>
 <body onload="onLoad()">
+<#assign login="active">
 <#include "static/home.ftlh">
 <#include "static/footer.ftlh">
 </body>
