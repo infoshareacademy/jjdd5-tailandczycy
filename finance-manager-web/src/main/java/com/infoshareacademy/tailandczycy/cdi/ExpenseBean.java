@@ -62,7 +62,7 @@ public class ExpenseBean {
         expense.setCategories(expenseDto.getCategories());
         expense.getCategories()
                 .forEach(category -> {
-                                        category.getTotal().add(expenseDto.getAmount());
+                                        category.setTotal(category.getTotal().add(expenseDto.getAmount()));
                                         categoryDao.update(category);
                                      });
         expenseDao.save(expense);

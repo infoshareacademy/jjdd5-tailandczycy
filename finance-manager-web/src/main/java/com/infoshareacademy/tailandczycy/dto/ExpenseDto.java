@@ -1,18 +1,20 @@
 package com.infoshareacademy.tailandczycy.dto;
 
 import com.infoshareacademy.tailandczycy.model.Category;
+import com.infoshareacademy.tailandczycy.model.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
 public class ExpenseDto {
-    Long id;
-    String name;
-    String comment;
-    BigDecimal amount;
-    LocalDate date;
-    List<Category> categories;
+    private Long id;
+    private String name;
+    private String comment;
+    private BigDecimal amount;
+    private LocalDate date;
+    private List<Category> categories;
+    private User user;
 
     public Long getId() {
         return id;
@@ -60,5 +62,26 @@ public class ExpenseDto {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "ExpenseDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", comment='" + comment + '\'' +
+                ", amount=" + amount +
+                ", date=" + date +
+                ", categories=" + categories +
+                ", user=" + user +
+                '}';
     }
 }

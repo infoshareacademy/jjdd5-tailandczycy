@@ -1,4 +1,10 @@
-<#include "head.ftlh">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome our new Finance Manager</title>
+    <#include "static/head.ftlh">
+</head>
+<body>
 <div class="wrapper">
     <!-- Sidebar  -->
     <nav id="sidebar">
@@ -79,5 +85,9 @@
                 </div>
             </div>
         </nav>
-    <#include "footer.ftlh">
-    <#include "scripts.ftlh">
+    </div>
+</div>
+<#include "static/footer.ftlh">
+<#include "static/scripts.ftlh">
+</body>
+</html>

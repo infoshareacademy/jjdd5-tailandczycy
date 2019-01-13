@@ -1,9 +1,12 @@
 package com.infoshareacademy.tailandczycy.web;
 
 import com.infoshareacademy.tailandczycy.cdi.CategoryBean;
+import com.infoshareacademy.tailandczycy.cdi.TemplateBean;
 import com.infoshareacademy.tailandczycy.dto.CategoryDto;
+import com.infoshareacademy.tailandczycy.staticVariables.Template;
 
 import javax.inject.Inject;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,10 +17,18 @@ import java.util.Map;
 
 @WebServlet(urlPatterns = "add-category")
 public class AddCategory extends HttpServlet {
-    private static final String TEMPLATE_CATEGORY_LIST = "expenses";
 
     @Inject
     CategoryBean categoryBean;
+
+    @Inject
+    TemplateBean templateBean;
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Map<String, Object> dataModel = new HashMap<>();
+        templateBean.handleTemplate(getServletContext(), Template.ADD_CATEGORY, dataModel, resp);
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -29,6 +40,6 @@ public class AddCategory extends HttpServlet {
 
     private void handleResponse(HttpServletResponse resp, CategoryDto categoryView) throws IOException {
         categoryBean.saveCategory(categoryView);
-        resp.sendRedirect(TEMPLATE_CATEGORY_LIST);
+        resp.sendRedirect("/add-category");
     }
 }

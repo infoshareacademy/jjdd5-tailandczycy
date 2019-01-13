@@ -1,4 +1,10 @@
-<#include "../static/head.ftlh">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome our new Finance Manager</title>
+<#include "static/head.ftlh">
+</head>
+<body>
 <div class="wrapper">
     <!-- Sidebar  -->
     <nav id="sidebar">
@@ -73,42 +79,49 @@
                             <a class="nav-link" href=""></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Login</a>
+                            <a class="nav-link" href="home">Login</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <h2>Wydatki<span class="badge badge-secondary">Nowy</span></h2>
-        <form>
-            <div class="form-group">
-                <label for="usr">Nazwa:</label>
-                <input type="text" class="form-control" id="usr">
-            </div>
-            <div class="form-group">
-                <label for="pwd">Data:</label>
-                <input type="date" class="form-control" id="pwd">
-            </div>
-            <div class="form-group">
-                <label for="pwd">Kwota:</label>
-                <input type="number" class="form-control" id="pwd">
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlSelect2">Kategoria:</label>
-                <select multiple class="form-control" id="exampleFormControlSelect2">
-                    <option>Dom i rachunki</option>
-                    <option>Odzież i obuwie</option>
-                    <option>Wydatki podstawowe</option>
-                    <option>Zdrowie i uroda</option>
-                    <option>Rozrywka i podróże</option>
-                    <option>Samochód i transport</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Komentarz:</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-        </form>
-        <button type="button" class="btn btn-primary active">Wyślij</button>
-    <#include "../static/footer.ftlh">
-    <#include "../static/scripts.ftlh">
+
+        <h2>Expenses</h2>
+
+        <#list expenses>
+            <table class="table table-hover table-fixed">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Categories</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Comment</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <#items as e>
+                    <tr>
+                        <td>${e.name}</td>
+                        <td>${e.categories}</td>
+                        <td>${e.date}</td>
+                        <td>${e.amount}</td>
+                        <td>${e.comment}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm">Edit</button>&nbsp;
+                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                        </td>
+                    </tr>
+                </#items>
+                </tbody>
+            </table>
+            <#else>
+            NO VALUES
+        </#list>
+    </div>
+</div>
+<#include "static/footer.ftlh">
+<#include "static/scripts.ftlh">
+</body>
+</html>
