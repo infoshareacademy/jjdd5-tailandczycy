@@ -102,6 +102,10 @@
                     </div>
                     <input type="number" value="100" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
                 </div>
+                <div class="form-group">
+                    <label for="pwd">Date:</label>
+                    <input type="date" class="form-control" id="pwd">
+                </div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

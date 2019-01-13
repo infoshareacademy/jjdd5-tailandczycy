@@ -6,14 +6,13 @@
 </head>
 <body>
 <div class="wrapper">
-    <!-- Sidebar  -->
     <nav id="sidebar">
         <div class="sidebar-header">
             <h3><a href="home">Finance Manager</a></h3>
             <strong>FM</strong>
         </div>
         <ul class="list-unstyled components">
-            <li>
+            <li class="active">
                 <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-briefcase"></i>
                     Expenses
