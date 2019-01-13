@@ -273,4 +273,31 @@ a.article:hover {
     #sidebarCollapse span {
         display: none;
     }
+
+    form {
+        margin: 20px auto;
+        width: 420px;
+    }
+    .form-row {
+        padding: 5px 10px;
+    }
+    label {
+        display: block;
+        margin: 3px 0;
+    }
+    .form-row input {
+        padding: 3px 1px;
+        width: 100%;
+    }
+    input.currency {
+        text-align: right;
+        padding-right: 15px;
+    }
+    .input-group .form-control {
+        float: none;
+    }
+    .input-group .input-buttons {
+        position: relative;
+        z-index: 3;
+    }
 }

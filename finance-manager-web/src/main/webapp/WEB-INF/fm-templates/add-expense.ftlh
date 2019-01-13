@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Welcome our new Finance Manager</title>
-<#include "static/head.ftlh">
+    <#include "static/head.ftlh">
 </head>
 <body>
 <div class="wrapper">
@@ -84,37 +84,27 @@
 
         <h2>Expenses</h2>
 
-        <#list expenses>
-            <table class="table table-hover table-fixed">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Categories</th>
-                    <th>Date</th>
-                    <th>Amount</th>
-                    <th>Comment</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <#items as e>
-                    <tr>
-                        <td>${e.name}</td>
-                        <td>${e.categories}</td>
-                        <td>${e.date}</td>
-                        <td>${e.amount}</td>
-                        <td>${e.comment}</td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-sm">Edit</button>&nbsp;
-                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                        </td>
-                    </tr>
-                </#items>
-                </tbody>
-            </table>
-            <#else>
-            NO VALUES
-        </#list>
+        <form>
+            <div class="form-group">
+                <label for="name">Name of Expense</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter Name">
+            </div>
+            <div class="form-group">
+                <label for="comment">Password</label>
+                <input type="text" class="form-control" id="comment" aria-describedby="commentHelp" placeholder="Enter comment">
+                <small id="commentHelp" class="form-text text-muted">It is optional field</small>
+            </div>
+            <div class="form-group">
+                <label for="c2">Amount</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">PLN</div>
+                    </div>
+                    <input type="number" value="100" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 </div>
 <#include "static/footer.ftlh">
