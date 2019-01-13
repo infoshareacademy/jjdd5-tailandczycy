@@ -7,34 +7,9 @@
 <body>
 <div class="wrapper">
     <#include "static/navbar.ftlh">
-    <div id="content">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
+    <div id="content" class="container col-4 myContent">
 
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                    <i class="fas fa-align-left"></i>
-                    <span>Menu</span>
-                </button>
-                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-align-justify"></i>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href=""></a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="home">Login</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <h2>Expenses</h2>
+        <h2 id="myH2">Add expense</h2>
 
         <form>
             <div class="form-group">
@@ -54,10 +29,21 @@
                     </div>
                     <input type="number" value="100" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
                 </div>
-                <div class="form-group">
-                    <label for="pwd">Date:</label>
-                    <input type="date" class="form-control" id="pwd">
-                </div>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Date:</label>
+                <input type="date" class="form-control" id="pwd">
+            </div>
+            <div class="form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="">Option 1
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="">Option 2
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="">Option 3
+                    </label>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

@@ -5,6 +5,10 @@ body {
     background: #fafafa;
 }
 
+#myH2 {
+    margin-bottom: 5%;
+}
+
 p {
     font-family: 'Poppins', sans-serif;
     font-size: 1.1em;
@@ -209,6 +213,9 @@ a.article:hover {
     padding: 20px;
     min-height: 100vh;
     transition: all 0.3s;
+}
+.myContent{
+    margin-left: 10%;
 }
 
 /* ---------------------------------------------------
