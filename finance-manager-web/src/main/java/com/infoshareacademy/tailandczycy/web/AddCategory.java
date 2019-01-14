@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet(urlPatterns = "add-category")
+@WebServlet(urlPatterns = "/add-category")
 public class AddCategory extends HttpServlet {
 
     @Inject
