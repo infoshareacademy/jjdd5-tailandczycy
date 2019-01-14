@@ -27,7 +27,11 @@
                 <#items as e>
                     <tr>
                         <td>${e.name}</td>
-                        <td>${e.categories}</td>
+                        <td>
+                            <#list e.categories as c>
+                                ${c.name}<#sep>, </#sep>
+                            </#list>
+                        </td>
                         <td>${e.date}</td>
                         <td>${e.amount}</td>
                         <td>${e.comment}</td>
