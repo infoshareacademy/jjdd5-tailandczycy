@@ -1,7 +1,9 @@
 package com.infoshareacademy.tailandczycy.web;
 
 import com.infoshareacademy.tailandczycy.cdi.TemplateBean;
+import com.infoshareacademy.tailandczycy.dao.CategoryDao;
 import com.infoshareacademy.tailandczycy.dao.ExpenseDao;
+import com.infoshareacademy.tailandczycy.model.Category;
 import com.infoshareacademy.tailandczycy.model.Expense;
 import com.infoshareacademy.tailandczycy.staticVariables.Template;
 import com.infoshareacademy.tailandczycy.validations.Validator;
@@ -37,9 +39,14 @@ public class AddExpense extends HttpServlet {
     @Inject
     ExpenseDao expenseDao;
 
+    @Inject
+    CategoryDao categoryDao;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HashMap<String, Object> dataModel = new HashMap<>();
+        List<Category> categories = categoryDao.findAll();
+        dataModel.put("categories", categories);
         templateBean.handleTemplate(getServletContext(), Template.ADD_EXPENSE, dataModel, resp);
     }
 

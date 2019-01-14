@@ -25,7 +25,7 @@
                 <label for="c2">Amount</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <div class="input-group-text">PLN</div>
+                        <span class="input-group-text" id="basic-addon1">PLN</span>
                     </div>
                     <input type="number" value="100" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
                 </div>
@@ -34,17 +34,21 @@
                 <label for="pwd">Date:</label>
                 <input type="date" class="form-control" id="pwd">
             </div>
-            <div class="form-group">
-                    <label class="checkbox-inline">
-                        <input type="checkbox" value="">Option 1
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" value="">Option 2
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" value="">Option 3
-                    </label>
-            </div>
+                <#list categories>
+                    <div class="form-group">
+                    <#items as c>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" value="${c.id}">${c.name}
+                        </label>
+                    </#items>
+                    </div>
+                    <#else>
+                        <div class="form-group">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="0" checked>Other
+                            </label>
+                        </div>
+                </#list>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
