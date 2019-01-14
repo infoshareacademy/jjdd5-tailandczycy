@@ -61,10 +61,12 @@ public class AddExpense extends HttpServlet {
             dataModel.put("expenses", expenses);
             logger.info("Expense {} added", expenseDto.toString());
         } else {
+            List<Expense> expenses = expenseDao.findAll();
             dataModel.put("state", "error");
+            dataModel.put("expenses", expenses);
             logger.error("Wrong input");
         }
-        templateBean.handleTemplate(getServletContext(), Template.EXPENSES, dataModel, resp);
+        templateBean.handleTemplate(getServletContext(), Template.HOME, dataModel, resp);
     }
 }
 

@@ -29,6 +29,6 @@ public class ExpensesServlet extends HttpServlet {
         HashMap<String, Object> dataModel = new HashMap<>();
         List<Expense> listOfExpenses = expenseDao.findAll();
         dataModel.put("expenses", listOfExpenses);
-        templateBean.handleTemplate(getServletContext(), Template.EXPENSES, dataModel, resp);
+        templateBean.handleTemplate(getServletContext(), Template.HOME, dataModel, resp);
     }
 }

@@ -11,7 +11,7 @@
 
         <h2 id="myH2">Add expense</h2>
 
-        <form>
+        <form method="post">
             <div class="form-group">
                 <label for="name">Name of Expense</label>
                 <input type="text" class="form-control" id="name" placeholder="Enter Name">
